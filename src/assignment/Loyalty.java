@@ -9,5 +9,5 @@ package assignment;
  * @author xuan
  */
 public class Loyalty {
-    
+    //hi
 }

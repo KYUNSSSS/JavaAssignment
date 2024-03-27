@@ -15,7 +15,7 @@ public class Customer {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Hi Dajia");
+        System.out.println("Hi Dajia");//goodnight
     }
     
 }

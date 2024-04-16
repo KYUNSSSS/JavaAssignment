@@ -10,4 +10,7 @@ package assignment;
  */
 public class Loyalty {
     //hi
+    //hihi
+    //hihih
+    //good nite
 }

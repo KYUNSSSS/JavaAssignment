@@ -17,6 +17,7 @@ public class Customer {
     private String email = "";
     private int phoneNum = 0 ;
     private double totalPurchaseAmount = 0;
+    private static int userRegistered;
     
      public Customer() {
     }
@@ -29,6 +30,7 @@ public class Customer {
         this.email = email;
         this.phoneNum = phoneNum;
         this.totalPurchaseAmount = totalPurchaseAmount;
+        userRegistered++;
     }
 
    
@@ -71,6 +73,14 @@ public class Customer {
     public void setTotalPurchaseAmount(double totalPurchaseAmount) {
         this.totalPurchaseAmount = totalPurchaseAmount;
     }
+
+    public static int getUserRegistered() {
+        return userRegistered;
+    }
+
+    public static void setUserRegistered(int userRegistered) {
+        Customer.userRegistered = userRegistered;
+    }
     
     public void enterDetail(){
         System.out.print("Enter Name(Ali bin Abu): ");
@@ -88,16 +98,16 @@ public class Customer {
         
         System.out.print("Enter Purchase Amount:RM ");
         totalPurchaseAmount = input.nextDouble();
-        
+        userRegistered++;
         System.out.println("Registered Successfully.");
     
     }
-    public boolean checkDetail(){
-        int num;
+    public boolean checkDetail(int phoneNum){
+    
         boolean bool;
-        System.out.print("==Check User==\n Enter Phone Number: ");
-        num = input.nextInt();
-        if (num == getPhoneNum()){
+      
+        
+        if (phoneNum == getPhoneNum()){
             System.out.println("User Found!");
             bool =true;
         }else{
@@ -107,14 +117,14 @@ public class Customer {
             
         return bool;
        }
-    public boolean updateDetail(){
+    public void updateDetail(){
         int num;
         int choice;
-        boolean bool;
-        System.out.print("==Update User==\n Enter Phone Number: ");
-        num = input.nextInt();
-        if (num == getPhoneNum()){
-            System.out.println("User Found!\nWhat to update?\n1.Name\n2.Age\n3.Email\nPhone Number");
+        
+        
+        
+        
+            System.out.println("\nWhat to update?\n1.Name\n2.Age\n3.Email\n4.Phone Number\n5.Back\nSelect One:");
             choice= input.nextInt();
             
             if(choice ==1){
@@ -122,18 +132,23 @@ public class Customer {
                 System.out.print("Enter Name: ");
                 input.nextLine();
                 name = input.nextLine();
-                System.out.printf("%s %s" ,"Name changed ",name);
+                System.out.printf("%s %s" ,"Name changed: ",name+"\n");
+            }else if(choice ==2){
+                System.out.println("SYSTEM DEVELOPING.. :)");
+            }else if(choice ==3){
+                System.out.println("SYSTEM DEVELOPING.. :)");
+            }else if(choice ==4){
+                System.out.println("SYSTEM DEVELOPING.. :)");
             }
-                
-            
-            bool =true;
-        }else{
-            bool = false;
-        }
-           
-            
-        return bool;
+                  
+
        }
+    public void updateAmount(){
+        int num;
+        
+        
+    }
+    
  
  
    

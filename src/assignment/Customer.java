@@ -103,7 +103,7 @@ public class Customer {
     
     }
     public boolean checkDetail(int phoneNum){
-    
+        
         boolean bool;
       
         
@@ -124,7 +124,7 @@ public class Customer {
         
         
         
-            System.out.println("\nWhat to update?\n1.Name\n2.Age\n3.Email\n4.Phone Number\n5.Back\nSelect One:");
+            System.out.print("\nWhat to update?\n1.Name ["+name+"]"+"\n2.Age ["+age+"]"+"\n3.Email {"+email+"]"+"\n4.Phone Number ["+phoneNum+"]"+"\n5.Back\nSelect One:");
             choice= input.nextInt();
             
             if(choice ==1){
@@ -132,20 +132,36 @@ public class Customer {
                 System.out.print("Enter Name: ");
                 input.nextLine();
                 name = input.nextLine();
-                System.out.printf("%s %s" ,"Name changed: ",name+"\n");
+                System.out.printf("%s %s" ,"New Name: ",name+"\n");
             }else if(choice ==2){
-                System.out.println("SYSTEM DEVELOPING.. :)");
+                System.out.print("Enter Age: ");
+                input.nextInt();
+                age = input.nextInt();
+                System.out.printf("%s %s" ,"New Age: ",age+"\n");
+   
             }else if(choice ==3){
-                System.out.println("SYSTEM DEVELOPING.. :)");
+                System.out.print("Enter Email: ");
+                input.nextLine();
+                email = input.nextLine();
+                System.out.printf("%s %s" ,"New Email: ",email+"\n");
+                
             }else if(choice ==4){
-                System.out.println("SYSTEM DEVELOPING.. :)");
+                System.out.print("Enter Phone Number: ");
+                input.nextInt();
+                age = input.nextInt();
+                System.out.printf("%s %s" ,"New Phone Number: ",phoneNum+"\n");
+               
             }
                   
 
        }
     public void updateAmount(){
-        int num;
-        
+        double num;
+        System.out.print("Balance Amount: RM"+this.totalPurchaseAmount+"\n");
+        System.out.print("Enter Amount to add: RM");
+        num = input.nextDouble();
+        this.totalPurchaseAmount+=num;
+        System.out.print("New  Balance Amount: RM"+this.totalPurchaseAmount+"\n");
         
     }
     

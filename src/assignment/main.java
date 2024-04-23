@@ -18,23 +18,22 @@ public class main {
        Scanner input = new Scanner(System.in);
        int phonenum;
        int choice;
-       int user=0;
+       int currentUser=0;
        //System allow n number users to register(in this case 10)
        Customer[]customer = new Customer[10];
-       
        customer[0] = new Customer("TAN AH KOW",21,"ahkow@gmail.com",122,150.00);
-       System.out.println("WELCOME TO BEEWARD!");
+      
+       Menu.splashScreen();
       do{
        
-       System.out.print("1.Register New Account\n2.LOGIN TO EXISTING ACCOUNT\n3.Exit\nEnter Your Choice: ");
+        Menu.mainMenu();
         choice = input.nextInt();
            switch (choice) {
                case 1:
                    customer[Customer.getUserRegistered()] = new Customer();
                    customer[Customer.getUserRegistered()].enterDetail();
-                  // customer[Customer.getUserRegistered()] =new Customer(customer[Customer.getUserRegistered()].getName(),customer[Customer.getUserRegistered()].getAge(),customer[Customer.getUserRegistered()].getEmail(),customer[Customer.getUserRegistered()].getPhoneNum(),customer[Customer.getUserRegistered()].getTotalPurchaseAmount());
                    System.out.println(Customer.getUserRegistered());
-                   System.out.println("GOING BACK TO HOME...");
+                   Menu.backAction();
                    break;
                case 2:
                    boolean result=false;
@@ -42,49 +41,43 @@ public class main {
                    do{
                     System.out.print("Enter Phone Number: ");
                     phonenum = input.nextInt();
-
+                    
                     for(int i = 0 ;i<Customer.getUserRegistered();i++){
                         if(customer[i].getPhoneNum()==phonenum){
                               System.out.println("User Found!");
                               result=true;
-                              user=i;
+                              currentUser=i;
                               break;
                              }
-
-
                     }
                     if (result==false){
                         System.out.println("User not found,Please Try Again.");
                     }
                    }while(result==false);
                    do{
-                    System.out.println("Welcome back,"+customer[user].getName());
-                    System.out.print("1.Update Details\n2.Add New Transaction Amount\n3.Redeem Point\n4.Back\nEnter choice: ");
+                    System.out.println("Welcome back,"+customer[currentUser].getName());
+                    Menu.userMenu();
                     choice = input.nextInt();
                     switch(choice){
                         case 1:
-                            customer[user].updateDetail();
-                           System.out.println("===========GOING BACK=========\n");
+                            customer[currentUser].updateDetail();
+                           Menu.backAction();
 
                             break;
                         case 2:
-                            
+                            customer[currentUser].updateAmount();
+                             Menu.backAction();
                             break;
                         case 3:
                             break;
                         case 4:
-                            System.out.println("GOING BACK....");
+                            Menu.backAction();
                             break;
                         default:
-
-                            System.out.println("GOING BACK...");
-                            break;
-
-
+                            Menu.backAction();                         
                     }
                    }while(choice!=4);
-                     
-                    
+                           
                    break;
                case 3:
                    System.out.println("Thank you for using our system!");

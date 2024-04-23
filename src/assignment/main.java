@@ -14,21 +14,17 @@ import java.util.Scanner;
 
 
 public class main {
-      static int phonenum;
+       static int phonenum;
        static int choice;
-      static int currentUser=0;
-      static boolean result=false;
+       static int currentUser=0;
+       static boolean result;
        //System allow n number users to register(in this case 10)
-         static Customer[]customer = new Customer[10];
+       static Customer[]customer = new Customer[10];
      public static void main(String[] args) {
        Scanner input = new Scanner(System.in);
- 
-       customer[0] = new Customer("TAN AH KOW",21,"ahkow@gmail.com",122,150.00);
-      
-      
+       Menu.addHardcodeCust();
        Menu.splashScreen();
       do{
-       
         Menu.mainMenu();
         choice = input.nextInt();
            switch (choice) {
@@ -38,13 +34,10 @@ public class main {
                    System.out.println(Customer.getUserRegistered());
                    Menu.backAction();
                    break;
-               case 2:
-                   
-                   
+               case 2:                
                    do{
                     System.out.print("Enter Phone Number: ");
-                    phonenum = input.nextInt();
-                    
+                    phonenum = input.nextInt();                 
                     for(int i = 0 ;i<Customer.getUserRegistered();i++){
                         if(customer[i].getPhoneNum()==phonenum){
                               System.out.println("User Found!");
@@ -65,13 +58,17 @@ public class main {
                         case 1:
                             customer[currentUser].updateDetail();
                            Menu.backAction();
-
                             break;
                         case 2:
                             customer[currentUser].updateAmount();
                              Menu.backAction();
                             break;
                         case 3:
+                            //
+                            //
+                            ///////////POINT MODULE HERE/////////////////
+                            //
+                            //
                             break;
                         case 4:
                             Menu.backAction();
@@ -79,8 +76,7 @@ public class main {
                         default:
                             Menu.backAction();                         
                     }
-                   }while(choice!=4);
-                           
+                   }while(choice!=4);             
                    break;
                case 3:
                    System.out.println("Thank you for using our system!");
@@ -89,19 +85,7 @@ public class main {
                    break;
            }
       }while(choice !=3);
-       
-       
-       
-     
-       
-        
            
-       
-       
-        
-       
-       
-       
     }
      public static boolean chkPhoneNumber(int hpnum){
         for(int i = 0 ;i<Customer.getUserRegistered();i++){

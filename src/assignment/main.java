@@ -14,14 +14,17 @@ import java.util.Scanner;
 
 
 public class main {
+      static int phonenum;
+       static int choice;
+      static int currentUser=0;
+      static boolean result=false;
+       //System allow n number users to register(in this case 10)
+         static Customer[]customer = new Customer[10];
      public static void main(String[] args) {
        Scanner input = new Scanner(System.in);
-       int phonenum;
-       int choice;
-       int currentUser=0;
-       //System allow n number users to register(in this case 10)
-       Customer[]customer = new Customer[10];
+ 
        customer[0] = new Customer("TAN AH KOW",21,"ahkow@gmail.com",122,150.00);
+      
       
        Menu.splashScreen();
       do{
@@ -36,7 +39,7 @@ public class main {
                    Menu.backAction();
                    break;
                case 2:
-                   boolean result=false;
+                   
                    
                    do{
                     System.out.print("Enter Phone Number: ");
@@ -100,5 +103,18 @@ public class main {
        
        
     }
+     public static boolean chkPhoneNumber(int hpnum){
+        for(int i = 0 ;i<Customer.getUserRegistered();i++){
+                        if(customer[i].getPhoneNum()==hpnum){
+                          
+                              result=true;
+                              break;
+                         }else{
+                            result=false;
+                        }
+        
+    }
+        return result;
+   }
      
 }

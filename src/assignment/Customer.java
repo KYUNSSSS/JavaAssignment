@@ -92,10 +92,16 @@ public class Customer {
         System.out.print("Enter Email(example@gmail.com): ");
         email = input.nextLine();
         input.next();
-        
-        System.out.print("Enter Phone Number(0123456789): ");
+        boolean a;
+        do{
+        System.out.print("Enter Phone Number(123456789): ");
         phoneNum = input.nextInt();
-        
+        if(main.chkPhoneNumber(this.phoneNum)==true){
+            System.out.println("Phone number used.Please try again.");
+            a=false;
+        }else{
+        a=true;}
+        }while(a==false);
         System.out.print("Enter Purchase Amount:RM ");
         totalPurchaseAmount = input.nextDouble();
         userRegistered++;

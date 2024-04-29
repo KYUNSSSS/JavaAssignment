@@ -9,5 +9,5 @@ package assignment;
  * @author Asus
  */
 public class expiredPoint {
-    
+    //expired
 }

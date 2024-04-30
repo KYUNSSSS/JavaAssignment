@@ -27,7 +27,5 @@ public class Menu {
     public static void addHardcodeCust(){
          customer[0] = new Customer("TAN AH KOW",21,"ahkow@gmail.com",122,150.00);
     }
-        
-    
-    
+
 }

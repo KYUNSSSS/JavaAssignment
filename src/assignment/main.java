@@ -68,7 +68,7 @@ public class main {
                             Point pointInstance = new Point(customer[currentUser]);
                             pointInstance.checkAmount();
                             pointInstance.checkExpiryDate();
-                            //Menu.backAction();
+                            Menu.backAction();
                             break;
                         case 4:
                             Menu.backAction();

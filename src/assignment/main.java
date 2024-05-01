@@ -71,12 +71,122 @@ public class main {
                             Menu.backAction();
                             break;
                         case 4:
+                            String[] reProdNames = {"Pillow","Headphone","Backpack"};
+                            String[] reProdDesc = {"Harvey Norman","CookingPanDesc","BackpackDesc"};
+                            int[] reQtyRemain= {10,12,15};
+                            int[] reRequiredPts = {250,500,800};
+
+                            String[] liTier = {"Silver","Gold","Gold"};
+                            String[] liProdNames = {"Vacuum Cleaner","Cooking Pan","Knife Set"};
+                            String[] liProdDesc = {"VacuumCleanerDesc","CookingPanDesc","KnifeSetDesc"};
+                            int[] liQtyRemain = {10,13,20};
+                            int[] liRequiredPts = {1000,600,800};   
+
+                            String[] vcNames = {"RM5 Discount Voucher","RM10 Discount Voucher","RM20 Discount Voucher"};
+                            String[] vcDesc = {"Deduct RM5 on Next Purchase","Deduct RM10 on Next Purchase","Deduct RM20 on Next Purchase"};
+                            int[] vcQtyRemain = {10,10,10};
+                            int[] vcRequiredPts = {490,950,1900};
+
+                            RedemptionProduct reP = new RedemptionProduct();
+                            LimitedProduct liP = new LimitedProduct();
+                            Voucher voucher = new Voucher();
+
+                            reP.setProductName(reProdNames);
+                            reP.setProdDescription(reProdDesc);
+                            reP.setQtyRemaining(reQtyRemain);
+                            reP.setRequiredPoint(reRequiredPts);
+
+                            liP.setTier(liTier);
+                            liP.setProductName(liProdNames);
+                            liP.setProdDescription(liProdDesc);
+                            liP.setQtyRemaining(liQtyRemain);
+                            liP.setRequiredPoint(liRequiredPts);
+
+                            voucher.setVcName(vcNames);
+                            voucher.setVcDescription(vcDesc);
+                            voucher.setVcRemaining(vcQtyRemain);
+                            voucher.setRequiredPoint(vcRequiredPts);
+
+                            Scanner scanner = new Scanner(System.in);
+                            Menu.redeemMenu();
+                            int opt = scanner.nextInt();
+
+                            switch(opt){
+                                case 1:
+                                    for(int i=0; i<reProdNames.length;i++){
+                                        System.out.println((i+1) + "." + reProdNames[i] + "\tQuantity remaining:" + reQtyRemain[i]);
+                                    }
+                                    System.out.print("Choose product to redeem(One at a time):");
+                                    int opt2 = scanner.nextInt();
+                                    switch(opt2){
+                                        case 1:
+                                            Redemption.reRedeemProgress(reQtyRemain,reRequiredPts,opt2);
+                                            break;
+                                        case 2:
+                                            Redemption.reRedeemProgress(reQtyRemain,reRequiredPts,opt2);
+                                            break;
+                                        case 3:
+                                            Redemption.reRedeemProgress(reQtyRemain,reRequiredPts,opt2);
+                                            break;
+                                        default:
+                                            System.out.print("Cancelled redemption");
+                                            break;
+                                    }
+                                    break;
+
+                                case 2:
+                                    for(int i=0; i<liProdNames.length;i++){
+                                        System.out.println((i+1) + "." + liProdNames[i] + "\tQuantity remaining:" + liQtyRemain[i]);
+                                    }
+                                    System.out.print("Choose product to redeem(One at a time):");
+                                    opt2 = scanner.nextInt();
+                                    switch(opt2){
+                                        case 1:
+                                            Redemption.liRedeemProgress(liQtyRemain,liRequiredPts,opt2);
+                                            break;
+                                        case 2:
+                                            Redemption.liRedeemProgress(liQtyRemain,liRequiredPts,opt2);
+                                            break;
+                                        case 3:
+                                            Redemption.liRedeemProgress(liQtyRemain,liRequiredPts,opt2);
+                                            break;
+                                        default:
+                                            System.out.print("Cancelled redemption");
+                                            break;
+                                    }
+                                    break;                
+                                case 3:
+                                    for(int i=0; i<vcNames.length;i++){
+                                        System.out.println((i+1) + "." + vcNames[i]);
+                                    }
+                                    System.out.print("Choose product to redeem(One at a time):");
+                                    opt2 = scanner.nextInt();
+                                    switch(opt2){
+                                        case 1:
+                                            Redemption.vcRedeemProgress(vcQtyRemain,vcRequiredPts,opt2);
+                                            break;
+                                        case 2:
+                                            Redemption.vcRedeemProgress(vcQtyRemain,vcRequiredPts,opt2);
+                                            break;
+                                        case 3:
+                                            Redemption.vcRedeemProgress(vcQtyRemain,vcRequiredPts,opt2);
+                                            break;
+                                        default:
+                                            System.out.print("Cancelled redemption");
+                                            break;
+                                    }
+                                    break;
+
+                                default:
+                                    System.out.print("Cancelled redemption");
+                            }
+                        case 5:
                             Menu.backAction();
                             break;
                         default:
                             Menu.backAction();                         
                     }
-                   }while(choice!=4);             
+                   }while(choice!=5);             
                    break;
                case 3:
                    System.out.println("Thank you for using our system!");

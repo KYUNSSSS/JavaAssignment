@@ -64,11 +64,10 @@ public class main {
                              Menu.backAction();
                             break;
                         case 3:
-                            //
-                            //
-                            ///////////POINT MODULE HERE/////////////////
-                            //
-                            //
+                            Point pointInstance = new Point(customer[currentUser]);
+                            pointInstance.checkAmount();
+                            pointInstance.checkExpiryDate();
+                            //Menu.backAction();
                             break;
                         case 4:
                             Menu.backAction();

@@ -71,8 +71,7 @@ public class Point {
     public void checkExpiryDate() {
         if (ftPurchaseDate == null){
         System.out.println("Please make a payment first.\n");
-        }
-        else if(LocalDate.now().isAfter(expiryDate)) {
+        }else if(LocalDate.now().isAfter(expiryDate)) {
             System.out.println("Points have expired.\nPoints Now: 0");
             point = 0;
         } else {

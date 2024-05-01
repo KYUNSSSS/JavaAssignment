@@ -1,9 +1,12 @@
+package assignment;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package assignment;
 
+
+import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
@@ -16,6 +19,7 @@ public class Customer {
     private int age = 0;
     private String email = "";
     private int phoneNum = 0 ;
+    private LocalDate pointDate;
     private double totalPurchaseAmount = 0;
     private static int userRegistered;
     
@@ -30,6 +34,7 @@ public class Customer {
         this.email = email;
         this.phoneNum = phoneNum;
         this.totalPurchaseAmount = totalPurchaseAmount;
+        pointDate = LocalDate.now();
         userRegistered++;
     }
 
@@ -62,6 +67,14 @@ public class Customer {
         return phoneNum;
     }
 
+    public LocalDate getPointDate() {
+        return pointDate;
+    }
+
+    public void setPointDate(LocalDate pointDate) {
+        this.pointDate = pointDate;
+    }
+
     public void setPhoneNum(int phoneNum) {
         this.phoneNum = phoneNum;
     }
@@ -83,29 +96,90 @@ public class Customer {
     }
     
     public void enterDetail(){
-        System.out.print("Enter Name(Ali bin Abu): ");
-        name = input.nextLine();
-        
-        System.out.print("Enter Age: ");
-        age = input.nextInt();
-       
-        System.out.print("Enter Email(example@gmail.com): ");
-        email = input.nextLine();
-        input.next();
         boolean a;
         do{
-        System.out.print("Enter Phone Number(123456789): ");
-        phoneNum = input.nextInt();
-        if(main.chkPhoneNumber(this.phoneNum)==true){
-            System.out.println("Phone number used.Please try again.");
+        System.out.print("Enter Name(Ali bin Abu)(0 to return): ");
+        name = input.nextLine();
+        if(name.isBlank()){  
+            System.out.println("Name cannot be empty.");
+            a=!(name.isBlank());
+        }else if(name.equals("0")){
+            return;
+        }
+        else{
+            a=true;
+        }
+        }while(!a);
+        
+        
+            do{
+                try{
+                    System.out.print("Enter Age: ");
+                    age = input.nextInt();
+                    a=Integer.toString(age).matches("[1-9]||[1-9][0-9]");
+                    if(a==false)
+                        System.out.println("Invalid value.Please Enter number between 1 to 99.");
+                    }catch(Exception ex){
+                         System.out.println("Please enter numbers only.");
+                         a=false;
+                         input.nextLine();
+                         }
+                   
+                    
+           }while(a==false);
+        
+         input.nextLine();
+         do {
+            System.out.print("Enter Email (example@gmail.com): ");
+            email = input.nextLine(); 
+
+            a = email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+                if (!a)
+                    System.out.println("Invalid value. Please follow the format.");
+            } while (!a);
+
+
+        do{
+            try{
+                System.out.print("Enter Phone Number(123456789): +60");
+                phoneNum = input.nextInt();
+                if(main.chkPhoneNumber(this.phoneNum)==true){
+                    System.out.println("Phone number used.Please try again.");
+                    a=false;
+                    
+                }else{
+                    if(Integer.toString(phoneNum).length()>11 || Integer.toString(phoneNum).length()<10){
+                        System.out.println("Invalid format.Enter 10 to 11 value only.");
+
+                        a=false;}
+                    else{
+                         a=true;}
+                    }
+            }catch(Exception ex){
+            System.out.println("Invalid Format. Enter numbers only.");
             a=false;
-        }else{
-        a=true;}
+            input.nextLine();
+        }
         }while(a==false);
-        System.out.print("Enter Purchase Amount:RM ");
-        totalPurchaseAmount = input.nextDouble();
+        do{
+            try{
+                System.out.print("Enter Purchase Amount:RM ");
+                totalPurchaseAmount = input.nextDouble();
+                if(totalPurchaseAmount>=10000){
+                    System.out.println("Limit Exceed. Pleasse enter value between 0 to 10000 only.");
+                }
+            }catch(Exception ex){
+                System.out.println("Invalid Format.Enter numbers only.");
+                a=false;
+            }
+        
+        
+        
+        }while(!a);
         userRegistered++;
         System.out.println("Registered Successfully.");
+        System.out.print("Press any key to return...");
+        input.next();
     
     }
     public boolean checkDetail(int phoneNum){
@@ -133,31 +207,33 @@ public class Customer {
             System.out.print("\nWhat to update?\n1.Name ["+name+"]"+"\n2.Age ["+age+"]"+"\n3.Email {"+email+"]"+"\n4.Phone Number ["+phoneNum+"]"+"\n5.Back\nSelect One:");
             choice= input.nextInt();
             
-            if(choice ==1){
-      
+        switch (choice) {
+            case 1:
                 System.out.print("Enter Name: ");
                 input.nextLine();
                 name = input.nextLine();
                 System.out.printf("%s %s" ,"New Name: ",name+"\n");
-            }else if(choice ==2){
+                break;
+            case 2:
                 System.out.print("Enter Age: ");
-                input.nextInt();
+                
                 age = input.nextInt();
                 System.out.printf("%s %s" ,"New Age: ",age+"\n");
-   
-            }else if(choice ==3){
+                break;
+            case 3:
                 System.out.print("Enter Email: ");
                 input.nextLine();
                 email = input.nextLine();
                 System.out.printf("%s %s" ,"New Email: ",email+"\n");
-                
-            }else if(choice ==4){
+                break;
+            case 4:
                 System.out.print("Enter Phone Number: ");
-                input.nextInt();
                 age = input.nextInt();
                 System.out.printf("%s %s" ,"New Phone Number: ",phoneNum+"\n");
-               
-            }
+                break;
+            default:
+                break;
+        }
                   
 
        }
@@ -167,6 +243,7 @@ public class Customer {
         System.out.print("Enter Amount to add: RM");
         num = input.nextDouble();
         this.totalPurchaseAmount+=num;
+        pointDate = LocalDate.now();
         System.out.print("New  Balance Amount: RM"+this.totalPurchaseAmount+"\n");
         
     }

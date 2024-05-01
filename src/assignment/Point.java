@@ -34,8 +34,8 @@ public class Point {
         return point;
     }
 
-    public void setPoint(int point) {
-        this.point = point;
+    public static void setPoint(int point) {
+        Point.point = point;
     }
 
     public LocalDate getExpiryDate() {

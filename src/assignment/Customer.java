@@ -37,6 +37,16 @@ public class Customer {
         pointDate = LocalDate.now();
         userRegistered++;
     }
+    public Customer(String name, int age, String email, int phoneNum, double totalPurchaseAmount,LocalDate date) {
+    
+        this.name = name;
+        this.age = age;
+        this.email = email;
+        this.phoneNum = phoneNum;
+        this.totalPurchaseAmount = totalPurchaseAmount;
+        this.pointDate = date;
+        userRegistered++;
+    }
 
    
     public String getName() {

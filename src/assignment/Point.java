@@ -13,10 +13,10 @@ public class Point {
     public Point(Customer customer) {
         this.customer = customer;
         double totalAmount = customer.getTotalPurchaseAmount(); 
-        this.point = (int) Math.round(totalAmount);
+        Point.point = (int) Math.round(totalAmount);
         
         if (totalAmount > 0) {
-            this.ftPurchaseDate = LocalDate.now();
+            this.ftPurchaseDate = customer.getPointDate();
             this.expiryDate = ftPurchaseDate.plusDays(365); 
         } else {
             this.ftPurchaseDate = null; 
@@ -26,7 +26,7 @@ public class Point {
 
     public Point(int point, LocalDate expiryDate, Customer customer) {
         this.expiryDate = expiryDate;
-        this.point = point;
+        Point.point = point;
         this.customer = customer;
     }
 
@@ -57,7 +57,7 @@ public class Point {
     public void checkAmount() {
         double amount = customer.getTotalPurchaseAmount();
         if (amount > 0) {
-            ftPurchaseDate = LocalDate.now();
+            ftPurchaseDate = customer.getPointDate();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             String formattedDate = ftPurchaseDate.format(formatter);
             System.out.println("First Time Purchase Date: " + formattedDate);

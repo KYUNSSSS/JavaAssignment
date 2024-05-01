@@ -4,6 +4,8 @@
  */
 package assignment;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Asus
@@ -104,6 +106,29 @@ public class Redemption {
         
         return voucher;
     }    
+    
+    public static void redeemProduct(String[] name, int[] qty,int[] points){
+        Scanner scanner = new Scanner(System.in);
+        for(int i=0; i<(name.length);i++){
+                    System.out.println((i+1) + "." + name[i] + "\tQuantity remaining:" + qty[i]);
+                }
+                System.out.print("Choose product to redeem(One at a time):");
+                int opt2 = scanner.nextInt();
+                switch(opt2){
+                    case 1:
+                        Redemption.reRedeemProgress(qty,points,opt2);
+                        break;
+                    case 2:
+                        Redemption.reRedeemProgress(qty,points,opt2);
+                        break;
+                    case 3:
+                        Redemption.reRedeemProgress(qty,points,opt2);
+                        break;
+                    default:
+                        System.out.print("Cancelled redemption");
+                        break;
+                }
+    }
     
     public static void reRedeemProgress(int[] prodQty,int[] requiredPts, int i){
         int fPoint = Point.getPoint() - requiredPts[i-1];

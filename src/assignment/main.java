@@ -99,70 +99,14 @@ public class main {
 
                             switch(opt){
                                 case 1:
-                                    for(int i=0; i<reProdNames.length;i++){
-                                        System.out.println((i+1) + "." + reProdNames[i] + "\tQuantity remaining:" + reQtyRemain[i]);
-                                    }
-                                    System.out.print("Choose product to redeem(One at a time):");
-                                    int opt2 = scanner.nextInt();
-                                    switch(opt2){
-                                        case 1:
-                                            Redemption.reRedeemProgress(reQtyRemain,reRequiredPts,opt2);
-                                            break;
-                                        case 2:
-                                            Redemption.reRedeemProgress(reQtyRemain,reRequiredPts,opt2);
-                                            break;
-                                        case 3:
-                                            Redemption.reRedeemProgress(reQtyRemain,reRequiredPts,opt2);
-                                            break;
-                                        default:
-                                            System.out.print("Cancelled redemption");
-                                            break;
-                                    }
+                                    Redemption.redeemProduct(reProdNames,reQtyRemain,reRequiredPts);
                                     break;
-
                                 case 2:
-                                    for(int i=0; i<liProdNames.length;i++){
-                                        System.out.println((i+1) + "." + liProdNames[i] + "\tQuantity remaining:" + liQtyRemain[i]);
-                                    }
-                                    System.out.print("Choose product to redeem(One at a time):");
-                                    opt2 = scanner.nextInt();
-                                    switch(opt2){
-                                        case 1:
-                                            Redemption.liRedeemProgress(liQtyRemain,liRequiredPts,opt2);
-                                            break;
-                                        case 2:
-                                            Redemption.liRedeemProgress(liQtyRemain,liRequiredPts,opt2);
-                                            break;
-                                        case 3:
-                                            Redemption.liRedeemProgress(liQtyRemain,liRequiredPts,opt2);
-                                            break;
-                                        default:
-                                            System.out.print("Cancelled redemption");
-                                            break;
-                                    }
+                                    Redemption.redeemProduct(reProdNames,reQtyRemain,reRequiredPts);
                                     break;                
                                 case 3:
-                                    for(int i=0; i<vcNames.length;i++){
-                                        System.out.println((i+1) + "." + vcNames[i]);
-                                    }
-                                    System.out.print("Choose product to redeem(One at a time):");
-                                    opt2 = scanner.nextInt();
-                                    switch(opt2){
-                                        case 1:
-                                            Redemption.vcRedeemProgress(vcQtyRemain,vcRequiredPts,opt2);
-                                            break;
-                                        case 2:
-                                            Redemption.vcRedeemProgress(vcQtyRemain,vcRequiredPts,opt2);
-                                            break;
-                                        case 3:
-                                            Redemption.vcRedeemProgress(vcQtyRemain,vcRequiredPts,opt2);
-                                            break;
-                                        default:
-                                            System.out.print("Cancelled redemption");
-                                            break;
-                                    }
+                                    Redemption.redeemProduct(reProdNames,reQtyRemain,reRequiredPts);
                                     break;
-
                                 default:
                                     System.out.print("Cancelled redemption");
                             }

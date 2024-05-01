@@ -21,8 +21,7 @@ public class main {
        static double point;
        //System allow n number users to register(in this case 10)
        static Customer[]customer = new Customer[10];
-    
-       public static void main(String[] args) {
+    public static void main(String[] args) {
         String[] reProdNames = {"Pillow","Headphone","Backpack"};
         String[] reProdDesc = {"Harvey Norman","CookingPanDesc","BackpackDesc"};
         int[] reQtyRemain= {10,12,15};
@@ -39,25 +38,9 @@ public class main {
         int[] vcQtyRemain = {10,10,10};
         int[] vcRequiredPts = {490,950,1900};
 
-        RedemptionProduct reP = new RedemptionProduct();
-        LimitedProduct liP = new LimitedProduct();
-        Voucher voucher = new Voucher();
-
-        reP.setProductName(reProdNames);
-        reP.setProdDescription(reProdDesc);
-        reP.setQtyRemaining(reQtyRemain);
-        reP.setRequiredPoint(reRequiredPts);
-
-        liP.setTier(liTier);
-        liP.setProductName(liProdNames);
-        liP.setProdDescription(liProdDesc);
-        liP.setQtyRemaining(liQtyRemain);
-        liP.setRequiredPoint(liRequiredPts);
-
-        voucher.setVcName(vcNames);
-        voucher.setVcDescription(vcDesc);
-        voucher.setVcRemaining(vcQtyRemain);
-        voucher.setRequiredPoint(vcRequiredPts);
+        RedemptionProduct reP = Redemption.iniReProd(reProdNames,reProdDesc,reQtyRemain,reRequiredPts);
+        LimitedProduct liP = Redemption.iniLiProd(liTier,liProdNames,liProdDesc,liQtyRemain,liRequiredPts);
+        Voucher voucher = Redemption.iniVc(vcNames,vcDesc,vcQtyRemain,vcRequiredPts);
 
          
        Scanner input = new Scanner(System.in);

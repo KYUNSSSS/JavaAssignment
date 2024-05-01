@@ -5,15 +5,22 @@ import java.time.format.DateTimeFormatter;
 
 public class Point {
     private int point;
-    private static LocalDate ftPurchaseDate;
-    private static LocalDate expiryDate;
+    private LocalDate ftPurchaseDate;
+    private LocalDate expiryDate;
     private Customer customer;
 
     public Point(Customer customer) {
         this.customer = customer;
         double totalAmount = customer.getTotalPurchaseAmount(); 
         this.point = (int) Math.round(totalAmount);
-        this.expiryDate = LocalDate.now().plusDays(365);
+        
+        if (totalAmount > 0) {
+            this.ftPurchaseDate = LocalDate.now();
+            this.expiryDate = ftPurchaseDate.plusDays(365); 
+        } else {
+            this.ftPurchaseDate = null; 
+            this.expiryDate = null; 
+        }
     }
 
     public Point(int point, LocalDate expiryDate, Customer customer) {
@@ -53,13 +60,19 @@ public class Point {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             String formattedDate = ftPurchaseDate.format(formatter);
             System.out.println("First Time Purchase Date: " + formattedDate);
-        } else {
+        } else if (amount==0) {
+            this.ftPurchaseDate = null;
             System.out.println("You do not have any purchase records.");
+        }else{
+            System.out.println("Error! The amount should not less than 0.");
         }
     }
 
     public void checkExpiryDate() {
-        if (LocalDate.now().isAfter(expiryDate)) {
+        if (ftPurchaseDate == null){
+        System.out.println("Please make a payment first.\n");
+        }
+        else if(LocalDate.now().isAfter(expiryDate)) {
             System.out.println("Points have expired.\nPoints Now: 0");
             point = 0;
         } else {
@@ -69,3 +82,4 @@ public class Point {
         }
     }
 }
+

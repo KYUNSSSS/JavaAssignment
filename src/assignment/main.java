@@ -21,7 +21,45 @@ public class main {
        static double point;
        //System allow n number users to register(in this case 10)
        static Customer[]customer = new Customer[10];
-     public static void main(String[] args) {
+    
+       public static void main(String[] args) {
+        String[] reProdNames = {"Pillow","Headphone","Backpack"};
+        String[] reProdDesc = {"Harvey Norman","CookingPanDesc","BackpackDesc"};
+        int[] reQtyRemain= {10,12,15};
+        int[] reRequiredPts = {50,300,500};
+
+        String[] liTier = {"Silver","Gold","Gold"};
+        String[] liProdNames = {"Vacuum Cleaner","Cooking Pan","Knife Set"};
+        String[] liProdDesc = {"VacuumCleanerDesc","CookingPanDesc","KnifeSetDesc"};
+        int[] liQtyRemain = {10,13,20};
+        int[] liRequiredPts = {500,600,600};   
+
+        String[] vcNames = {"RM5 Discount Voucher","RM10 Discount Voucher","RM20 Discount Voucher"};
+        String[] vcDesc = {"Deduct RM5 on Next Purchase","Deduct RM10 on Next Purchase","Deduct RM20 on Next Purchase"};
+        int[] vcQtyRemain = {10,10,10};
+        int[] vcRequiredPts = {490,950,1900};
+
+        RedemptionProduct reP = new RedemptionProduct();
+        LimitedProduct liP = new LimitedProduct();
+        Voucher voucher = new Voucher();
+
+        reP.setProductName(reProdNames);
+        reP.setProdDescription(reProdDesc);
+        reP.setQtyRemaining(reQtyRemain);
+        reP.setRequiredPoint(reRequiredPts);
+
+        liP.setTier(liTier);
+        liP.setProductName(liProdNames);
+        liP.setProdDescription(liProdDesc);
+        liP.setQtyRemaining(liQtyRemain);
+        liP.setRequiredPoint(liRequiredPts);
+
+        voucher.setVcName(vcNames);
+        voucher.setVcDescription(vcDesc);
+        voucher.setVcRemaining(vcQtyRemain);
+        voucher.setRequiredPoint(vcRequiredPts);
+
+         
        Scanner input = new Scanner(System.in);
        Menu.addHardcodeCust();
        Menu.splashScreen();
@@ -71,42 +109,7 @@ public class main {
                             Menu.backAction();
                             break;
                         case 4:
-                            String[] reProdNames = {"Pillow","Headphone","Backpack"};
-                            String[] reProdDesc = {"Harvey Norman","CookingPanDesc","BackpackDesc"};
-                            int[] reQtyRemain= {10,12,15};
-                            int[] reRequiredPts = {250,500,800};
-
-                            String[] liTier = {"Silver","Gold","Gold"};
-                            String[] liProdNames = {"Vacuum Cleaner","Cooking Pan","Knife Set"};
-                            String[] liProdDesc = {"VacuumCleanerDesc","CookingPanDesc","KnifeSetDesc"};
-                            int[] liQtyRemain = {10,13,20};
-                            int[] liRequiredPts = {1000,600,800};   
-
-                            String[] vcNames = {"RM5 Discount Voucher","RM10 Discount Voucher","RM20 Discount Voucher"};
-                            String[] vcDesc = {"Deduct RM5 on Next Purchase","Deduct RM10 on Next Purchase","Deduct RM20 on Next Purchase"};
-                            int[] vcQtyRemain = {10,10,10};
-                            int[] vcRequiredPts = {490,950,1900};
-
-                            RedemptionProduct reP = new RedemptionProduct();
-                            LimitedProduct liP = new LimitedProduct();
-                            Voucher voucher = new Voucher();
-
-                            reP.setProductName(reProdNames);
-                            reP.setProdDescription(reProdDesc);
-                            reP.setQtyRemaining(reQtyRemain);
-                            reP.setRequiredPoint(reRequiredPts);
-
-                            liP.setTier(liTier);
-                            liP.setProductName(liProdNames);
-                            liP.setProdDescription(liProdDesc);
-                            liP.setQtyRemaining(liQtyRemain);
-                            liP.setRequiredPoint(liRequiredPts);
-
-                            voucher.setVcName(vcNames);
-                            voucher.setVcDescription(vcDesc);
-                            voucher.setVcRemaining(vcQtyRemain);
-                            voucher.setRequiredPoint(vcRequiredPts);
-
+                            
                             Scanner scanner = new Scanner(System.in);
                             Menu.redeemMenu();
                             int opt = scanner.nextInt();

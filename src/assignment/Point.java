@@ -1,5 +1,6 @@
 package assignment;
 
+import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -60,7 +61,7 @@ public class Point {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             String formattedDate = ftPurchaseDate.format(formatter);
             System.out.println("First Time Purchase Date: " + formattedDate);
-        } else if (amount==0) {
+        } else if (amount == 0) {
             this.ftPurchaseDate = null;
             System.out.println("You do not have any purchase records.");
         }else{
@@ -69,16 +70,21 @@ public class Point {
     }
 
     public void checkExpiryDate() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter Current Purchase Date (DD-MM-YYYY): ");
+        String currentDateStr = scanner.nextLine();
+
+        LocalDate currentDate = LocalDate.parse(currentDateStr, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
         if (ftPurchaseDate == null){
-        System.out.println("Please make a payment first.\n");
-        }else if(LocalDate.now().isAfter(expiryDate)) {
-            System.out.println("Points have expired.\nPoints Now: 0");
+            System.out.println("Please make a payment first.\n");
+        } else if(currentDate.isAfter(expiryDate)) {
+            System.out.println("Points have expired on " + expiryDate.format(formatter) + "\nTotal Points: 0\n");
             point = 0;
         } else {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             System.out.println("Total Points: " + point);
             System.out.println("Points will expire on: " + expiryDate.format(formatter) + "\n");
         }
     }
 }
-

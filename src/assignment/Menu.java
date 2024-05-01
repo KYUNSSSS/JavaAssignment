@@ -19,13 +19,17 @@ public class Menu {
         System.out.print("1.Register New Account\n2.LOGIN TO EXISTING ACCOUNT\n3.Exit\nEnter Your Choice: ");
     }
     public static void userMenu(){
-        System.out.print("1.Update Details\n2.Add New Transaction Amount\n3.Redeem Point\n4.Back\nEnter choice: ");
+        System.out.print("1.Update Details\n2.Add New Transaction Amount\n3.Redeem Point\n4.Redeem Product\n5.Back\nEnter choice: ");
     }
     public static void backAction(){
         System.out.println("\n===========GOING BACK==========\n");
     }
     public static void addHardcodeCust(){
          customer[0] = new Customer("TAN AH KOW",21,"ahkow@gmail.com",122,150.00);
+    }
+    
+    public static void redeemMenu(){
+        System.out.println("Redeem Option\n1. Product\n2. Limited Tier Product\n3. Voucher\n4. Exit\nChoose Redeem Option : ");
     }
 
 }

@@ -61,10 +61,10 @@ public class Redemption {
         if(fPoint < 0){
             System.out.println("Balance point insufficient.");
         }else{
-            int iniPoint = fPoint;
+            Point.setPoint(fPoint);
             prodQty[i-1]-=1;
             RedemptionProduct.setQtyRemaining(prodQty);
-            System.out.println("Balance Point: " + iniPoint);
+            System.out.println("Balance Point: " + fPoint);
             System.out.println("Product Remaining Quantity: " + prodQty[i-1]);
         }   
     }
@@ -74,10 +74,10 @@ public class Redemption {
         if(fPoint < 0){
             System.out.println("Balance point insufficient.");
         }else{
-            int iniPoint = fPoint;
+            Point.setPoint(fPoint);
             prodQty[i-1]-=1;
             LimitedProduct.setQtyRemaining(prodQty);
-            System.out.println("Balance Point: " + iniPoint);
+            System.out.println("Balance Point: " + fPoint);
             System.out.println("Product Remaining Quantity: " + prodQty[i-1]);
         }   
     }
@@ -87,10 +87,10 @@ public class Redemption {
         if(fPoint < 0){
             System.out.println("Balance point insufficient.");
         }else{
-            int iniPoint = fPoint;
+            Point.setPoint(fPoint);
             vcQty[i-1]-=1;
             Voucher.setVcRemaining(vcQty);
-            System.out.println("Balance Point: " + iniPoint);
+            System.out.println("Balance Point: " + fPoint);
             System.out.println("Product Remaining Quantity: " + vcQty[i-1]);
         }   
     }

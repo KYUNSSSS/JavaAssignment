@@ -13,7 +13,7 @@ public class Redemption {
     private Voucher voucher;
     private LimitedProduct limitedProduct;
     private int quantity;
-    
+
     public Redemption() {
     }
 
@@ -56,16 +56,52 @@ public class Redemption {
         this.quantity = quantity;
     }
     
-    public void displayRedemptionItem(RedemptionProduct redemptionProduct, Voucher voucher, LimitedProduct limitedProduct) {
-        
+    public static void reRedeemProgress(int[] prodQty,int[] requiredPts, int i){
+        int fPoint = Point.getPoint() - requiredPts[i-1];
+        if(fPoint < 0){
+            System.out.println("Balance point insufficient.");
+        }else{
+            int iniPoint = fPoint;
+            prodQty[i-1]-=1;
+            RedemptionProduct.setQtyRemaining(prodQty);
+            System.out.println("Balance Point: " + iniPoint);
+            System.out.println("Product Remaining Quantity: " + prodQty[i-1]);
+        }   
     }
+    
+    public static void liRedeemProgress(int[] prodQty,int[] requiredPts, int i){
+        int fPoint = Point.getPoint() - requiredPts[i-1];
+        if(fPoint < 0){
+            System.out.println("Balance point insufficient.");
+        }else{
+            int iniPoint = fPoint;
+            prodQty[i-1]-=1;
+            LimitedProduct.setQtyRemaining(prodQty);
+            System.out.println("Balance Point: " + iniPoint);
+            System.out.println("Product Remaining Quantity: " + prodQty[i-1]);
+        }   
+    }
+    
+    public static void vcRedeemProgress(int[] vcQty,int[] requiredPts, int i){
+        int fPoint = Point.getPoint() - requiredPts[i-1];
+        if(fPoint < 0){
+            System.out.println("Balance point insufficient.");
+        }else{
+            int iniPoint = fPoint;
+            vcQty[i-1]-=1;
+            Voucher.setVcRemaining(vcQty);
+            System.out.println("Balance Point: " + iniPoint);
+            System.out.println("Product Remaining Quantity: " + vcQty[i-1]);
+        }   
+    }
+    
     
     //PRODUCT   
     
-    public class Product {
+public class Product {
     private String[] productName;
     private String[] prodDescription;
-    private int[] qtyRemaining;
+    private static int[] qtyRemaining;
     private int[] requiredPoint;
 
     public Product() {
@@ -94,12 +130,12 @@ public class Redemption {
         this.prodDescription = productDescription;
     }
 
-    public int getQtyRemaining(int i) {
+    public static int getQtyRemaining(int i) {
         return qtyRemaining[i];
     }
 
-    public void setQtyRemaining(int[] qtyRemaining) {
-        this.qtyRemaining = qtyRemaining;
+    public static void setQtyRemaining(int[] qtyRemaining) {
+        Product.qtyRemaining = qtyRemaining;
     }
 
     public int getRequiredPoint(int i) {
@@ -117,7 +153,7 @@ public class Redemption {
     
     //REDEMPTION PRODUCT
     
-    public class RedemptionProduct extends Product{
+public class RedemptionProduct extends Product{
 
     public RedemptionProduct() {
     }
@@ -129,7 +165,7 @@ public class Redemption {
     
     //LIMITED PRODUCT
     
-    public class LimitedProduct extends Product{
+public class LimitedProduct extends Product{
     private String[] tier;
 
     public LimitedProduct() {
@@ -152,58 +188,57 @@ public class Redemption {
     
     //VOUCHER
     
-    public class Voucher {
-    private String vcName;
-    private String vcDescription;
-    private int vcRemaining;
-    private int requiredPoint;
+public class Voucher {
+    private String[] vcName;
+    private String[] vcDescription;
+    private static int[] vcRemaining;
+    private int[] requiredPoint;
 
     public Voucher() {
     }
 
-    public Voucher(String vcName, String vcDescription, int vcRemaining, int requiredPoint) {
+    public Voucher(String[] vcName, String[] vcDescription, int[] vcRemaining, int[] requiredPoint) {
         this.vcName = vcName;
         this.vcDescription = vcDescription;
         this.vcRemaining = vcRemaining;
         this.requiredPoint = requiredPoint;
     }
 
-    public String getVcName() {
-        return vcName;
+    public String getVcName(int i) {
+        return vcName[i];
     }
 
-    public void setVcName(String vcName) {
+    public void setVcName(String[] vcName) {
         this.vcName = vcName;
     }
 
-    public String getVcDescription() {
-        return vcDescription;
+    public String getVcDescription(int i) {
+        return vcDescription[i];
     }
 
-    public void setVcDescription(String vcDescription) {
+    public void setVcDescription(String[] vcDescription) {
         this.vcDescription = vcDescription;
     }
 
-    public int getVcRemaining() {
-        return vcRemaining;
+    public int getVcRemaining(int i) {
+        return vcRemaining[i];
     }
 
-    public void setVcRemaining(int vcRemaining) {
-        this.vcRemaining = vcRemaining;
+    public static void setVcRemaining(int[] vcRemaining) {
+        Voucher.vcRemaining = vcRemaining;
     }
 
-    public int getRequiredPoint() {
-        return requiredPoint;
+    public int getRequiredPoint(int i) {
+        return requiredPoint[i];
     }
 
-    public void setRequiredPoint(int requiredPoint) {
+    public void setRequiredPoint(int[] requiredPoint) {
         this.requiredPoint = requiredPoint;
     }
     
     
-    }
 }
-
+}
 
 
 

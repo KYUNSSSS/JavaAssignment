@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Point {
-    private int point;
+    private static int point;
     private LocalDate ftPurchaseDate;
     private LocalDate expiryDate;
     private Customer customer;
@@ -30,7 +30,7 @@ public class Point {
         this.customer = customer;
     }
 
-    public int getPoint() {
+    public static int getPoint() {
         return point;
     }
 

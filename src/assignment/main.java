@@ -18,6 +18,7 @@ public class main {
        static int choice;
        static int currentUser=0;
        static boolean result;
+       static double point;
        //System allow n number users to register(in this case 10)
        static Customer[]customer = new Customer[10];
      public static void main(String[] args) {

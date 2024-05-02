@@ -58,11 +58,10 @@ public class Loyalty {
     }
     
     public String displayTier() {
-        return "Your Current Tier is Tier " + tierLevel + tierName;
+        return "Your Current Tier is Tier " + tierLevel + ", " + tierName;
     }
     
-    public int updateTier() {
-        double amount = customer.getTotalPurchaseAmount();
+    public int updateTier(double amount) {
         if (amount >= 10000 ) {
             tierLevel = 3;
             tierName = "Platinum";

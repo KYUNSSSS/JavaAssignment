@@ -27,7 +27,7 @@ public class main {
         int[] reQtyRemain= {10,12,15};
         int[] reRequiredPts = {50,300,500};
 
-        String[] liTier = {"Silver","Gold","Gold"};
+        String[] liTier = {"Silver","Gold","Platinum"};
         String[] liProdNames = {"Vacuum Cleaner","Cooking Pan","Knife Set"};
         String[] liProdDesc = {"VacuumCleanerDesc","CookingPanDesc","KnifeSetDesc"};
         int[] liQtyRemain = {10,13,20};
@@ -37,6 +37,8 @@ public class main {
         String[] vcDesc = {"Deduct RM5 on Next Purchase","Deduct RM10 on Next Purchase","Deduct RM20 on Next Purchase"};
         int[] vcQtyRemain = {10,10,10};
         int[] vcRequiredPts = {490,950,1900};
+        
+        Loyalty loyalty = new Loyalty();
 
          
        Scanner input = new Scanner(System.in);
@@ -109,6 +111,10 @@ public class main {
                         case 5:
                             Menu.backAction();
                             break;
+                        case 6:
+                            double amount = customer[currentUser].getTotalPurchaseAmount();
+                            loyalty.updateTier(amount);
+                            System.out.println(loyalty.displayTier());
                         default:
                             Menu.backAction();                         
                     }
@@ -120,8 +126,7 @@ public class main {
                default:
                    break;
            }
-      }while(choice !=3);
-           
+      }while(choice !=3);    
     }
      public static boolean chkPhoneNumber(int hpnum){
         for(int i = 0 ;i<Customer.getUserRegistered();i++){

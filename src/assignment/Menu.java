@@ -20,7 +20,7 @@ public class Menu {
         System.out.print("1.Register New Account\n2.LOGIN TO EXISTING ACCOUNT\n3.Exit\nEnter Your Choice: ");
     }
     public static void userMenu(){
-        System.out.print("1.Update Details\n2.Add New Transaction Amount\n3.Check Point Expiry\n4.Redeem Product\n5.Back\nEnter choice: ");
+        System.out.print("1.Update Details\n2.Add New Transaction Amount\n3.Check Point Expiry\n4.Redeem Product\n5.Profile\n6.Back\nEnter choice: ");
     }
     public static void backAction(){
         System.out.println("\n===========GOING BACK==========\n");

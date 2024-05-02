@@ -18,7 +18,7 @@ public class main {
        static int choice;
        static int currentUser=0;
        static boolean result;
-       static double point;
+//       static double point;
        //System allow n number users to register(in this case 10)
        static Customer[]customer = new Customer[10];
     public static void main(String[] args) {
@@ -39,6 +39,8 @@ public class main {
         int[] vcRequiredPts = {490,950,1900};
         
         Loyalty loyalty = new Loyalty();
+        Point pts = new Point(Customer customer);
+        Redemption rdp = new Redemption();
 
          
        Scanner input = new Scanner(System.in);
@@ -97,24 +99,28 @@ public class main {
 
                             switch(opt){
                                 case 1:
-                                    Redemption.redeemProduct(reProdNames,reQtyRemain,reRequiredPts);
+                                    rdp.redeemProduct(reProdNames,reQtyRemain,reRequiredPts);
                                     break;
                                 case 2:
-                                    Redemption.redeemProduct(liProdNames,liQtyRemain,liRequiredPts);
+                                    rdp.redeemProduct(liProdNames,liQtyRemain,liRequiredPts);
                                     break;                
                                 case 3:
-                                    Redemption.redeemProduct(vcNames,vcQtyRemain,vcRequiredPts);
+                                    rdp.redeemProduct(vcNames,vcQtyRemain,vcRequiredPts);
                                     break;
                                 default:
                                     System.out.print("Cancelled redemption");
                             }
                         case 5:
-                            Menu.backAction();
-                            break;
-                        case 6:
                             double amount = customer[currentUser].getTotalPurchaseAmount();
                             loyalty.updateTier(amount);
+                            System.out.println(customer[currentUser].displayProfile());
+                            System.out.println("Points      : " + pts.getPoint());
                             System.out.println(loyalty.displayTier());
+                            System.out.println();
+                            break;
+                        case 6:
+                            Menu.backAction();
+                            break;
                         default:
                             Menu.backAction();                         
                     }
@@ -128,7 +134,7 @@ public class main {
            }
       }while(choice !=3);    
     }
-     public static boolean chkPhoneNumber(int hpnum){
+    public static boolean chkPhoneNumber(int hpnum){
         for(int i = 0 ;i<Customer.getUserRegistered();i++){
                         if(customer[i].getPhoneNum()==hpnum){
                           

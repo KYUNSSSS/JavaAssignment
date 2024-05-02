@@ -102,10 +102,10 @@ public class main {
                                     Redemption.redeemProduct(reProdNames,reQtyRemain,reRequiredPts);
                                     break;
                                 case 2:
-                                    Redemption.redeemProduct(reProdNames,reQtyRemain,reRequiredPts);
+                                    Redemption.redeemProduct(liProdNames,liQtyRemain,liRequiredPts);
                                     break;                
                                 case 3:
-                                    Redemption.redeemProduct(reProdNames,reQtyRemain,reRequiredPts);
+                                    Redemption.redeemProduct(vcNames,vcQtyRemain,vcRequiredPts);
                                     break;
                                 default:
                                     System.out.print("Cancelled redemption");

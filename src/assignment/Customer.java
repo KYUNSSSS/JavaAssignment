@@ -258,6 +258,12 @@ public class Customer {
         
     }
     
+    public String displayProfile(){
+        return  "Name        : " + name +
+                "\nAge         : " + age +
+                "\nEmail       : " + email +
+                "\nPhone Number: " + phoneNum;
+    }
  
  
    

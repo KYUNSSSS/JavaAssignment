@@ -38,10 +38,6 @@ public class main {
         int[] vcQtyRemain = {10,10,10};
         int[] vcRequiredPts = {490,950,1900};
 
-        RedemptionProduct reP = Redemption.iniReProd(reProdNames,reProdDesc,reQtyRemain,reRequiredPts);
-        LimitedProduct liP = Redemption.iniLiProd(liTier,liProdNames,liProdDesc,liQtyRemain,liRequiredPts);
-        Voucher voucher = Redemption.iniVc(vcNames,vcDesc,vcQtyRemain,vcRequiredPts);
-
          
        Scanner input = new Scanner(System.in);
        Menu.addHardcodeCust();

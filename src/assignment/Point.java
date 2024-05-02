@@ -5,15 +5,18 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Point {
-    private static int point;
+    private int point;
     private LocalDate ftPurchaseDate;
     private LocalDate expiryDate;
     private Customer customer;
 
+    public Point() {
+    }
+       
     public Point(Customer customer) {
         this.customer = customer;
         double totalAmount = customer.getTotalPurchaseAmount(); 
-        Point.point = (int) Math.round(totalAmount);
+        this.point = (int) Math.round(totalAmount);
         
         if (totalAmount > 0) {
             this.ftPurchaseDate = customer.getPointDate();
@@ -24,18 +27,18 @@ public class Point {
         }
     }
 
-    public Point(int point, LocalDate expiryDate, Customer customer) {
-        this.expiryDate = expiryDate;
-        Point.point = point;
-        this.customer = customer;
-    }
+//    public Point(int point, LocalDate expiryDate, Customer customer) {
+//        this.expiryDate = expiryDate;
+//        this.point = point;
+//        this.customer = customer;
+//    }
 
-    public static int getPoint() {
+    public int getPoint() {
         return point;
     }
 
-    public static void setPoint(int point) {
-        Point.point = point;
+    public void setPoint(int point) {
+        this.point = point;
     }
 
     public LocalDate getExpiryDate() {

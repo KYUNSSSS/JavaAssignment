@@ -1,7 +1,11 @@
 package assignment;
 
+import java.io.BufferedWriter;
 import java.util.Scanner;
-
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.io.Writer;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -21,8 +25,14 @@ public class main {
 //       static double point;
        //System allow n number users to register(in this case 10)
        static Customer[]customer = new Customer[10];
+       
+    
     public static void main(String[] args) {
-        String[] reProdNames = {"Pillow","Headphone","Backpack"};
+       
+            
+            
+            
+         String[] reProdNames = {"Pillow","Headphone","Backpack"};
         String[] reProdDesc = {"Harvey Norman","CookingPanDesc","BackpackDesc"};
         int[] reQtyRemain= {10,12,15};
         int[] reRequiredPts = {50,300,500};
@@ -39,12 +49,11 @@ public class main {
         int[] vcRequiredPts = {490,950,1900};
         
         Loyalty loyalty = new Loyalty();
-        Point pts = new Point(Customer customer);
+       // Point pts = new Point(customer[currentUser]);
         Redemption rdp = new Redemption();
 
          
        Scanner input = new Scanner(System.in);
-       Menu.addHardcodeCust();
        Menu.splashScreen();
       do{
         Menu.mainMenu();
@@ -114,7 +123,7 @@ public class main {
                             double amount = customer[currentUser].getTotalPurchaseAmount();
                             loyalty.updateTier(amount);
                             System.out.println(customer[currentUser].displayProfile());
-                            System.out.println("Points      : " + pts.getPoint());
+                            //System.out.println("Points      : " + pts.getPoint());
                             System.out.println(loyalty.displayTier());
                             System.out.println();
                             break;
@@ -135,17 +144,46 @@ public class main {
       }while(choice !=3);    
     }
     public static boolean chkPhoneNumber(int hpnum){
-        for(int i = 0 ;i<Customer.getUserRegistered();i++){
-                        if(customer[i].getPhoneNum()==hpnum){
-                          
-                              result=true;
-                              break;
-                         }else{
-                            result=false;
-                        }
+        File custfile = new File("customerfile.txt");
+            try {
+               
+            FileWriter writer = new FileWriter(custfile,true);
+            Scanner read = new Scanner(custfile);
+            while (read.hasNextLine()) {
+                String line = read.nextLine();
+                String[] values = line.split(",");
+                if (values.length > 0) {
+                    if(hpnum == Integer.parseInt(values[4])){
+                       result=true;
+                        break; 
+                    }else{
+                        result=false;
+                    }
+                     
+                }
+            }
+            
         
-    }
+            } catch (IOException e) {
+              System.out.println("An error occurred.");
+            }
+        
+    
         return result;
    }
+    public static void file(){
+        File custfile = new File("customerfile.txt");
+            try {
+               
+            FileWriter writer = new FileWriter(custfile,true);
+            Scanner read = new Scanner(custfile);
+            read.useDelimiter(",");
+
+            } catch (IOException e) {
+              System.out.println("An error occurred.");
+              e.printStackTrace();
+            }
+        
+    }
      
 }

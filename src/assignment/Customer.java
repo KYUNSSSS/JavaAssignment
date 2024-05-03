@@ -6,6 +6,9 @@ package assignment;
  */
 
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -14,6 +17,7 @@ import java.util.Scanner;
  * @author Hp
  */
 public class Customer {
+    
     Scanner input = new Scanner(System.in);
     private String name = "";
     private int age = 0;
@@ -158,8 +162,8 @@ public class Customer {
                     a=false;
                     
                 }else{
-                    if(Integer.toString(phoneNum).length()>11 || Integer.toString(phoneNum).length()<10){
-                        System.out.println("Invalid format.Enter 10 to 11 value only.");
+                    if(Integer.toString(phoneNum).length()<9 || Integer.toString(phoneNum).length()>10){
+                        System.out.println("Invalid format.Enter 9 to 10 value only.");
 
                         a=false;}
                     else{
@@ -186,7 +190,34 @@ public class Customer {
         
         
         }while(!a);
-        userRegistered++;
+        File custfile = new File("customerfile.txt");
+            try {
+               
+            FileWriter writer = new FileWriter(custfile,true);
+            Scanner read = new Scanner(custfile);
+            while (read.hasNextLine()) {
+                String line = read.nextLine();
+                String[] values = line.split(",");
+                if (values.length > 0) {
+                    userRegistered = Integer.parseInt(values[0])+1;
+                }
+            }
+            
+            String input = String.format("%d,%s,%d,%s,%d,%.2f%n", userRegistered,name, age, email, phoneNum, totalPurchaseAmount);
+            writer.write(input);
+            writer.close();
+           // writer.write( String.format("%d,%d,%s,%d,%.2f\n", userRegistered, age, email, phoneNum, totalPurchaseAmount));
+            read.useDelimiter(",");
+            while (read.hasNext())
+                System.out.println(read.next());
+       
+            } catch (IOException e) {
+              System.out.println("An error occurred.");
+            }
+
+        
+        
+        
         System.out.println("Registered Successfully.");
         System.out.print("Press any key to return...");
         input.next();

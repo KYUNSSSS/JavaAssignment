@@ -68,14 +68,14 @@ public class main {
                    do{
                     System.out.print("Enter Phone Number: ");
                     phonenum = input.nextInt();                 
-                    for(int i = 0 ;i<Customer.getUserRegistered();i++){
-                        if(customer[i].getPhoneNum()==phonenum){
+                   
+                    if(chkPhoneNumber(phonenum)){
                               System.out.println("User Found!");
                               result=true;
-                              currentUser=i;
+                       
                               break;
                              }
-                    }
+                    
                     if (result==false){
                         System.out.println("User not found,Please Try Again.");
                     }
@@ -146,7 +146,7 @@ public class main {
         File custfile = new File("customerfile.txt");
             try {
                
-            FileWriter writer = new FileWriter(custfile,true);
+            //FileWriter writer = new FileWriter(custfile,true);
             Scanner read = new Scanner(custfile);
             while (read.hasNextLine()) {
                 String line = read.nextLine();
@@ -162,7 +162,7 @@ public class main {
                 }
             }
             
-        
+            
             } catch (IOException e) {
               System.out.println("An error occurred.");
             }

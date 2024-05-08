@@ -27,11 +27,11 @@ public class Point {
         }
     }
 
-//    public Point(int point, LocalDate expiryDate, Customer customer) {
-//        this.expiryDate = expiryDate;
-//        this.point = point;
-//        this.customer = customer;
-//    }
+    public Point(int point, LocalDate expiryDate, Customer customer) {
+        this.expiryDate = expiryDate;
+        this.point = point;
+        this.customer = customer;
+    }
 
     public int getPoint() {
         return point;

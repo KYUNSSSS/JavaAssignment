@@ -14,7 +14,7 @@ public class ReferralCode extends Customer {
     private String referralCode;
 
     public ReferralCode() {
-       generateReferralCode();
+       // generateReferralCode();
     }
 
     public ReferralCode(String name, int age, String email, int phoneNum, double totalPurchaseAmount) {

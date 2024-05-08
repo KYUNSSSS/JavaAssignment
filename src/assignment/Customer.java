@@ -27,7 +27,7 @@ public class Customer {
     private double totalPurchaseAmount = 0;
     private static int userRegistered;
     
-     public Customer() {
+    public Customer() {
     }
 
     

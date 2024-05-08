@@ -54,6 +54,7 @@ public class main {
          
        Scanner input = new Scanner(System.in);
        Menu.splashScreen();
+       Menu.addHardcodeCust();
       do{
         Menu.mainMenu();
         choice = input.nextInt();
@@ -74,10 +75,8 @@ public class main {
                               result=true;
                        
                               break;
-                             }
-                    
-                    if (result==false){
-                        System.out.println("User not found,Please Try Again.");
+                             }else{
+                                System.out.println("User not found,Please Try Again.");
                     }
                    }while(result==false);
                    do{

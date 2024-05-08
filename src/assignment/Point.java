@@ -15,15 +15,19 @@ public class Point {
        
     public Point(Customer customer) {
         this.customer = customer;
-        double totalAmount = customer.getTotalPurchaseAmount(); 
+        double totalAmount = customer.getTotalPurchaseAmount();
         this.point = (int) Math.round(totalAmount);
-        
+
         if (totalAmount > 0) {
             this.ftPurchaseDate = customer.getPointDate();
-            this.expiryDate = ftPurchaseDate.plusDays(365); 
+            if (ftPurchaseDate != null) {
+                this.expiryDate = ftPurchaseDate.plusDays(365);
+            } else {
+                this.expiryDate = null;
+            }
         } else {
-            this.ftPurchaseDate = null; 
-            this.expiryDate = null; 
+            this.ftPurchaseDate = null;
+            this.expiryDate = null;
         }
     }
 
@@ -60,34 +64,57 @@ public class Point {
     public void checkAmount() {
         double amount = customer.getTotalPurchaseAmount();
         if (amount > 0) {
-            ftPurchaseDate = customer.getPointDate();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            String formattedDate = ftPurchaseDate.format(formatter);
-            System.out.println("First Time Purchase Date: " + formattedDate);
+            if (ftPurchaseDate != null) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                String formattedDate = ftPurchaseDate.format(formatter);
+                System.out.println("First Time Purchase Date: " + formattedDate);
+            } else {
+                System.out.println("Error: First time purchase date is null.");
+            }
         } else if (amount == 0) {
             this.ftPurchaseDate = null;
             System.out.println("You do not have any purchase records.");
-        }else{
-            System.out.println("Error! The amount should not less than 0.");
+        } else {
+            System.out.println("Error! The amount should not be less than 0.");
         }
     }
 
     public void checkExpiryDate() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter Current Purchase Date (DD-MM-YYYY): ");
-        String currentDateStr = scanner.nextLine();
-
-        LocalDate currentDate = LocalDate.parse(currentDateStr, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-        if (ftPurchaseDate == null){
-            System.out.println("Please make a payment first.\n");
-        } else if(currentDate.isAfter(expiryDate)) {
-            System.out.println("Points have expired on " + expiryDate.format(formatter) + "\nTotal Points: 0\n");
-            point = 0;
-        } else {
-            System.out.println("Total Points: " + point);
-            System.out.println("Points will expire on: " + expiryDate.format(formatter) + "\n");
+        boolean validDate = false;
+        boolean validRange = false;
+        LocalDate currentDate = null;
+
+        while (!validDate) {
+            System.out.print("Enter Current Purchase Date (DD-MM-YYYY): ");
+            String currentDateStr = scanner.nextLine();
+
+            try {
+                currentDate = LocalDate.parse(currentDateStr, formatter);
+                validDate = true;
+            } catch (Exception e) {
+                System.out.println("Error: Invalid date format. Please enter date in DD-MM-YYYY format.");
+            }
+        }
+
+        if (ftPurchaseDate != null && currentDate.isBefore(ftPurchaseDate)) {
+            System.out.println("Error: Current purchase date cannot be before the first time purchase date.");
+        }else {
+            validRange = true;
+        }
+
+        if (validRange) {
+            if (ftPurchaseDate == null) {
+                System.out.println("Please make a payment first.\n");
+            }else if (expiryDate != null && currentDate.isAfter(expiryDate)) {
+                System.out.println("Points have expired on " + expiryDate.format(formatter) + "\nTotal Points: 0\n");
+                point = 0;
+            }else {
+                System.out.println("Total Points: " + point);
+                System.out.println("Points will expire on: " + expiryDate.format(formatter) + "\n");
+            }
         }
     }
 }

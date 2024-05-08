@@ -31,7 +31,7 @@ public class main {
             
             
             
-         String[] reProdNames = {"Pillow","Headphone","Backpack"};
+        String[] reProdNames = {"Pillow","Headphone","Backpack"};
         String[] reProdDesc = {"Harvey Norman","CookingPanDesc","BackpackDesc"};
         int[] reQtyRemain= {10,12,15};
         int[] reRequiredPts = {50,300,500};
@@ -74,7 +74,7 @@ public class main {
                               result=true;
                               currentUser=i;
                               break;
-                             }
+                        }
                     }
                     if (result==false){
                         System.out.println("User not found,Please Try Again.");
@@ -157,8 +157,7 @@ public class main {
                         break; 
                     }else{
                         result=false;
-                    }
-                     
+                    }   
                 }
             }
             

@@ -46,11 +46,9 @@ public class ReferralCode extends Customer {
     public void displayReferralCode(Customer[] customers, int currentUser) {
         if (customers[currentUser] instanceof ReferralCode) {
             ReferralCode referralCustomer = (ReferralCode) customers[currentUser];
-            System.out.println("Referral Code: " + referralCustomer.getReferralCode());
+            referralCustomer.displayReferralCode(customers, currentUser);
         }else {
             System.out.println("Referral code not applicable for this customer.");
         }
     }
-    
 }
-

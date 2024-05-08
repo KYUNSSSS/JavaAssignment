@@ -84,4 +84,13 @@ public class Report {
                 "\nNumber of Gold Tier Customer: " + tier2Num +
                 "\nNumber of Platinum Tier Customer: " + tier3Num;
     }
+    
+    public String displayReport1() {
+        return reportTitle +
+                "\n\nTotal Voucher Redeemed: " + voucherRedeemed +
+                "\nTotal Product Redeemed: " + productRedeemed +
+                "\nNumber of Silver Tier Customer: " + tier1Num +
+                "\nNumber of Gold Tier Customer: " + tier2Num +
+                "\nNumber of Platinum Tier Customer: " + tier3Num;
+    }
 }

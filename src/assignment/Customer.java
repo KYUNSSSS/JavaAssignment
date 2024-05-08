@@ -50,6 +50,30 @@ public class Customer {
         this.totalPurchaseAmount = totalPurchaseAmount;
         this.pointDate = date;
         userRegistered++;
+        File custfile = new File("customerfile.txt");
+            try {
+               
+            FileWriter writer = new FileWriter(custfile,true);
+            Scanner read = new Scanner(custfile);
+            while (read.hasNextLine()) {
+                String line = read.nextLine();
+                String[] values = line.split(",");
+                if (values.length > 0) {
+                    userRegistered = Integer.parseInt(values[0])+1;
+                }
+            }
+            
+            String input = String.format("%d,%s,%d,%s,%d,%.2f%n", userRegistered,name, age, email, phoneNum, totalPurchaseAmount);
+            writer.write(input);
+            writer.close();
+           // writer.write( String.format("%d,%d,%s,%d,%.2f\n", userRegistered, age, email, phoneNum, totalPurchaseAmount));
+            read.useDelimiter(",");
+            while (read.hasNext())
+                System.out.println(read.next());
+       
+            } catch (IOException e) {
+              System.out.println("An error occurred.");
+            }
     }
 
    
@@ -110,7 +134,7 @@ public class Customer {
     }
     
     public void enterDetail(){
-        boolean a;
+        boolean a;//a store value to decide whether user need to re-enter.
         do{
         System.out.print("Enter Name(Ali bin Abu)(0 to return): ");
         name = input.nextLine();
@@ -223,21 +247,7 @@ public class Customer {
         input.next();
     
     }
-    public boolean checkDetail(int phoneNum){
-        
-        boolean bool;
-      
-        
-        if (phoneNum == getPhoneNum()){
-            System.out.println("User Found!");
-            bool =true;
-        }else{
-            bool = false;
-        }
-           
-            
-        return bool;
-       }
+   
     public void updateDetail(){
         int num;
         int choice;

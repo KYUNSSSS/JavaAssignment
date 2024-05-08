@@ -15,7 +15,6 @@ import java.io.Writer;
  * @author Hp
  */
 
-
 public class main {
        static int phonenum;
        static int choice;
@@ -23,11 +22,11 @@ public class main {
        static boolean result;
 //       static double point;
        //System allow n number users to register(in this case 10)
-       static Customer[]customer = new Customer[10];
+       static Customer[]customer = new Customer[100];
        
     
     public static void main(String[] args) {
-       
+        
             
             
             
@@ -51,9 +50,13 @@ public class main {
        // Point pts = new Point(customer[currentUser]);
         Redemption rdp = new Redemption();
 
-         
+         readCustomersFile();
+//         for (int x=0;x<customer.length;x++){
+//             System.out.println(customer[x].getPhoneNum());
+//         }
        Scanner input = new Scanner(System.in);
        Menu.splashScreen();
+      
       do{
         Menu.mainMenu();
         choice = input.nextInt();
@@ -68,17 +71,19 @@ public class main {
                    do{
                     System.out.print("Enter Phone Number: ");
                     phonenum = input.nextInt();                 
-                    for(int i = 0 ;i<Customer.getUserRegistered();i++){
-                        if(customer[i].getPhoneNum()==phonenum){
+                   for(int i= 0;i<customer.length;i++){
+                    if(customer[i].getPhoneNum()==phonenum){
                               System.out.println("User Found!");
                               result=true;
                               currentUser=i;
                               break;
-                        }
-                    }
-                    if (result==false){
-                        System.out.println("User not found,Please Try Again.");
-                    }
+                             }
+                   }
+                   if(result==false){
+                                System.out.println("User not found,Please Try Again.");
+                                }
+                    
+                   
                    }while(result==false);
                    do{
                     System.out.println("Welcome back,"+customer[currentUser].getName());
@@ -132,7 +137,7 @@ public class main {
                         default:
                             Menu.backAction();                         
                     }
-                   }while(choice!=5);             
+                   }while(choice!=6);             
                    break;
                case 3:
                    System.out.println("Thank you for using our system!");
@@ -141,12 +146,13 @@ public class main {
                    break;
            }
       }while(choice !=3);    
+        updateCustomerFile(customer);
     }
     public static boolean chkPhoneNumber(int hpnum){
         File custfile = new File("customerfile.txt");
             try {
                
-            FileWriter writer = new FileWriter(custfile,true);
+            //FileWriter writer = new FileWriter(custfile,true);
             Scanner read = new Scanner(custfile);
             while (read.hasNextLine()) {
                 String line = read.nextLine();
@@ -157,11 +163,12 @@ public class main {
                         break; 
                     }else{
                         result=false;
-                    }   
+                    }
+                     
                 }
             }
             
-        
+            
             } catch (IOException e) {
               System.out.println("An error occurred.");
             }
@@ -169,6 +176,38 @@ public class main {
     
         return result;
    }
+    public static void readCustomersFile() {
+        File custFile = new File("customerfile.txt");
+        try {
+            Scanner scanner = new Scanner(custFile);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] values = line.split(",");
+
+                
+                Customer newCustomer = new Customer();
+
+                newCustomer.setName(values[1]); // Example, modify according to your class structure
+                newCustomer.setAge(Integer.parseInt(values[2]));
+                newCustomer.setEmail(values[3]);
+                newCustomer.setPhoneNum(Integer.parseInt(values[4]));
+                newCustomer.setTotalPurchaseAmount(Double.parseDouble(values[5]));
+                
+                // Add the new customer to the customer array
+                customer[currentUser++] = newCustomer;
+
+                // Break if the customer array is filled
+                if (currentUser >= customer.length) {
+                    break;
+                }
+            }
+            scanner.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading customer data.");
+            e.printStackTrace();
+        }
+    }
+
     public static void file(){
         File custfile = new File("customerfile.txt");
             try {
@@ -182,6 +221,23 @@ public class main {
               e.printStackTrace();
             }
         
+    }
+    public static void updateCustomerFile(Customer[]customer) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("customerfile.txt"));
+            for (int i = 0; i < customer.length; i++) {
+                if (customer[i] != null) {
+                    String customerData = i+","+customer[i].getName()+ "," + customer[i].getAge() + ","+customer[i].getEmail()+","+customer[i].getPhoneNum()+","+customer[i].getTotalPurchaseAmount();
+                    writer.write(customerData);
+                    writer.newLine();
+                }
+            }
+            writer.close();
+            System.out.println("Customer file updated successfully.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while updating customer file.");
+            e.printStackTrace();
+        }
     }
      
 }

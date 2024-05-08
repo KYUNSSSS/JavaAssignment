@@ -128,6 +128,8 @@ public class main {
                             loyalty.updateTier(amount);
                             System.out.println(customer[currentUser].displayProfile());
                             //System.out.println("Points      : " + pts.getPoint());
+                            ReferralCode referralCustomer = new ReferralCode(); 
+                            referralCustomer.displayReferralCode(customer, currentUser);
                             System.out.println(loyalty.displayTier());
                             System.out.println();
                             break;

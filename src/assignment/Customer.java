@@ -110,7 +110,7 @@ public class Customer {
     }
     
     public void enterDetail(){
-        boolean a;
+        boolean a;//a store value to decide whether user need to re-enter.
         do{
         System.out.print("Enter Name(Ali bin Abu)(0 to return): ");
         name = input.nextLine();
@@ -223,21 +223,7 @@ public class Customer {
         input.next();
     
     }
-    public boolean checkDetail(int phoneNum){
-        
-        boolean bool;
-      
-        
-        if (phoneNum == getPhoneNum()){
-            System.out.println("User Found!");
-            bool =true;
-        }else{
-            bool = false;
-        }
-           
-            
-        return bool;
-       }
+   
     public void updateDetail(){
         int num;
         int choice;

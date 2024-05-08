@@ -25,6 +25,7 @@ public class Customer {
     private int phoneNum = 0 ;
     private LocalDate pointDate;
     private double totalPurchaseAmount = 0;
+    private String tier;
     private static int userRegistered;
     
     public Customer() {
@@ -123,6 +124,14 @@ public class Customer {
 
     public void setTotalPurchaseAmount(double totalPurchaseAmount) {
         this.totalPurchaseAmount = totalPurchaseAmount;
+    }
+
+    public String getTier() {
+        return tier;
+    }
+
+    public void setTier(String tier) {
+        this.tier = tier;
     }
 
     public static int getUserRegistered() {
@@ -251,10 +260,7 @@ public class Customer {
     public void updateDetail(){
         int num;
         int choice;
-        
-        
-        
-        
+
             System.out.print("\nWhat to update?\n1.Name ["+name+"]"+"\n2.Age ["+age+"]"+"\n3.Email {"+email+"]"+"\n4.Phone Number ["+phoneNum+"]"+"\n5.Back\nSelect One:");
             choice= input.nextInt();
             

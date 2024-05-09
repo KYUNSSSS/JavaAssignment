@@ -24,6 +24,10 @@ public class Product {
         this.requiredPoint = requiredPoint;
     }
 
+    public String[] getProductName() {
+    return productName;
+}
+    
     public String getProductName(int i) {
         return productName[i];
     }
@@ -40,6 +44,10 @@ public class Product {
         this.prodDescription = productDescription;
     }
 
+    public static int[] getQtyRemaining() {
+    return qtyRemaining;
+}
+    
     public static int getQtyRemaining(int i) {
         return qtyRemaining[i];
     }
@@ -48,6 +56,10 @@ public class Product {
         Product.qtyRemaining = qtyRemaining;
     }
 
+    public int[] getRequiredPoint() {
+    return requiredPoint;
+}
+    
     public int getRequiredPoint(int i) {
         return requiredPoint[i];
     }

@@ -46,6 +46,7 @@ public class main {
         Loyalty loyalty = new Loyalty();
        // Point pts = new Point(customer[currentUser]);
         Redemption rdp = new Redemption();
+        Report report = new Report();
 
          readCustomersFile();
 //         for (int x=0;x<customer.length;x++){
@@ -122,11 +123,15 @@ public class main {
                             }
                         case 5:
                             double amount = customer[currentUser].getTotalPurchaseAmount();
-                            loyalty.updateTier(amount);
+                            loyalty.updateTier(amount, customer[currentUser]);
                             System.out.println(customer[currentUser].displayProfile());
                             //System.out.println("Points      : " + pts.getPoint());
+                            ReferralCode referralCustomer = new ReferralCode(); 
+                            referralCustomer.displayReferralCode(customer, currentUser);
                             System.out.println(loyalty.displayTier());
                             System.out.println();
+                            report.calculateTierCust(customer);
+                            System.out.println(report.displayReport());
                             break;
                         case 6:
                             Menu.backAction();

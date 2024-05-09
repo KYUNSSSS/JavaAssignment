@@ -14,7 +14,7 @@ public class ReferralCode extends Customer {
     private String referralCode;
 
     public ReferralCode() {
-       
+       // generateReferralCode();
     }
 
     public ReferralCode(String name, int age, String email, int phoneNum, double totalPurchaseAmount) {
@@ -43,17 +43,12 @@ public class ReferralCode extends Customer {
         this.referralCode = referralCode;
     }
     
-    /*public void displayReferralCode() {
-        System.out.println("Referral Code: " + referralCode);
-    }*/
-    
     public void displayReferralCode(Customer[] customers, int currentUser) {
         if (customers[currentUser] instanceof ReferralCode) {
             ReferralCode referralCustomer = (ReferralCode) customers[currentUser];
-            System.out.println("Referral Code: " + referralCustomer.getReferralCode());
+            referralCustomer.displayReferralCode(customers, currentUser);
         }else {
             System.out.println("Referral code not applicable for this customer.");
         }
     }
-    
 }

@@ -15,6 +15,7 @@ public class Report {
     private int tier2Num;
     private int tier3Num;
     private String reportTitle;
+    private Customer customer;
 
     public Report() {
     }
@@ -74,6 +75,20 @@ public class Report {
 
     public void setReportTitle(String reportTitle) {
         this.reportTitle = reportTitle;
+    }
+
+    public void calculateTierCust(Customer[] customer) {
+
+        for (int i = 0; i <= Customer.getUserRegistered(); i++){
+            String tier = customer[i].getTier();
+            if (tier == "Silver") {
+                tier1Num++;
+            } else if (tier == "Gold") {
+                tier2Num++;
+            } else {
+                tier3Num++;
+            }
+        }
     }
     
     public String displayReport() {

@@ -61,7 +61,7 @@ public class Loyalty {
         return "Your Current Tier is Tier " + tierLevel + ", " + tierName;
     }
     
-    public int updateTier(double amount) {
+    public int updateTier(double amount, Customer customer) {
         if (amount >= 10000 ) {
             tierLevel = 3;
             tierName = "Platinum";
@@ -75,6 +75,8 @@ public class Loyalty {
             tierLevel = 0;
             tierName = "No Tier";
         }
+
+        customer.setTier(tierName);
         
         return tierLevel;
     }

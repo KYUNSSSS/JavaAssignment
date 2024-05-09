@@ -26,10 +26,7 @@ public class main {
        
     
     public static void main(String[] args) {
-        
-            
-            
-            
+    
         String[] reProdNames = {"Pillow","Headphone","Backpack"};
         String[] reProdDesc = {"Harvey Norman","CookingPanDesc","BackpackDesc"};
         int[] reQtyRemain= {10,12,15};

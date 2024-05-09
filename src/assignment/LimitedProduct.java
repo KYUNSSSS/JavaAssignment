@@ -27,4 +27,22 @@ public class LimitedProduct extends Product{
         this.tier = tier;
     }
     
+    public static LimitedProduct iniLiProd(){
+        String[] liTier = {"Silver","Gold","Platinum"};
+        String[] liProdNames = {"Vacuum Cleaner","Cooking Pan","Knife Set"};
+        String[] liProdDesc = {"VacuumCleanerDesc","CookingPanDesc","KnifeSetDesc"};
+        int[] liQtyRemain = {10,13,20};
+        int[] liRequiredPts = {500,600,600};  
+ 
+        LimitedProduct liP = new LimitedProduct();
+                
+        liP.setTier(liTier);
+        liP.setProductName(liProdNames);
+        liP.setProdDescription(liProdDesc);
+        liP.setQtyRemaining(liQtyRemain);
+        liP.setRequiredPoint(liRequiredPts);
+       
+        return liP;
+    }
+    
 }

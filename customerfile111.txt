@@ -1,5 +1,0 @@
-1,fdf,12,dss@gmail.com,122222222,23.00
-2,dd,12,fd@gma.com,232222222,54.00
-3,dd,21,ds@gmail.com,434324234,44.00
-4,fd,23,fd@gmial.com,123221324,55.00
-5,efd,23,dsa@gmail.com,123758454,100.00

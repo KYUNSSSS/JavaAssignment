@@ -59,6 +59,7 @@ public class main {
        Menu.splashScreen();
       
       do{
+        readCustomersFile();
         Menu.mainMenu();
         choice = input.nextInt();
            switch (choice) {
@@ -70,23 +71,19 @@ public class main {
                    break;
                case 2:                
                    do{
-                    System.out.print("Enter Phone Number: ");
-                    phonenum = input.nextInt();                 
-                   for(int i= 0;i<customer.length;i++){
-                    if(customer[i].getPhoneNum()==phonenum){
+                    System.out.print("Enter Phone Number (0 to back): ");
+                    phonenum = input.nextInt();   
+                    if(phonenum ==0){
+                       
+                        break;
+                        
+                    }
+                    for(int i= 0;i<customer.length;i++){
+                        if(customer[i].getPhoneNum()==phonenum){
                               System.out.println("User Found!");
                               result=true;
                               currentUser=i;
-                              break;
-                             }
-                   }
-                   if(result==false){
-                                System.out.println("User not found,Please Try Again.");
-                                }
-                    
-                   
-                   }while(result==false);
-                   do{
+                              do{
                     System.out.println("Welcome back,"+customer[currentUser].getName());
                     Menu.userMenu();
                     choice = input.nextInt();
@@ -129,20 +126,32 @@ public class main {
                             loyalty.updateTier(amount, customer[currentUser]);
                             System.out.println(customer[currentUser].displayProfile());
                             //System.out.println("Points      : " + pts.getPoint());
-                            ReferralCode referralCustomer = new ReferralCode(); 
-                            referralCustomer.displayReferralCode(customer, currentUser);
+                            //ReferralCode referralCustomer = new ReferralCode(); 
+                            //referralCustomer.displayReferralCode(customer, currentUser);
                             System.out.println(loyalty.displayTier());
                             System.out.println();
                             report.calculateTierCust(customer);
                             System.out.println(report.displayReport());
                             break;
                         case 6:
+                            
                             Menu.backAction();
                             break;
                         default:
                             Menu.backAction();                         
                     }
-                   }while(choice!=6);             
+                   }while(choice!=6 && result==true);
+                              choice=0;
+                              break;
+                             }
+                   }
+                   if(result==false){
+                                System.out.println("User not found,Please Try Again.");
+                                }
+                    
+                   
+                   }while(result==false);
+                   
                    break;
                case 3:
                    System.out.println("Thank you for using our system!");
@@ -150,7 +159,7 @@ public class main {
                default:
                    break;
            }
-      }while(choice !=3);    
+      }while(choice !=3 );    
         updateCustomerFile(customer);
         updateReferralCode();
     }

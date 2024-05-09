@@ -27,28 +27,12 @@ public class main {
     
     public static void main(String[] args) {
         
-            
-            
-            
-        String[] reProdNames = {"Pillow","Headphone","Backpack"};
-        String[] reProdDesc = {"Harvey Norman","CookingPanDesc","BackpackDesc"};
-        int[] reQtyRemain= {10,12,15};
-        int[] reRequiredPts = {50,300,500};
-
-        String[] liTier = {"Silver","Gold","Platinum"};
-        String[] liProdNames = {"Vacuum Cleaner","Cooking Pan","Knife Set"};
-        String[] liProdDesc = {"VacuumCleanerDesc","CookingPanDesc","KnifeSetDesc"};
-        int[] liQtyRemain = {10,13,20};
-        int[] liRequiredPts = {500,600,600};   
-
-        String[] vcNames = {"RM5 Discount Voucher","RM10 Discount Voucher","RM20 Discount Voucher"};
-        String[] vcDesc = {"Deduct RM5 on Next Purchase","Deduct RM10 on Next Purchase","Deduct RM20 on Next Purchase"};
-        int[] vcQtyRemain = {10,10,10};
-        int[] vcRequiredPts = {490,950,1900};
-        
         Loyalty loyalty = new Loyalty();
        // Point pts = new Point(customer[currentUser]);
-        Redemption rdp = new Redemption();
+//        Redemption rdp = new Redemption();
+        RedemptionProduct reProd = RedemptionProduct.iniReProd();
+        LimitedProduct liProd = LimitedProduct.iniLiProd();
+        Voucher voucher = Voucher.iniVoucher();
         Report report = new Report();
 
          readCustomersFile();
@@ -103,24 +87,25 @@ public class main {
                             Menu.backAction();
                             break;
                         case 4:
-                            
-                            Scanner scanner = new Scanner(System.in);
-                            Menu.redeemMenu();
-                            int opt = scanner.nextInt();
-
-                            switch(opt){
-                                case 1:
-                                    rdp.redeemProduct(reProdNames,reQtyRemain,reRequiredPts);
-                                    break;
-                                case 2:
-                                    rdp.redeemProduct(liProdNames,liQtyRemain,liRequiredPts);
-                                    break;                
-                                case 3:
-                                    rdp.redeemProduct(vcNames,vcQtyRemain,vcRequiredPts);
-                                    break;
-                                default:
-                                    System.out.print("Cancelled redemption");
-                            }
+                            Redemption.redemption(reProd);
+//                            Scanner scanner = new Scanner(System.in);
+//                            Menu.redeemMenu();
+//                            int opt = scanner.nextInt();
+//
+//                            switch(opt){
+//                                case 1:
+//                                    rdp.redeemProduct(reProdNames,reQtyRemain,reRequiredPts);
+//                                    break;
+//                                case 2:
+//                                    rdp.redeemProduct(liProdNames,liQtyRemain,liRequiredPts);
+//                                    break;                
+//                                case 3:
+//                                    rdp.redeemProduct(vcNames,vcQtyRemain,vcRequiredPts);
+//                                    break;
+//                                default:
+//                                    System.out.print("Cancelled redemption");
+//                            }
+                            break;
                         case 5:
                             double amount = customer[currentUser].getTotalPurchaseAmount();
                             loyalty.updateTier(amount, customer[currentUser]);

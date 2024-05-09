@@ -15,7 +15,6 @@ public class Report {
     private int tier2Num;
     private int tier3Num;
     private String reportTitle;
-    private Customer customer;
 
     public Report() {
     }

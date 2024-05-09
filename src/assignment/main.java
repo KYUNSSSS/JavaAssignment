@@ -1,5 +1,4 @@
 package assignment;
-
 import java.io.BufferedWriter;
 import java.util.Scanner;
 import java.io.File;

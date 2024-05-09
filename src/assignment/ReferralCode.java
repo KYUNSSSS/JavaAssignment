@@ -1,28 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package assignment;
 
-/**
- *
- * @author Superaiyoyyoo
- */
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
+import java.util.Scanner;
 
-public class ReferralCode extends Customer {
+public class ReferralCode {
     private String referralCode;
 
     public ReferralCode() {
-       // generateReferralCode();
     }
 
-    public ReferralCode(String name, int age, String email, int phoneNum, double totalPurchaseAmount) {
-        super(name, age, email, phoneNum, totalPurchaseAmount);
-        generateReferralCode();
+    public ReferralCode(String referralCode) {
+        this.referralCode = referralCode;
     }
 
-    private void generateReferralCode() {
+    public String generateReferralCode() {
         Random random = new Random();
         StringBuilder sb = new StringBuilder();
 
@@ -33,22 +27,49 @@ public class ReferralCode extends Customer {
         }
 
         referralCode = sb.toString();
-    }
-    
-    public String getReferralCode() {
         return referralCode;
     }
 
-    public void setReferralCode(String referralCode) {
-        this.referralCode = referralCode;
-    }
-    
-    public void displayReferralCode(Customer[] customers, int currentUser) {
-        if (customers[currentUser] instanceof ReferralCode) {
-            ReferralCode referralCustomer = (ReferralCode) customers[currentUser];
-            referralCustomer.displayReferralCode(customers, currentUser);
-        }else {
-            System.out.println("Referral code not applicable for this customer.");
+    public void addReferralCodeToFile() {
+        try {
+            File custFile = new File("customerfile.txt");
+            File tempFile = new File("tempfile.txt");
+            FileWriter writer = new FileWriter(tempFile);
+            Scanner read = new Scanner(custFile);
+
+            while (read.hasNextLine()) {
+                String line = read.nextLine();
+                String[] values = line.split(",");
+                if (values.length > 0) {
+                    int userRegistered = Integer.parseInt(values[0]);
+                    if (userRegistered > 0) {
+                        // Generate a referral code
+                        generateReferralCode();
+                        // Append the referral code to the end of the line
+                        line += "," + referralCode;
+                    }
+                }
+                writer.write(line + "\n"); // Write the modified line to the temporary file
+            }
+
+            writer.close();
+            read.close();
+
+            // Rename tempfile.txt to customerfile.txt
+            if (!custFile.delete()) {
+                System.out.println("Failed to delete the original file.");
+                return;
+            }
+            if (!tempFile.renameTo(custFile)) {
+                System.out.println("Failed to rename the temporary file.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
     }
 }
+
+
+
+

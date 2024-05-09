@@ -152,6 +152,7 @@ public class main {
            }
       }while(choice !=3);    
         updateCustomerFile(customer);
+        updateReferralCode();
     }
     public static boolean chkPhoneNumber(int hpnum){
         File custfile = new File("customerfile.txt");
@@ -244,5 +245,11 @@ public class main {
             e.printStackTrace();
         }
     }
-     
+    public static void updateReferralCode() {
+        // Create an instance of ReferralCode
+        ReferralCode referralCodeGenerator = new ReferralCode();
+       
+        // Pass the current customer object to the addReferralCodeToFile method
+        referralCodeGenerator.addReferralCodeToFile();
+       }
 }

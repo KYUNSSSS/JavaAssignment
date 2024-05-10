@@ -260,8 +260,7 @@ public class Customer {
             }
                 
         System.out.println("Registered Successfully.");
-        System.out.print("Press any key to return...");
-        input.next();
+        
     
     }
    

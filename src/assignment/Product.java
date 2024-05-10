@@ -11,7 +11,7 @@ package assignment;
 public class Product {
     private String[] productName;
     private String[] prodDescription;
-    private static int[] qtyRemaining;
+    private int[] qtyRemaining;
     private int[] requiredPoint;
 
     public Product() {
@@ -44,16 +44,16 @@ public class Product {
         this.prodDescription = productDescription;
     }
 
-    public static int[] getQtyRemaining() {
+    public int[] getQtyRemaining() {
     return qtyRemaining;
 }
     
-    public static int getQtyRemaining(int i) {
+    public int getQtyRemaining(int i) {
         return qtyRemaining[i];
     }
 
-    public static void setQtyRemaining(int[] qtyRemaining) {
-        Product.qtyRemaining = qtyRemaining;
+    public void setQtyRemaining(int[] qtyRemaining) {
+        this.qtyRemaining = qtyRemaining;
     }
 
     public int[] getRequiredPoint() {

@@ -111,4 +111,18 @@ public class Point {
             }
         }
     }
+
+    public String checkTier(){
+        String tier;
+        if (this.getPoint() >= 10000 ) {
+                tier = "Platinum";
+            } else if (this.getPoint() >= 1000) {
+                tier = "Gold";
+            } else if (this.getPoint() >= 100) {
+                tier = "Silver";
+            } else {
+                tier = "No Tier";
+            }
+        return tier;
+    }
 }

@@ -14,7 +14,14 @@ import java.time.LocalDate;
  */
 public class Menu {
     public static void splashScreen(){
-        System.out.println("WELCOME TO BEEWARD!");
+        System.out.println("  ____  ______ ________          __     _____  _____  \n" +
+" |  _ \\|  ____|  ____\\ \\        / /\\   |  __ \\|  __ \\ \n" +
+" | |_) | |__  | |__   \\ \\  /\\  / /  \\  | |__) | |  | |\n" +
+" |  _ <|  __| |  __|   \\ \\/  \\/ / /\\ \\ |  _  /| |  | |\n" +
+" | |_) | |____| |____   \\  /\\  / ____ \\| | \\ \\| |__| |\n" +
+" |____/|______|______|   \\/  \\/_/    \\_\\_|  \\_\\_____/ \n" +
+"                                                      \n" +
+"                                                      ");
         
     }
     public static void mainMenu(){
@@ -36,6 +43,10 @@ public class Menu {
     
     public static void reportMenu(){
         System.out.print("Type of Report\n1. Customer Tier Report\n2. Redemption Report\n3. Points Report\n4. Exit\nChoose Report Option : ");
+    }
+
+    public static void adminOrCustMenu(){
+        System.out.print("Continue as\n1. Customer\n2. Admin User\n3. Exit\nEnter Selection:  ");
     }
 
 }

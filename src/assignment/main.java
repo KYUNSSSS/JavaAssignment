@@ -31,8 +31,8 @@ public class main {
         Loyalty loyalty = new Loyalty();
        // Point pts = new Point(customer[currentUser]);
 //        Redemption rdp = new Redemption();
-        RedemptionProduct reProd = RedemptionProduct.iniReProd();
-        LimitedProduct liProd = LimitedProduct.iniLiProd();
+       RedemptionProduct reProd = RedemptionProduct.iniReProd();
+       LimitedProduct liProd = LimitedProduct.iniLiProd();
         Voucher voucher = Voucher.iniVoucher();
         Report report = new Report();
 
@@ -42,7 +42,7 @@ public class main {
 //         }
        Scanner input = new Scanner(System.in);
        Menu.splashScreen();
-      
+       pressEnterToContinue();
       do{
         readCustomersFile();
          
@@ -94,7 +94,7 @@ public class main {
                             
                             break;
                         case 4:
-                            Redemption.redemption(reProd);
+                            //Redemption.redemption(reProd, liProd, voucher);
 //                            Scanner scanner = new Scanner(System.in);
 //                            Menu.redeemMenu();
 //                            int opt = scanner.nextInt();
@@ -165,9 +165,22 @@ public class main {
                             
                             if (username.equals(chkUsername)){
                                 if (apw.equals(chkApw)){
-                                    loyalty.updateTier(customer);
-                                    report.calculateTierCust(customer);
-                                    System.out.println(report.displayReport());
+                                    Menu.reportMenu();
+                                    int choice = input.nextInt();
+                                    switch (choice) {
+                                        case 1:
+                                            loyalty.updateTier(customer);
+                                            report.calculateTierCust(customer);
+                                            System.out.println(report.displayReport());
+                                            break;
+                                        case 2:
+                                            
+                                            break;
+                                        case 3:
+
+                                            
+                                    }
+                                    
                                 }
                             }
                         }
@@ -204,8 +217,6 @@ public class main {
             } catch (IOException e) {
               System.out.println("An error occurred.");
             }
-        
-    
         return result;
    }
     public static void readCustomersFile() {
@@ -280,5 +291,16 @@ public class main {
             e.printStackTrace();
         }
     }
+
+    public static void pressEnterToContinue()
+ { 
+         System.out.println("Press Enter key to continue...");
+        try
+        {
+            System.in.read();
+        }  
+        catch(Exception e)
+        {}  
+ }
 
 }

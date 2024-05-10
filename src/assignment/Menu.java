@@ -33,5 +33,9 @@ public class Menu {
     public static void redeemMenu(){
         System.out.print("Redeem Option\n1. Product\n2. Limited Tier Product\n3. Voucher\n4. Exit\nChoose Redeem Option : ");
     }
+    
+    public static void reportMenu(){
+        System.out.print("Type of Report\n1. Customer Tier Report\n2. Redemption Report\n3. Points Report\n4. Exit\nChoose Report Option : ");
+    }
 
 }

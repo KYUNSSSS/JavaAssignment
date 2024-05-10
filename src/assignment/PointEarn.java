@@ -58,8 +58,6 @@ public class PointEarn {
         this.customer = customer;
     }
     
-    
-
     public void playGame() {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
@@ -76,6 +74,7 @@ public class PointEarn {
                 if (userAnswer == correctAnswer) {
                     System.out.println("Correct! You earned 50 points.");
                     points += 50;
+                    customer.updateTotalPurchaseAmounts(50); 
                     attemptsLeft = 3; // Reset attempts for the next game
                     gamesPlayed++;
                     if (gamesPlayed < 5) {

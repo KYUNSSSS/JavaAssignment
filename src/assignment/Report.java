@@ -11,11 +11,11 @@ package assignment;
 public class Report {
     private int voucherRedeemed;
     private int productRedeemed;
+    private int tier0Num;
     private int tier1Num;
     private int tier2Num;
     private int tier3Num;
     private String reportTitle;
-    private Customer customer;
 
     public Report() {
     }
@@ -78,15 +78,22 @@ public class Report {
     }
 
     public void calculateTierCust(Customer[] customer) {
-
-        for (int i = 0; i <= Customer.getUserRegistered(); i++){
+        for (int i = 0; i < Customer.getUserRegistered(); i++){
             String tier = customer[i].getTier();
-            if (tier == "Silver") {
-                tier1Num++;
-            } else if (tier == "Gold") {
-                tier2Num++;
-            } else {
-                tier3Num++;
+            
+            switch (tier) {
+                case "Silver":
+                    tier1Num++;
+                    break;
+                case "Gold":
+                    tier2Num++;
+                    break;
+                case "Platinum":
+                    tier3Num++;
+                    break;
+                default:
+                    tier0Num++;
+                    break;
             }
         }
     }
@@ -95,17 +102,10 @@ public class Report {
         return reportTitle +
                 "\n\nTotal Voucher Redeemed: " + voucherRedeemed +
                 "\nTotal Product Redeemed: " + productRedeemed +
+                "\nNumber of No Tier Customer: " + tier0Num +
                 "\nNumber of Silver Tier Customer: " + tier1Num +
                 "\nNumber of Gold Tier Customer: " + tier2Num +
                 "\nNumber of Platinum Tier Customer: " + tier3Num;
     }
     
-    public String displayReport1() {
-        return reportTitle +
-                "\n\nTotal Voucher Redeemed: " + voucherRedeemed +
-                "\nTotal Product Redeemed: " + productRedeemed +
-                "\nNumber of Silver Tier Customer: " + tier1Num +
-                "\nNumber of Gold Tier Customer: " + tier2Num +
-                "\nNumber of Platinum Tier Customer: " + tier3Num;
-    }
 }

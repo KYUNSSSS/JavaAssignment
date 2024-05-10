@@ -276,6 +276,7 @@ public class Customer {
             case 1:
                 do{
                     System.out.print("Enter Name(Ali bin Abu): ");
+                    input.nextLine();
                     name = input.nextLine();
                     if(name.isBlank()){  
                         System.out.println("Name cannot be empty.");

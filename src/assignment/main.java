@@ -4,11 +4,6 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
-import java.io.Writer;
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 /**
  *
@@ -87,7 +82,7 @@ public class main {
                             Menu.backAction();
                             break;
                         case 4:
-                            Redemption.redemption(reProd);
+                            Redemption.redemption(reProd,liProd,voucher);
 //                            Scanner scanner = new Scanner(System.in);
 //                            Menu.redeemMenu();
 //                            int opt = scanner.nextInt();
@@ -138,9 +133,11 @@ public class main {
                    break;
                case 3:
                    System.out.println("Thank you for using our system!");
-                        break;
+                   break;
                case 4:
+                    System.out.print("Enter Username: ");
                     String username = input.next();
+                    System.out.print("Enter Password: ");
                     String apw = input.next();
                     File adminfile = new File("adminfile.txt");
                     try {
@@ -154,6 +151,7 @@ public class main {
                             
                             if (username.equals(chkUsername)){
                                 if (apw.equals(chkApw)){
+                                    Menu.reportMenu();
                                     loyalty.updateTier(customer);
                                     report.calculateTierCust(customer);
                                     System.out.println(report.displayReport());
@@ -162,8 +160,8 @@ public class main {
                         }
                     } catch (IOException e) {
                         System.out.println("An error occurred while reading customer data.");
-                        e.printStackTrace();
                     }
+                    break;
                default:
                    break;
            }

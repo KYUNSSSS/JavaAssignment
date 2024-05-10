@@ -379,7 +379,7 @@ public class Customer {
         //     sb.append(characters.charAt(index));
         // }
         // String refferalCode = sb.toString();
-        String refferalCode = "hi";
+        String refferalCode = "ABC123";
         System.out.print("Enter the referral code: ");
         String inputCode = scanner.next();
         if(inputCode.equals(refferalCode)){

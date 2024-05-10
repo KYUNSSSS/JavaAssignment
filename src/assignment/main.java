@@ -69,7 +69,7 @@ public class main {
                    do{
                     System.out.print("Enter Phone Number: ");
                     phonenum = input.nextInt();                 
-                   for(int i= 0;i<customer.length;i++){
+                   for(int i= 0;i <= customer.length;i++){
                     if(customer[i].getPhoneNum()==phonenum){
                               System.out.println("User Found!");
                               result=true;
@@ -122,20 +122,18 @@ public class main {
                                     System.out.print("Cancelled redemption");
                             }
                         case 5:
-                            double amount = customer[currentUser].getTotalPurchaseAmount();
-                            loyalty.updateTier(amount, customer[currentUser]);
+                            loyalty.updateTier(customer);
                             System.out.println(customer[currentUser].displayProfile());
                             //System.out.println("Points      : " + pts.getPoint());
                             ReferralCode referralCustomer = new ReferralCode(); 
                             referralCustomer.displayReferralCode(customer, currentUser);
                             System.out.println(loyalty.displayTier());
                             System.out.println();
-                            report.calculateTierCust(customer);
-                            System.out.println(report.displayReport());
+                            
                             break;
                         case 6:
                             Menu.backAction();
-                            break;
+                            break;                            
                         default:
                             Menu.backAction();                         
                     }
@@ -144,6 +142,31 @@ public class main {
                case 3:
                    System.out.println("Thank you for using our system!");
                         break;
+               case 4:
+                    String username = input.next();
+                    String apw = input.next();
+                    File adminfile = new File("adminfile.txt");
+                    try {
+                        Scanner a = new Scanner(adminfile);
+                        while (a.hasNextLine()) {
+                            String line = a.nextLine();
+                            String[] values = line.split(",");
+                            
+                            String chkUsername = values[1];
+                            String chkApw = values[2];    
+                            
+                            if (username.equals(chkUsername)){
+                                if (apw.equals(chkApw)){
+                                    loyalty.updateTier(customer);
+                                    report.calculateTierCust(customer);
+                                    System.out.println(report.displayReport());
+                                }
+                            }
+                        }
+                    } catch (IOException e) {
+                        System.out.println("An error occurred while reading customer data.");
+                        e.printStackTrace();
+                    }
                default:
                    break;
            }
@@ -154,23 +177,21 @@ public class main {
         File custfile = new File("customerfile.txt");
             try {
                
-            //FileWriter writer = new FileWriter(custfile,true);
-            Scanner read = new Scanner(custfile);
-            while (read.hasNextLine()) {
-                String line = read.nextLine();
-                String[] values = line.split(",");
-                if (values.length > 0) {
-                    if(hpnum == Integer.parseInt(values[4])){
-                       result=true;
-                        break; 
-                    }else{
-                        result=false;
+                //FileWriter writer = new FileWriter(custfile,true);
+                Scanner read = new Scanner(custfile);
+                while (read.hasNextLine()) {
+                    String line = read.nextLine();
+                    String[] values = line.split(",");
+                    if (values.length > 0) {
+                        if(hpnum == Integer.parseInt(values[4])){
+                           result=true;
+                            break; 
+                        }else{
+                            result=false;
+                        }
+
                     }
-                     
                 }
-            }
-            
-            
             } catch (IOException e) {
               System.out.println("An error occurred.");
             }
@@ -200,6 +221,7 @@ public class main {
 
                 // Break if the customer array is filled
                 if (currentUser >= customer.length) {
+                
                     break;
                 }
             }

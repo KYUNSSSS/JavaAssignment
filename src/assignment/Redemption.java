@@ -59,23 +59,20 @@ public class Redemption {
     }
    
        
-    public static void redemption(RedemptionProduct rdp){
+    public static void redemption(RedemptionProduct rdp, LimitedProduct liP, Voucher voucher){
         Scanner scanner = new Scanner(System.in);
         Menu.redeemMenu();
         int opt = scanner.nextInt();
 
-        String[] reProdNames = rdp.getProductName();
-        int[] reQtyRemain = rdp.getQtyRemaining();
-        int[] reRequiredPts = rdp.getRequiredPoint();
         switch(opt){
             case 1:
                 rdp.redeemProduct(rdp);
                 break;
             case 2:
-                rdp.redeemProduct(rdp);
+                liP.redeemProduct(liP);
                 break;                
             case 3:
-                rdp.redeemProduct(rdp);
+                voucher.redeemProduct(voucher);
                 break;
             default:
                 System.out.print("Cancelled redemption");

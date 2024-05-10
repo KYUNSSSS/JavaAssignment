@@ -4,6 +4,8 @@
  */
 package assignment;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Asus
@@ -43,6 +45,47 @@ public class LimitedProduct extends Product{
         liP.setRequiredPoint(liRequiredPts);
        
         return liP;
+    }
+    
+    public void redeemProduct(LimitedProduct liP){
+        Scanner scanner = new Scanner(System.in);
+        String[] liProdNames = liP.getProductName();
+        int[] liQtyRemain = liP.getQtyRemaining();
+        int[] liRequiredPts = liP.getRequiredPoint();
+
+        for(int i=0; i<liProdNames.length;i++){
+            System.out.println((i+1) + "." + liProdNames[i] + "\tQuantity remaining:" + liQtyRemain[i]);
+        }
+            System.out.print("Choose product to redeem(One at a time):");
+            int opt2 = scanner.nextInt();
+            switch(opt2){
+                case 1:
+                    this.liRedeemProgress(liQtyRemain,liRequiredPts,opt2);
+                    break;
+                case 2:
+                    this.liRedeemProgress(liQtyRemain,liRequiredPts,opt2);
+                    break;
+                case 3:
+                    this.liRedeemProgress(liQtyRemain,liRequiredPts,opt2);
+                    break;
+                default:
+                    System.out.print("Cancelled redemption");
+                    break;
+            }
+        }
+    
+        public void liRedeemProgress(int[] prodQty,int[] requiredPts, int i){
+            Point pts = new Point();
+            int fPoint = pts.getPoint() - requiredPts[i-1];
+            if(fPoint < 0){
+                System.out.println("Balance point insufficient.");
+            }else{
+                pts.setPoint(fPoint);
+                prodQty[i-1]-=1;
+                RedemptionProduct.setQtyRemaining(prodQty);
+                System.out.println("Balance Point: " + fPoint);
+                System.out.println("Product Remaining Quantity: " + prodQty[i-1]);
+            }   
     }
     
 }

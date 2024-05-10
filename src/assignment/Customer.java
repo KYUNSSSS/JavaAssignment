@@ -27,6 +27,7 @@ public class Customer {
     private double totalPurchaseAmount = 0;
     private String tier;
     private static int userRegistered;
+    private double totalPurchaseAmounts;
     
     public Customer() {
         File custfile = new File("customerfile.txt");
@@ -367,6 +368,10 @@ public class Customer {
         pointDate = LocalDate.now();
         System.out.print("New  Balance Amount: RM"+this.totalPurchaseAmount+"\n");
         
+    }
+    
+    public void updateTotalPurchaseAmounts(double amount) {
+        this.totalPurchaseAmount += amount;
     }
 
     public void updateReferralCode() {

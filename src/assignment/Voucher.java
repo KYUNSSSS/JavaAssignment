@@ -4,6 +4,8 @@
  */
 package assignment;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Asus
@@ -24,6 +26,10 @@ public class Voucher {
         this.requiredPoint = requiredPoint;
     }
 
+    public String[] getVcName() {
+        return vcName;
+    }
+    
     public String getVcName(int i) {
         return vcName[i];
     }
@@ -40,6 +46,10 @@ public class Voucher {
         this.vcDescription = vcDescription;
     }
 
+    public int[] getVcRemaining() {
+        return vcRemaining;
+    }
+    
     public int getVcRemaining(int i) {
         return vcRemaining[i];
     }
@@ -48,6 +58,10 @@ public class Voucher {
         Voucher.vcRemaining = vcRemaining;
     }
 
+    public int[] getRequiredPoint() {
+        return requiredPoint;
+    }
+    
     public int getRequiredPoint(int i) {
         return requiredPoint[i];
     }
@@ -71,5 +85,46 @@ public class Voucher {
         
         return voucher;
     } 
+    
+    public void redeemProduct(Voucher voucher){
+        Scanner scanner = new Scanner(System.in);
+        String[] vcProdNames = voucher.getVcName();
+        int[] vcRemain = voucher.getVcRemaining();
+        int[] vcRequiredPts = voucher.getRequiredPoint();
+
+        for(int i=0; i<vcProdNames.length;i++){
+            System.out.println((i+1) + "." + vcProdNames[i] + "\tQuantity remaining:" + vcRemain[i]);
+        }
+            System.out.print("Choose product to redeem(One at a time):");
+            int opt2 = scanner.nextInt();
+            switch(opt2){
+                case 1:
+                    this.vcRedeemProgress(vcRemain,vcRequiredPts,opt2);
+                    break;
+                case 2:
+                    this.vcRedeemProgress(vcRemain,vcRequiredPts,opt2);
+                    break;
+                case 3:
+                    this.vcRedeemProgress(vcRemain,vcRequiredPts,opt2);
+                    break;
+                default:
+                    System.out.print("Cancelled redemption");
+                    break;
+            }
+        }
+    
+    public static void vcRedeemProgress(int[] vcQty,int[] requiredPts, int i){
+        Point pts = new Point();
+        int fPoint = pts.getPoint() - requiredPts[i-1];
+        if(fPoint < 0){
+            System.out.println("Balance point insufficient.");
+        }else{
+            pts.setPoint(fPoint);
+            vcQty[i-1]-=1;
+            Voucher.setVcRemaining(vcQty);
+            System.out.println("Balance Point: " + fPoint);
+            System.out.println("Product Remaining Quantity: " + vcQty[i-1]);
+        }   
+    }
     
 }

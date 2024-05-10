@@ -63,10 +63,13 @@ public class main {
                         
                     }
                     for(int i= 0;i<customer.length;i++){
+                     if(customer[i] != null){
                         if(customer[i].getPhoneNum()==phonenum){
                               System.out.println("User Found!");
                               result=true;
                               currentUser=i;
+                              input.nextLine();
+                              input.nextLine();
                               do{
                     System.out.println("Welcome back,"+customer[currentUser].getName());
                     Menu.userMenu();
@@ -107,26 +110,29 @@ public class main {
 //                            }
                             break;
                         case 5:
+                            double amount = customer[currentUser].getTotalPurchaseAmount();
                             loyalty.updateTier(customer);
                             System.out.println(customer[currentUser].displayProfile());
-                            //System.out.println("Points      : " + pts.getPoint());
-                            //ReferralCode referralCustomer = new ReferralCode(); 
-                            //referralCustomer.displayReferralCode(customer, currentUser);
                             System.out.println(loyalty.displayTier());
                             System.out.println();
                             
                             break;
                         case 6:
-                            
+                            customer[currentUser].updateReferralCode();
+                            updateCustomerFile(customer);
                             Menu.backAction();
-                            break;                            
+                            break;   
+                        case 7:
+                            Menu.backAction();
+                            break;       
                         default:
                             Menu.backAction();                         
                     }
-                   }while(choice!=6 && result==true);
+                   }while(choice!=7 && result==true);
                               choice=0;
                               break;
                              }
+                       }
                    }
                    if(result==false){
                                 System.out.println("User not found,Please Try Again.");
@@ -198,6 +204,10 @@ public class main {
         return result;
    }
     public static void readCustomersFile() {
+        currentUser = 0;
+        for (int i = 0; i < customer.length; i++) {
+            customer[i] = null;  
+        }
         File custFile = new File("customerfile.txt");
         try {
             Scanner scanner = new Scanner(custFile);
@@ -261,11 +271,4 @@ public class main {
             e.printStackTrace();
         }
     }
-    public static void updateReferralCode() {
-        // Create an instance of ReferralCode
-        ReferralCode referralCodeGenerator = new ReferralCode();
-       
-        // Pass the current customer object to the addReferralCodeToFile method
-        referralCodeGenerator.addReferralCodeToFile();
-       }
 }

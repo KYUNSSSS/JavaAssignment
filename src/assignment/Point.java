@@ -8,18 +8,16 @@ public class Point {
     private int point;
     private LocalDate ftPurchaseDate;
     private LocalDate expiryDate;
-    private Customer customer;
 
     public Point() {
     }
        
-    public Point(Customer customer) {
-        this.customer = customer;
-        double totalAmount = customer.getTotalPurchaseAmount();
+    public Point(Customer[] customer) {
+        double totalAmount = customer[main.currentUser].getTotalPurchaseAmount();
         this.point = (int) Math.round(totalAmount);
 
         if (totalAmount > 0) {
-            this.ftPurchaseDate = customer.getPointDate();
+            this.ftPurchaseDate = customer[main.currentUser].getPointDate();
             if (ftPurchaseDate != null) {
                 this.expiryDate = ftPurchaseDate.plusDays(365);
             } else {
@@ -31,11 +29,11 @@ public class Point {
         }
     }
 
-    public Point(int point, LocalDate expiryDate, Customer customer) {
-        this.expiryDate = expiryDate;
-        this.point = point;
-        this.customer = customer;
-    }
+//    public Point(int point, LocalDate expiryDate, Customer[] customer) {
+//        this.expiryDate = expiryDate;
+//        this.point = point;
+//        this.customer = customer;
+//    }
 
     public int getPoint() {
         return point;
@@ -53,16 +51,11 @@ public class Point {
         this.expiryDate = expiryDate;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
+   
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 
-    public void checkAmount() {
-        double amount = customer.getTotalPurchaseAmount();
+    public void checkAmount(Customer []customer) {
+        double amount = customer[main.currentUser].getTotalPurchaseAmount();
         if (amount > 0) {
             if (ftPurchaseDate != null) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");

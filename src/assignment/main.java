@@ -4,7 +4,8 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
-import java.io.Writer;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -35,7 +36,7 @@ public class main {
         Voucher voucher = Voucher.iniVoucher();
         Report report = new Report();
 
-         readCustomersFile();
+     
 //         for (int x=0;x<customer.length;x++){
 //             System.out.println(customer[x].getPhoneNum());
 //         }
@@ -44,6 +45,7 @@ public class main {
       
       do{
         readCustomersFile();
+         
         Menu.mainMenu();
         choice = input.nextInt();
            switch (choice) {
@@ -68,8 +70,7 @@ public class main {
                               System.out.println("User Found!");
                               result=true;
                               currentUser=i;
-                              input.nextLine();
-                              input.nextLine();
+                              
                               do{
                     System.out.println("Welcome back,"+customer[currentUser].getName());
                     Menu.userMenu();
@@ -78,16 +79,19 @@ public class main {
                         case 1:
                             customer[currentUser].updateDetail();
                            Menu.backAction();
+                           
                             break;
                         case 2:
                             customer[currentUser].updateAmount();
                              Menu.backAction();
+                            
                             break;
                         case 3:
-                            Point pointInstance = new Point(customer[currentUser]);
-                            pointInstance.checkAmount();
+                            Point pointInstance = new Point(customer);
+                            pointInstance.checkAmount(customer);
                             pointInstance.checkExpiryDate();
                             Menu.backAction();
+                            
                             break;
                         case 4:
                             Redemption.redemption(reProd);
@@ -128,6 +132,7 @@ public class main {
                         default:
                             Menu.backAction();                         
                     }
+                    updateCustomerFile(customer);
                    }while(choice!=7 && result==true);
                               choice=0;
                               break;
@@ -173,8 +178,9 @@ public class main {
                default:
                    break;
            }
+           updateCustomerFile(customer);
       }while(choice !=3 );    
-        updateCustomerFile(customer);
+     
     }
     public static boolean chkPhoneNumber(int hpnum){
         File custfile = new File("customerfile.txt");
@@ -222,6 +228,10 @@ public class main {
                 newCustomer.setEmail(values[3]);
                 newCustomer.setPhoneNum(Integer.parseInt(values[4]));
                 newCustomer.setTotalPurchaseAmount(Double.parseDouble(values[5]));
+                String dateString = values[6]; // Assuming values[6] contains the date string
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate pointDate = LocalDate.parse(dateString, formatter);
+                newCustomer.setPointDate(pointDate);
                 
                 // Add the new customer to the customer array
                 customer[currentUser++] = newCustomer;
@@ -258,16 +268,17 @@ public class main {
             BufferedWriter writer = new BufferedWriter(new FileWriter("customerfile.txt"));
             for (int i = 0; i < customer.length; i++) {
                 if (customer[i] != null) {
-                    String customerData = i+","+customer[i].getName()+ "," + customer[i].getAge() + ","+customer[i].getEmail()+","+customer[i].getPhoneNum()+","+customer[i].getTotalPurchaseAmount();
+                    String customerData = i+","+customer[i].getName()+ "," + customer[i].getAge() + ","+customer[i].getEmail()+","+customer[i].getPhoneNum()+","+customer[i].getTotalPurchaseAmount()+","+customer[i].getPointDate().toString();
                     writer.write(customerData);
                     writer.newLine();
                 }
             }
             writer.close();
-            System.out.println("Customer file updated successfully.");
+           // System.out.println("Customer file updated successfully.");
         } catch (IOException e) {
             System.out.println("An error occurred while updating customer file.");
             e.printStackTrace();
         }
     }
+
 }

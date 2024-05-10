@@ -247,7 +247,7 @@ public class Customer {
                 }
             }
             
-            String input = String.format("%d,%s,%d,%s,%d,%.2f%n", userRegistered,name, age, email, phoneNum, totalPurchaseAmount);
+            String input = String.format("%d,%s,%d,%s,%d,%.2f,%s%n", userRegistered,name, age, email, phoneNum, totalPurchaseAmount,pointDate.toString());
             writer.write(input);
             writer.close();
            // writer.write( String.format("%d,%d,%s,%d,%.2f\n", userRegistered, age, email, phoneNum, totalPurchaseAmount));
@@ -276,7 +276,6 @@ public class Customer {
             case 1:
                 do{
                     System.out.print("Enter Name(Ali bin Abu): ");
-                    input.nextLine();
                     name = input.nextLine();
                     if(name.isBlank()){  
                         System.out.println("Name cannot be empty.");

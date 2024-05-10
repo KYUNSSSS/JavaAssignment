@@ -19,7 +19,7 @@ public class Point {
         if (totalAmount > 0) {
             this.ftPurchaseDate = customer[main.currentUser].getPointDate();
             if (ftPurchaseDate != null) {
-                this.expiryDate = ftPurchaseDate.plusDays(365);
+                this.expiryDate = ftPurchaseDate.plusDays(366);
             } else {
                 this.expiryDate = null;
             }
@@ -50,6 +50,8 @@ public class Point {
     public void setExpiryDate(LocalDate expiryDate) {
         this.expiryDate = expiryDate;
     }
+
+  
 
     public void checkAmount(Customer []customer) {
         double amount = customer[main.currentUser].getTotalPurchaseAmount();
@@ -102,6 +104,8 @@ public class Point {
                 System.out.println("Points have expired on " + expiryDate.format(formatter) + "\nTotal Points: 0\n");
                 point = 0;
                 customer[main.currentUser].setTotalPurchaseAmount(0);
+                ftPurchaseDate = expiryDate;
+                updatePointDate(customer);
             }else {
                 System.out.println("Total Points: " + point);
                 System.out.println("Points will expire on: " + expiryDate.format(formatter) + "\n");
@@ -109,17 +113,10 @@ public class Point {
         }
     }
 
-    public String checkTier(){
-        String tier;
-        if (this.getPoint() >= 10000 ) {
-                tier = "Platinum";
-            } else if (this.getPoint() >= 1000) {
-                tier = "Gold";
-            } else if (this.getPoint() >= 100) {
-                tier = "Silver";
-            } else {
-                tier = "No Tier";
-            }
-        return tier;
+    public void updatePointDate(Customer []customer) {
+        if (ftPurchaseDate != null && ftPurchaseDate.equals(expiryDate)) {
+            customer[main.currentUser].setPointDate(ftPurchaseDate);
+        }
     }
+
 }

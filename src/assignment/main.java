@@ -51,10 +51,13 @@ public class main {
             switch (selection) {
                 case 1:
                     readCustomersFile();
-
+                    
+                    do {
                     Menu.mainMenu();
                     choice = input.nextInt();
-                    do {
+                    
+                    
+                        
                         switch (choice) {
                             case 1:
                                 customer[Customer.getUserRegistered()] = new Customer();
@@ -63,6 +66,7 @@ public class main {
                                 Menu.backAction();
                                 break;
                             case 2:
+                            
                                 do {
                                     System.out.print("Enter Phone Number (0 to back): ");
                                     phonenum = input.nextInt();
@@ -77,7 +81,7 @@ public class main {
                                                 System.out.println("User Found!");
                                                 result = true;
                                                 currentUser = i;
-
+                                                int back=0;
                                                 do {
                                                     System.out
                                                             .println("Welcome back," + customer[currentUser].getName());
@@ -91,7 +95,7 @@ public class main {
                                                             break;
                                                         case 2:
                                                             customer[currentUser].updateAmount();
-
+                                                            updateCustomerFile(customer);
                                                             Menu.backAction();
 
                                                             break;
@@ -103,6 +107,7 @@ public class main {
 
                                                             break;
                                                         case 4:
+                                                            loyalty.updateTier(customer);
                                                             Redemption.redemption(reProd, liProd, voucher, customer,customer[currentUser].getTier());
                                                             // Scanner scanner = new Scanner(System.in);
                                                             // Menu.redeemMenu();
@@ -123,8 +128,6 @@ public class main {
                                                             // }
                                                             break;
                                                         case 5:
-                                                            double amount = customer[currentUser]
-                                                                    .getTotalPurchaseAmount();
                                                             loyalty.updateTier(customer);
                                                             System.out.println(customer[currentUser].displayProfile());
                                                             System.out.println(loyalty.displayTier());
@@ -137,15 +140,17 @@ public class main {
                                                             Menu.backAction();
                                                             break;
                                                         case 7:
+                                                            
                                                             Menu.backAction();
                                                             break;
                                                         default:
+                                                        
                                                             Menu.backAction();
                                                     }
-                                                    updateCustomerFile(customer);
-                                                } while (choice != 7 && result == true);
-                                                choice = 0;
-                                                break;
+                                                    //updateCustomerFile(customer);
+                                                } while (choice != 8 && result == true && back !=1);
+                                                
+                                               break;
                                             }
                                         }
                                     }
@@ -154,16 +159,20 @@ public class main {
                                     }
 
                                 } while (result == false);
-
+                                choice=0;
+                            
+                              
                                 break;
                             case 3:
-                                System.out.println("Thank you for using our system!");
+                            
                                 break;
                             default:
                                 break;
                         }
+                      
+                        
                         updateCustomerFile(customer);
-                    } while (choice != 3);
+                    } while (choice != 3 );
                     break;
                 case 2:
                     System.out.print("Enter Username: ");
@@ -190,13 +199,19 @@ public class main {
                                             report.setReportTitle("Customer Tier Report");
                                             loyalty.updateTier(customer);
                                             report.calculateTierCust(customer);
-                                            report.displayReport();
+                                            report.displayTierReport();
                                             break;
                                         case 2:
                                             // Redemption
+                                            report.displayRedemptionReport();
+                                            // HINT: maybe can add some alert like the particular stock number is less than 10
+                                            System.out.print("Do you want to increase stock inventory? (Y/N) : ");
+                                            String increase = input.next();
                                             break;
                                         case 3:
                                             // Points
+                                            // For each customer, take total point earned and redeemed, earn = accumPoint; redeem = earn - balance
+                                            report.displayPointReport();
                                             break;
                                         case 4:
                                             // Back
@@ -221,6 +236,7 @@ public class main {
                     break;
             }
         } while (selection != 3);
+        updateCustomerFile(customer);
     }
 
     public static boolean chkPhoneNumber(int hpnum) {
@@ -271,6 +287,8 @@ public class main {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate pointDate = LocalDate.parse(dateString, formatter);
                 newCustomer.setPointDate(pointDate);
+                newCustomer.setPointAccumulate(Integer.parseInt(values[7]));
+                
 
                 // Add the new customer to the customer array
                 customer[currentUser++] = newCustomer;
@@ -310,7 +328,7 @@ public class main {
                 if (customer[i] != null) {
                     String customerData = i + "," + customer[i].getName() + "," + customer[i].getAge() + ","
                             + customer[i].getEmail() + "," + customer[i].getPhoneNum() + ","
-                            + customer[i].getTotalPurchaseAmount() + "," + customer[i].getPointDate().toString();
+                            + customer[i].getTotalPurchaseAmount() + "," +customer[i].getPointDate().toString()+","+ customer[i].getPointAccumulate();
                     writer.write(customerData);
                     writer.newLine();
                 }

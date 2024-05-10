@@ -25,7 +25,7 @@ public class Menu {
         
     }
     public static void mainMenu(){
-        System.out.print("1.Register New Account\n2.LOGIN TO EXISTING ACCOUNT\n3.Exit\nEnter Your Choice: ");
+        System.out.print("1.Register New Account\n2.LOGIN TO EXISTING ACCOUNT\n3.Back\nEnter Your Choice: ");
     }
     public static void userMenu(){
         System.out.print("1.Update Details\n2.Add New Transaction Amount\n3.Check Point Expiry\n4.Redeem Product\n5.Profile\n6.Referral Code\n7.Play Game\n8.Back\nEnter choice: ");
@@ -34,7 +34,7 @@ public class Menu {
         System.out.println("\n===========GOING BACK==========\n");
     }
     public static void addHardcodeCust(){
-         customer[0] = new Customer("TAN AH KOW",21,"ahkow@gmail.com",122,150.00,LocalDate.of(2024,1,5));
+         customer[0] = new Customer("TAN AH KOW",21,"ahkow@gmail.com",122,150.00,LocalDate.of(2024,1,5),150);
     }
     
     public static void redeemMenu(){

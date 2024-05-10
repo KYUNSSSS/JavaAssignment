@@ -27,7 +27,7 @@ public class Customer {
     private double totalPurchaseAmount = 0;
     private String tier;
     private static int userRegistered;
-    private double totalPurchaseAmounts;
+    private int pointAccumulate;
     
     public Customer() {
         File custfile = new File("customerfile.txt");
@@ -58,13 +58,14 @@ public class Customer {
         pointDate = LocalDate.now();
         userRegistered++;
     }
-    public Customer(String name, int age, String email, int phoneNum, double totalPurchaseAmount,LocalDate date) {
+    public Customer(String name, int age, String email, int phoneNum, double totalPurchaseAmount,LocalDate date, int pointAccumulate) {
     
         this.name = name;
         this.age = age;
         this.email = email;
         this.phoneNum = phoneNum;
         this.totalPurchaseAmount = totalPurchaseAmount;
+        this.pointAccumulate = pointAccumulate;
         this.pointDate = date;
         userRegistered++;
         File custfile = new File("customerfile.txt");
@@ -152,9 +153,17 @@ public class Customer {
     public static int getUserRegistered() {
         return userRegistered;
     }
-
+    
     public static void setUserRegistered(int userRegistered) {
         Customer.userRegistered = userRegistered;
+    }
+    
+    public int getPointAccumulate(){
+        return pointAccumulate;
+    }
+
+    public void setPointAccumulate(int pointAccumulate){
+        this.pointAccumulate = pointAccumulate;
     }
     
     public void enterDetail(){
@@ -235,6 +244,8 @@ public class Customer {
                 a=false;
             }
         }while(!a);
+        this.pointAccumulate = (int)totalPurchaseAmount;
+        pointDate = LocalDate.now();
         File custfile = new File("customerfile.txt");
             try {
                
@@ -248,7 +259,7 @@ public class Customer {
                 }
             }
             
-            String input = String.format("%d,%s,%d,%s,%d,%.2f,%s%n", userRegistered,name, age, email, phoneNum, totalPurchaseAmount,pointDate.toString());
+            String input = String.format("%d,%s,%d,%s,%d,%.2f,%s,%d%n", userRegistered,name, age, email, phoneNum, totalPurchaseAmount, pointDate.toString(),pointAccumulate);
             writer.write(input);
             writer.close();
            // writer.write( String.format("%d,%d,%s,%d,%.2f\n", userRegistered, age, email, phoneNum, totalPurchaseAmount));
@@ -365,10 +376,11 @@ public class Customer {
         num = input.nextDouble();
         this.totalPurchaseAmount+=num;
         pointDate = LocalDate.now();
-        System.out.print("New  Balance Amount: RM"+this.totalPurchaseAmount+"\n");
+        this.pointAccumulate+=(int)num;
+        System.out.print("New Balance Amount: RM"+this.totalPurchaseAmount+"\n");
         
     }
-    
+
     public void updateTotalPurchaseAmounts(double amount) {
         this.totalPurchaseAmount += amount;
     }

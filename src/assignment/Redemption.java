@@ -68,18 +68,17 @@ public class Redemption {
 
         switch(opt){
             case 1:
-                rdp.redeemProduct(rdp);
+                rdp.redeemProduct(rdp,customer);
                 break;
             case 2:
-                loyalty.updateTier(customer);
                 if(tier == "No Tier"){
                     System.out.println("Tier Level too low to redeem Tier Limited Item.");
                 } else {
-                    liP.redeemProduct(liP,tier);
+                    liP.redeemProduct(liP,tier,customer);
                 }
                 break;                
             case 3:
-                voucher.redeemProduct(voucher);
+                voucher.redeemProduct(voucher,customer);
                 break;
             default:
                 System.out.print("Cancelled redemption");

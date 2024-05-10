@@ -85,7 +85,7 @@ public class Voucher {
         return voucher;
     } 
     
-    public void redeemProduct(Voucher voucher){
+    public void redeemProduct(Voucher voucher,Customer[] customer){
         Scanner scanner = new Scanner(System.in);
         String[] vcNames = voucher.getVcName();
         int[] vcRemain = voucher.getVcRemaining();
@@ -98,13 +98,13 @@ public class Voucher {
             int opt2 = scanner.nextInt();
             switch(opt2){
                 case 1:
-                    this.vcRedeemProgress(vcRemain,vcRequiredPts,opt2);
+                    this.vcRedeemProgress(vcRemain,vcRequiredPts,opt2,customer);
                     break;
                 case 2:
-                    this.vcRedeemProgress(vcRemain,vcRequiredPts,opt2);
+                    this.vcRedeemProgress(vcRemain,vcRequiredPts,opt2,customer);
                     break;
                 case 3:
-                    this.vcRedeemProgress(vcRemain,vcRequiredPts,opt2);
+                    this.vcRedeemProgress(vcRemain,vcRequiredPts,opt2,customer);
                     break;
                 default:
                     System.out.print("Cancelled redemption");
@@ -112,13 +112,14 @@ public class Voucher {
             }
     }
 
-    public void vcRedeemProgress(int[] vcQty,int[] requiredPts, int i){
-        Point pts = new Point();
-        int fPoint = pts.getPoint() - requiredPts[i-1];
+    public void vcRedeemProgress(int[] vcQty,int[] requiredPts, int i, Customer[] customer){
+    
+        int fPoint = (int)customer[main.currentUser].getTotalPurchaseAmount() - requiredPts[i-1];
         if(fPoint < 0){
             System.out.println("Balance point insufficient.");
         }else{
-            pts.setPoint(fPoint);
+            customer[main.currentUser].setTotalPurchaseAmount(fPoint);
+            main.updateCustomerFile(customer);
             vcQty[i-1]-=1;
             this.setVcRemaining(vcQty);
             System.out.println("Balance Point: " + fPoint);

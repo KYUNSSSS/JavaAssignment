@@ -10,9 +10,8 @@ package assignment;
  */
 public class Policy {
     public void displayPolicy(){
-        System.out.println("****BEEWARD POLICY******")
-        System.out.println("1. FAQ\n2.Terms and Condition")
+        System.out.println("****BEEWARD POLICY******");
+        System.out.println("1. FAQ\n2.Terms and Condition");
         
     }
-    
 }

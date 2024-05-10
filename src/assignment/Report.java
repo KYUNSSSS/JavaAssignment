@@ -20,7 +20,8 @@ public class Report {
     public Report() {
     }
 
-    public Report(int voucherRedeemed, int productRedeemed, int tier1Num, int tier2Num, int tier3Num, String reportTitle) {
+    public Report(int voucherRedeemed, int productRedeemed, int tier1Num, int tier2Num, int tier3Num,
+            String reportTitle) {
         this.voucherRedeemed = voucherRedeemed;
         this.productRedeemed = productRedeemed;
         this.tier1Num = tier1Num;
@@ -78,9 +79,9 @@ public class Report {
     }
 
     public void calculateTierCust(Customer[] customer) {
-        for (int i = 0; i < Customer.getUserRegistered(); i++){
+        for (int i = 0; i < Customer.getUserRegistered(); i++) {
             String tier = customer[i].getTier();
-            
+
             switch (tier) {
                 case "Silver":
                     tier1Num++;
@@ -97,11 +98,15 @@ public class Report {
             }
         }
     }
-    
-    public void displayReport() {
-        
-        System.out.println(reportTitle);
-        
+
+    public void updateStockInventory() {
+
+    }
+
+    public void displayTierReport() {
+
+        System.out.println("Customer Tier Report");
+
         System.out.println("--------------------------------------");
         System.out.println("   Tier    |   Number of Customers    ");
         System.out.println("--------------------------------------");
@@ -110,7 +115,58 @@ public class Report {
         System.out.println("   Gold    |   " + tier2Num + "       ");
         System.out.println(" Platinum  |   " + tier3Num + "       ");
         System.out.println("--------------------------------------");
-        System.out.println(" Total Number of Customers : " + (tier0Num + tier1Num + tier2Num + tier3Num) );
+        System.out.println("Total Number of Customers : " + (tier0Num + tier1Num + tier2Num + tier3Num));
     }
-    
+
+    public void displayRedemptionReport() {
+
+        // File custfile = new File("customer.txt");
+        // try {
+        //     Scanner a = new Scanner(custfile);
+        //     while (a.hasNextLine()) {
+        //         String line = a.nextLine();
+        //         String[] values = line.split(",");
+
+        //         String chkUsername = values[1];
+        //         String chkApw = values[2];
+
+                
+
+        //             }
+        //         }
+        //     }
+        // } catch (IOException e) {
+        //     System.out.println("An error occurred while reading customer data.");
+        //     e.printStackTrace();
+        // }
+
+        System.out.println("Redemption Product Report");
+
+        System.out.println("-------------------------------");
+        System.out.println("   Product    |    Quantity    ");
+        System.out.println("-------------------------------");
+        System.out.println("   Pillow     |   " + tier0Num + "       ");
+        System.out.println("   Pillow     |   " + tier1Num + "       ");
+        System.out.println("   Pillow     |   " + tier2Num + "       ");
+        System.out.println("   Pillow     |   " + tier3Num + "       ");
+        System.out.println("-------------------------------");
+        System.out.println("Total Number of Customers : " + (tier0Num + tier1Num + tier2Num + tier3Num));
+    }
+
+    public void displayPointReport() {
+
+        System.out.println("Customer Points Report");
+
+        System.out.println("------------------------------------------------------------------------");
+        System.out.println("            Name            |    Points Earned    |   Points Redeemed   ");
+        System.out.println("----------------------------|-------------------------------------------");
+        System.out.println("   Pillow                   |   " + tier0Num + "  |       ");
+        System.out.println("   Pillow                   |   " + tier1Num + "  |     ");
+        System.out.println("   Pillow                   |   " + tier2Num + "  |      ");
+        System.out.println("   Pillow                   |   " + tier3Num + "  |      ");
+        System.out.println("------------------------------------------------------------------------");
+        System.out.println("Total : " + (tier0Num + tier1Num + tier2Num + tier3Num)
+                + ((tier0Num + tier1Num + tier2Num + tier3Num)));
+    }
+
 }

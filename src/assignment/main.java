@@ -127,6 +127,9 @@ public class main {
                             Menu.backAction();
                             break;   
                         case 7:
+                           PointEarn pointEarnInstance = new PointEarn(customer[currentUser]);
+                           pointEarnInstance.playGame();
+                        case 8:
                             Menu.backAction();
                             break;       
                         default:

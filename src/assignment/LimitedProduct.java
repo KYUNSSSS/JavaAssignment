@@ -47,27 +47,73 @@ public class LimitedProduct extends Product{
         return liP;
     }
     
-   public void redeemProduct(String[] name, int[] qty,int[] points){
-       Scanner scanner = new Scanner(System.in);
-       for(int i=0; i<(name.length);i++){
-                   System.out.println((i+1) + "." + name[i] + "\tQuantity remaining:" + qty[i]);
-               }
-               System.out.print("Choose product to redeem(One at a time):");
-               int opt2 = scanner.nextInt();
-               switch(opt2){
-                   case 1:
-                       //this.reRedeemProgress(qty,points,opt2);
-                       break;
-                   case 2:
-                       //this.reRedeemProgress(qty,points,opt2);
-                       break;
-                   case 3:
-                       //this.reRedeemProgress(qty,points,opt2);
-                       break;
-                   default:
-                       System.out.print("Cancelled redemption");
-                       break;
-               }
-   }
+    public void liRedeem(LimitedProduct liP){
+        Scanner scanner = new Scanner(System.in);
+        
+        String[] liProdNames = liP.getProductName();
+        int[] liQtyRemain = liP.getQtyRemaining();
+        int[] liRequiredPts = liP.getRequiredPoint();
+
+        System.out.println("1." + liProdNames[0] + "\tQuantity remaining:" + liQtyRemain[0] + "\tRequired points:" + liRequiredPts[0]);
+            System.out.println("Choose product to redeem(One at a time):");
+            int opt2 = scanner.nextInt();
+            switch(opt2){
+                case 1:
+                    this.liRedeemProgress(liQtyRemain,liRequiredPts,opt2);
+                    break;
+                default:
+                    System.out.print("Cancelled redemption");
+                    break;
+            }
+    }
+
+    public void redeemProduct(LimitedProduct liP){
+        Point point = new Point();
+        String tier = point.checkTier();
+
+        if(tier == "Silver"){
+            this.liRedeem(liP);
+        } else if (tier == "Gold") {
+            this.liRedeem(liP);
+        } else if (tier == "Platinum") {
+            this.liRedeem(liP);
+        } else {
+            System.out.println("Tier Level too low to redeem Tier Limited Item.");
+        }
+    }
+                 
+        // for(int i=0; i<liProdNames.length;i++){
+        //     System.out.println((i+1) + "." + liProdNames[i] + "\tQuantity remaining:" + liQtyRemain[i]);
+        // }
+        //     System.out.print("Choose product to redeem(One at a time):");
+        //     int opt2 = scanner.nextInt();
+        //     switch(opt2){
+        //         case 1:
+        //             this.liRedeemProgress(liQtyRemain,liRequiredPts,opt2);
+        //             break;
+        //         case 2:
+        //             this.liRedeemProgress(liQtyRemain,liRequiredPts,opt2);
+        //             break;
+        //         case 3:
+        //             this.liRedeemProgress(liQtyRemain,liRequiredPts,opt2);
+        //             break;
+        //         default:
+        //             System.out.print("Cancelled redemption");
+        //             break;
+        //     }
+
+    public void liRedeemProgress(int[] prodQty,int[] requiredPts, int i){
+        Point pts = new Point();
+        int fPoint = pts.getPoint() - requiredPts[i-1];
+        if(fPoint < 0){
+            System.out.println("Balance point insufficient.");
+        }else{
+            pts.setPoint(fPoint);
+            prodQty[i-1]-=1;
+            this.setQtyRemaining(prodQty);
+            System.out.println("Balance Point: " + fPoint);
+            System.out.println("Product Remaining Quantity: " + prodQty[i-1]);
+        }   
+    }
 
 }

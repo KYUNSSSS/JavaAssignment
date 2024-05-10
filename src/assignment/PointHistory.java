@@ -9,5 +9,8 @@ package assignment;
  * @author Hp
  */
 public class PointHistory {
-    
+    public void displayHistory(Customer[] customer){
+        System.out.println("*******TRANSACTION HISTORY********");
+            
+    }
 }

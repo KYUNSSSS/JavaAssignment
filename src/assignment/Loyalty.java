@@ -61,23 +61,33 @@ public class Loyalty {
         return "Your Current Tier is Tier " + tierLevel + ", " + tierName;
     }
     
-    public int updateTier(double amount, Customer customer) {
-        if (amount >= 10000 ) {
-            tierLevel = 3;
-            tierName = "Platinum";
-        } else if (amount >= 1000) {
-            tierLevel = 2;
-            tierName = "Gold";
-        } else if (amount >= 100) {
-            tierLevel = 1;
-            tierName = "Silver";
-        } else {
-            tierLevel = 0;
-            tierName = "No Tier";
-        }
-
-        customer.setTier(tierName);
+    public void updateTier(Customer[] customer) {
         
-        return tierLevel;
+        for (int i = 0; i < Customer.getUserRegistered(); i++) {
+            double amount = customer[i].getTotalPurchaseAmount();          
+            
+            if (amount >= 10000 ) {
+                tierLevel = 3;
+                tierName = "Platinum";
+            } else if (amount >= 1000) {
+                tierLevel = 2;
+                tierName = "Gold";
+            } else if (amount >= 100) {
+                tierLevel = 1;
+                tierName = "Silver";
+            } else {
+                tierLevel = 0;
+                tierName = "No Tier";
+            }
+            
+            customer[i].setTier(tierName);
+        }
+        
+        
+//        for (int i = 0; i <= Customer.getUserRegistered(); i++){
+//            customer[i].setTier(tierName);
+//        }
+//        
+//        return tierLevel;
     }
 }

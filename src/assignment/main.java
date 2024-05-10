@@ -44,6 +44,7 @@ public class main {
         Menu.splashScreen();
 
         do {
+            readCustomersFile();
             Menu.adminOrCustMenu();
             selection = input.nextInt();
 
@@ -102,7 +103,7 @@ public class main {
 
                                                             break;
                                                         case 4:
-                                                            Redemption.redemption(reProd, liProd, voucher);
+                                                            Redemption.redemption(reProd, liProd, voucher, customer,customer[currentUser].getTier());
                                                             // Scanner scanner = new Scanner(System.in);
                                                             // Menu.redeemMenu();
                                                             // int opt = scanner.nextInt();
@@ -185,15 +186,17 @@ public class main {
                                     int choice = input.nextInt();
                                     switch (choice) {
                                         case 1:
+                                            // Customer Tier
+                                            report.setReportTitle("Customer Tier Report");
                                             loyalty.updateTier(customer);
                                             report.calculateTierCust(customer);
-                                            System.out.println(report.displayReport());
+                                            report.displayReport();
                                             break;
                                         case 2:
-                                            // Redemption product
+                                            // Redemption
                                             break;
                                         case 3:
-                                            // Voucher
+                                            // Points
                                             break;
                                         case 4:
                                             // Back

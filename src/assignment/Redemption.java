@@ -59,10 +59,11 @@ public class Redemption {
     }
    
        
-    public static void redemption(RedemptionProduct rdp, LimitedProduct liP, Voucher voucher){
+    public static void redemption(RedemptionProduct rdp, LimitedProduct liP, Voucher voucher, Customer[] customer, String tier){
         Scanner scanner = new Scanner(System.in);
         Menu.redeemMenu();
         int opt = scanner.nextInt();
+        Loyalty loyalty = new Loyalty();
 
 
         switch(opt){
@@ -70,7 +71,12 @@ public class Redemption {
                 rdp.redeemProduct(rdp);
                 break;
             case 2:
-                liP.redeemProduct(liP);
+                loyalty.updateTier(customer);
+                if(tier == "No Tier"){
+                    System.out.println("Tier Level too low to redeem Tier Limited Item.");
+                } else {
+                    liP.redeemProduct(liP,tier);
+                }
                 break;                
             case 3:
                 voucher.redeemProduct(voucher);

@@ -9,25 +9,10 @@ package assignment;
  * @author xuan
  */
 public class Policy {
-    private String descPolicy;
-
-    public Policy() {
-    }
-
-    public Policy(String descPolicy) {
-        this.descPolicy = descPolicy;
-    }
-
-    public String getDescPolicy() {
-        return descPolicy;
-    }
-
-    public void setDescPolicy(String descPolicy) {
-        this.descPolicy = descPolicy;
-    }
-    
-    public String displayReport() {
-        return descPolicy;
+    public void displayPolicy(){
+        System.out.println("****BEEWARD POLICY******")
+        System.out.println("1. FAQ\n2.Terms and Condition")
+        
     }
     
 }

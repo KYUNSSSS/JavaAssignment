@@ -46,40 +46,24 @@ public class LimitedProduct extends Product{
        
         return liP;
     }
-    
-    public void liRedeem(LimitedProduct liP){
+
+
+    public void redeemProduct(LimitedProduct liP, String tier){
         Scanner scanner = new Scanner(System.in);
-        
         String[] liProdNames = liP.getProductName();
         int[] liQtyRemain = liP.getQtyRemaining();
         int[] liRequiredPts = liP.getRequiredPoint();
 
-        System.out.println("1." + liProdNames[0] + "\tQuantity remaining:" + liQtyRemain[0] + "\tRequired points:" + liRequiredPts[0]);
-            System.out.println("Choose product to redeem(One at a time):");
-            int opt2 = scanner.nextInt();
-            switch(opt2){
-                case 1:
-                    this.liRedeemProgress(liQtyRemain,liRequiredPts,opt2);
-                    break;
-                default:
-                    System.out.print("Cancelled redemption");
-                    break;
-            }
-    }
-
-    public void redeemProduct(LimitedProduct liP){
-        Point point = new Point();
-        String tier = point.checkTier();
-
         if(tier == "Silver"){
-            this.liRedeem(liP);
+            System.out.println("1." + liProdNames[0] + "\tQuantity remaining:" + liQtyRemain[0] + "\tRequired points:" + liRequiredPts[0]);    
         } else if (tier == "Gold") {
-            this.liRedeem(liP);
+            System.out.println("1." + liProdNames[1] + "\tQuantity remaining:" + liQtyRemain[1] + "\tRequired points:" + liRequiredPts[1]);
         } else if (tier == "Platinum") {
-            this.liRedeem(liP);
-        } else {
-            System.out.println("Tier Level too low to redeem Tier Limited Item.");
-        }
+            System.out.println("1." + liProdNames[2] + "\tQuantity remaining:" + liQtyRemain[2] + "\tRequired points:" + liRequiredPts[2]);
+        } 
+        System.out.print("Choose product to redeem(One at a time):");
+        int opt2 = scanner.nextInt();
+        this.liRedeemProgress(liQtyRemain,liRequiredPts,opt2);
     }
                  
         // for(int i=0; i<liProdNames.length;i++){

@@ -51,9 +51,6 @@ public class Point {
         this.expiryDate = expiryDate;
     }
 
-   
-
-
     public void checkAmount(Customer []customer) {
         double amount = customer[main.currentUser].getTotalPurchaseAmount();
         if (amount > 0) {

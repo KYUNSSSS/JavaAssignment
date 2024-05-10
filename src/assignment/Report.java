@@ -98,14 +98,19 @@ public class Report {
         }
     }
     
-    public String displayReport() {
-        return reportTitle +
-                "\n\nTotal Voucher Redeemed: " + voucherRedeemed +
-                "\nTotal Product Redeemed: " + productRedeemed +
-                "\nNumber of No Tier Customer: " + tier0Num +
-                "\nNumber of Silver Tier Customer: " + tier1Num +
-                "\nNumber of Gold Tier Customer: " + tier2Num +
-                "\nNumber of Platinum Tier Customer: " + tier3Num;
+    public void displayReport() {
+        
+        System.out.println(reportTitle);
+        
+        System.out.println("--------------------------------------");
+        System.out.println("   Tier    |   Number of Customers    ");
+        System.out.println("--------------------------------------");
+        System.out.println("  No Tier  |   " + tier0Num + "       ");
+        System.out.println("  Silver   |   " + tier1Num + "       ");
+        System.out.println("   Gold    |   " + tier2Num + "       ");
+        System.out.println(" Platinum  |   " + tier3Num + "       ");
+        System.out.println("--------------------------------------");
+        System.out.println(" Total Number of Customers : " + (tier0Num + tier1Num + tier2Num + tier3Num) );
     }
     
 }

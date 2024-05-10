@@ -104,6 +104,7 @@ public class Point {
             }else if (expiryDate != null && currentDate.isAfter(expiryDate)) {
                 System.out.println("Points have expired on " + expiryDate.format(formatter) + "\nTotal Points: 0\n");
                 point = 0;
+                customer.setTotalPurchaseAmount(0);
             }else {
                 System.out.println("Total Points: " + point);
                 System.out.println("Points will expire on: " + expiryDate.format(formatter) + "\n");

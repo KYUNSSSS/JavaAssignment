@@ -15,6 +15,5 @@ public class TestReport {
         Report report = new Report(1,1,1,1,1,"ABC");
         
         System.out.println(report.displayReport());
-        System.out.println(report.displayReport1());
     }
 }

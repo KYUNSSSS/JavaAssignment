@@ -56,5 +56,20 @@ public class Voucher {
         this.requiredPoint = requiredPoint;
     }
     
+    public static Voucher iniVoucher(){
+        String[] vcNames = {"RM5 Discount Voucher","RM10 Discount Voucher","RM20 Discount Voucher"};
+        String[] vcDesc = {"Deduct RM5 on Next Purchase","Deduct RM10 on Next Purchase","Deduct RM20 on Next Purchase"};
+        int[] vcQtyRemain = {10,10,10};
+        int[] vcRequiredPts = {490,950,1900};
+
+        Voucher voucher = new Voucher();
+        
+        voucher.setVcName(vcNames);
+        voucher.setVcDescription(vcDesc);
+        voucher.setVcRemaining(vcQtyRemain);
+        voucher.setRequiredPoint(vcRequiredPts);
+        
+        return voucher;
+    } 
     
 }

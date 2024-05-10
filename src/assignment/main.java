@@ -26,26 +26,13 @@ public class main {
        
     
     public static void main(String[] args) {
-    
-        String[] reProdNames = {"Pillow","Headphone","Backpack"};
-        String[] reProdDesc = {"Harvey Norman","CookingPanDesc","BackpackDesc"};
-        int[] reQtyRemain= {10,12,15};
-        int[] reRequiredPts = {50,300,500};
-
-        String[] liTier = {"Silver","Gold","Platinum"};
-        String[] liProdNames = {"Vacuum Cleaner","Cooking Pan","Knife Set"};
-        String[] liProdDesc = {"VacuumCleanerDesc","CookingPanDesc","KnifeSetDesc"};
-        int[] liQtyRemain = {10,13,20};
-        int[] liRequiredPts = {500,600,600};   
-
-        String[] vcNames = {"RM5 Discount Voucher","RM10 Discount Voucher","RM20 Discount Voucher"};
-        String[] vcDesc = {"Deduct RM5 on Next Purchase","Deduct RM10 on Next Purchase","Deduct RM20 on Next Purchase"};
-        int[] vcQtyRemain = {10,10,10};
-        int[] vcRequiredPts = {490,950,1900};
         
         Loyalty loyalty = new Loyalty();
        // Point pts = new Point(customer[currentUser]);
-        Redemption rdp = new Redemption();
+//        Redemption rdp = new Redemption();
+        RedemptionProduct reProd = RedemptionProduct.iniReProd();
+        LimitedProduct liProd = LimitedProduct.iniLiProd();
+        Voucher voucher = Voucher.iniVoucher();
         Report report = new Report();
 
          readCustomersFile();
@@ -56,6 +43,7 @@ public class main {
        Menu.splashScreen();
       
       do{
+        readCustomersFile();
         Menu.mainMenu();
         choice = input.nextInt();
            switch (choice) {
@@ -67,23 +55,19 @@ public class main {
                    break;
                case 2:                
                    do{
-                    System.out.print("Enter Phone Number: ");
-                    phonenum = input.nextInt();                 
-                   for(int i= 0;i <= customer.length;i++){
-                    if(customer[i].getPhoneNum()==phonenum){
+                    System.out.print("Enter Phone Number (0 to back): ");
+                    phonenum = input.nextInt();   
+                    if(phonenum ==0){
+                       
+                        break;
+                        
+                    }
+                    for(int i= 0;i<customer.length;i++){
+                        if(customer[i].getPhoneNum()==phonenum){
                               System.out.println("User Found!");
                               result=true;
                               currentUser=i;
-                              break;
-                             }
-                   }
-                   if(result==false){
-                                System.out.println("User not found,Please Try Again.");
-                                }
-                    
-                   
-                   }while(result==false);
-                   do{
+                              do{
                     System.out.println("Welcome back,"+customer[currentUser].getName());
                     Menu.userMenu();
                     choice = input.nextInt();
@@ -103,41 +87,54 @@ public class main {
                             Menu.backAction();
                             break;
                         case 4:
-                            
-                            Scanner scanner = new Scanner(System.in);
-                            Menu.redeemMenu();
-                            int opt = scanner.nextInt();
-
-                            switch(opt){
-                                case 1:
-                                    rdp.redeemProduct(reProdNames,reQtyRemain,reRequiredPts);
-                                    break;
-                                case 2:
-                                    rdp.redeemProduct(liProdNames,liQtyRemain,liRequiredPts);
-                                    break;                
-                                case 3:
-                                    rdp.redeemProduct(vcNames,vcQtyRemain,vcRequiredPts);
-                                    break;
-                                default:
-                                    System.out.print("Cancelled redemption");
-                            }
+                            Redemption.redemption(reProd);
+//                            Scanner scanner = new Scanner(System.in);
+//                            Menu.redeemMenu();
+//                            int opt = scanner.nextInt();
+//
+//                            switch(opt){
+//                                case 1:
+//                                    rdp.redeemProduct(reProdNames,reQtyRemain,reRequiredPts);
+//                                    break;
+//                                case 2:
+//                                    rdp.redeemProduct(liProdNames,liQtyRemain,liRequiredPts);
+//                                    break;                
+//                                case 3:
+//                                    rdp.redeemProduct(vcNames,vcQtyRemain,vcRequiredPts);
+//                                    break;
+//                                default:
+//                                    System.out.print("Cancelled redemption");
+//                            }
+                            break;
                         case 5:
                             loyalty.updateTier(customer);
                             System.out.println(customer[currentUser].displayProfile());
                             //System.out.println("Points      : " + pts.getPoint());
-                            ReferralCode referralCustomer = new ReferralCode(); 
-                            referralCustomer.displayReferralCode(customer, currentUser);
+                            //ReferralCode referralCustomer = new ReferralCode(); 
+                            //referralCustomer.displayReferralCode(customer, currentUser);
                             System.out.println(loyalty.displayTier());
                             System.out.println();
                             
                             break;
                         case 6:
+                            
                             Menu.backAction();
                             break;                            
                         default:
                             Menu.backAction();                         
                     }
-                   }while(choice!=6);             
+                   }while(choice!=6 && result==true);
+                              choice=0;
+                              break;
+                             }
+                   }
+                   if(result==false){
+                                System.out.println("User not found,Please Try Again.");
+                                }
+                    
+                   
+                   }while(result==false);
+                   
                    break;
                case 3:
                    System.out.println("Thank you for using our system!");
@@ -170,8 +167,9 @@ public class main {
                default:
                    break;
            }
-      }while(choice !=3);    
+      }while(choice !=3 );    
         updateCustomerFile(customer);
+        updateReferralCode();
     }
     public static boolean chkPhoneNumber(int hpnum){
         File custfile = new File("customerfile.txt");
@@ -263,5 +261,11 @@ public class main {
             e.printStackTrace();
         }
     }
-     
+    public static void updateReferralCode() {
+        // Create an instance of ReferralCode
+        ReferralCode referralCodeGenerator = new ReferralCode();
+       
+        // Pass the current customer object to the addReferralCodeToFile method
+        referralCodeGenerator.addReferralCodeToFile();
+       }
 }

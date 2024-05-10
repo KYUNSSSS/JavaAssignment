@@ -29,6 +29,21 @@ public class Customer {
     private static int userRegistered;
     
     public Customer() {
+        File custfile = new File("customerfile.txt");
+        try {
+
+            Scanner read = new Scanner(custfile);
+            while (read.hasNextLine()) {
+                String line = read.nextLine();
+                String[] values = line.split(",");
+                if (values.length > 0) {
+                    userRegistered = Integer.parseInt(values[0])+1;
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+        }
     }
 
     
@@ -76,7 +91,6 @@ public class Customer {
               System.out.println("An error occurred.");
             }
     }
-
    
     public String getName() {
         return name;
@@ -219,9 +233,6 @@ public class Customer {
                 System.out.println("Invalid Format.Enter numbers only.");
                 a=false;
             }
-        
-        
-        
         }while(!a);
         File custfile = new File("customerfile.txt");
             try {
@@ -247,10 +258,7 @@ public class Customer {
             } catch (IOException e) {
               System.out.println("An error occurred.");
             }
-
-        
-        
-        
+                
         System.out.println("Registered Successfully.");
         System.out.print("Press any key to return...");
         input.next();

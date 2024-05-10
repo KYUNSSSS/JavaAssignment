@@ -175,7 +175,6 @@ public class main {
            }
       }while(choice !=3 );    
         updateCustomerFile(customer);
-        updateReferralCode();
     }
     public static boolean chkPhoneNumber(int hpnum){
         File custfile = new File("customerfile.txt");

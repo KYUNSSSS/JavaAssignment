@@ -368,15 +368,33 @@ public class Customer {
         System.out.print("New  Balance Amount: RM"+this.totalPurchaseAmount+"\n");
         
     }
+
+    public void updateReferralCode() {
+        Scanner scanner = new Scanner(System.in);
+        // Random random = new Random();
+        // StringBuilder sb = new StringBuilder();
+        // String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        // for (int i = 0; i < 6; i++) {
+        //     int index = random.nextInt(characters.length());
+        //     sb.append(characters.charAt(index));
+        // }
+        // String refferalCode = sb.toString();
+        String refferalCode = "hi";
+        System.out.print("Enter the referral code: ");
+        String inputCode = scanner.next();
+        if(inputCode.equals(refferalCode)){
+            System.out.println("You earned 50 points!");
+            this.totalPurchaseAmount += 50;
+            
+        }else{
+            System.out.println("Invalid code! ");  
+        }
+    }
     
     public String displayProfile(){
         return  "Name        : " + name +
                 "\nAge         : " + age +
                 "\nEmail       : " + email +
                 "\nPhone Number: " + phoneNum;
-    }
- 
- 
-   
-    
+    }  
 }

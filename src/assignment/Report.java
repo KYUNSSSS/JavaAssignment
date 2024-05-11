@@ -120,26 +120,6 @@ public class Report {
 
     public void displayRedemptionReport() {
 
-        // File custfile = new File("customer.txt");
-        // try {
-        //     Scanner a = new Scanner(custfile);
-        //     while (a.hasNextLine()) {
-        //         String line = a.nextLine();
-        //         String[] values = line.split(",");
-
-        //         String chkUsername = values[1];
-        //         String chkApw = values[2];
-
-                
-
-        //             }
-        //         }
-        //     }
-        // } catch (IOException e) {
-        //     System.out.println("An error occurred while reading customer data.");
-        //     e.printStackTrace();
-        // }
-
         System.out.println("Redemption Product Report");
 
         System.out.println("-------------------------------");
@@ -153,20 +133,23 @@ public class Report {
         System.out.println("Total Number of Customers : " + (tier0Num + tier1Num + tier2Num + tier3Num));
     }
 
-    public void displayPointReport() {
-
+    public void displayPointReport(Customer[] customer) {
+        
+        int totalPtEarned = 0, totalPtRedeemed = 0;
         System.out.println("Customer Points Report");
 
-        System.out.println("------------------------------------------------------------------------");
-        System.out.println("            Name            |    Points Earned    |   Points Redeemed   ");
-        System.out.println("----------------------------|-------------------------------------------");
-        System.out.println("   Pillow                   |   " + tier0Num + "  |       ");
-        System.out.println("   Pillow                   |   " + tier1Num + "  |     ");
-        System.out.println("   Pillow                   |   " + tier2Num + "  |      ");
-        System.out.println("   Pillow                   |   " + tier3Num + "  |      ");
-        System.out.println("------------------------------------------------------------------------");
-        System.out.println("Total : " + (tier0Num + tier1Num + tier2Num + tier3Num)
-                + ((tier0Num + tier1Num + tier2Num + tier3Num)));
+        System.out.println("------------------------------------------------------------------");
+        System.out.println("            Name            |  Points Earned  |  Points Redeemed  ");
+        System.out.println("------------------------------------------------------------------");
+        for (int i = 0; i < Customer.getUserRegistered(); i++){
+            int ptRedeem = customer[i].getPointAccumulate() - (int)customer[i].getTotalPurchaseAmount();
+            System.out.printf("  %-26s|  %-15d|  %-17d \n" , customer[i].getName(), customer[i].getPointAccumulate(), ptRedeem);
+            totalPtEarned += customer[i].getPointAccumulate();
+            totalPtRedeemed += ptRedeem;
+        }
+        System.out.println("------------------------------------------------------------------");
+        System.out.printf("%26s  |  %-15d|  %-17d \n" ,"Total", totalPtEarned, totalPtRedeemed);
+        System.out.println("------------------------------------------------------------------\n");
     }
 
 }

@@ -211,7 +211,7 @@ public class main {
                                         case 3:
                                             // Points
                                             // For each customer, take total point earned and redeemed, earn = accumPoint; redeem = earn - balance
-                                            report.displayPointReport();
+                                            report.displayPointReport(customer);
                                             break;
                                         case 4:
                                             // Back

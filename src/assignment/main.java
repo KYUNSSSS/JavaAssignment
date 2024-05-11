@@ -204,10 +204,18 @@ public class main {
                                                 break;
                                             case 2:
                                                 // Redemption
-                                                report.displayRedemptionReport();
-                                                // HINT: maybe can add some alert like the particular stock number is less than 10
+                                                
+//                                                Menu.prodReportMenu();
+                                                
+                                                report.displayRedemptionReport(reProd);
+                                                report.displayRedemptionReport(liProd);
+                                                report.displayRedemptionReport(voucher);
+                                                // maybe can add some alert like the particular stock number is less than 10
                                                 System.out.print("Do you want to increase stock inventory? (Y/N) : ");
                                                 String increase = input.next();
+                                                if ((increase.toUpperCase()).equals("Y")) {
+                                                    report.updateStockInventory(reProd);
+                                                }
                                                 break;
                                             case 3:
                                                 // Points

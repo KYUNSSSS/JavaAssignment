@@ -14,14 +14,15 @@ import java.time.LocalDate;
  */
 public class Menu {
     public static void splashScreen(){
-        System.out.println("  ____  ______ ________          __     _____  _____  \n" +
-" |  _ \\|  ____|  ____\\ \\        / /\\   |  __ \\|  __ \\ \n" +
-" | |_) | |__  | |__   \\ \\  /\\  / /  \\  | |__) | |  | |\n" +
-" |  _ <|  __| |  __|   \\ \\/  \\/ / /\\ \\ |  _  /| |  | |\n" +
-" | |_) | |____| |____   \\  /\\  / ____ \\| | \\ \\| |__| |\n" +
-" |____/|______|______|   \\/  \\/_/    \\_\\_|  \\_\\_____/ \n" +
-"                                                      \n" +
-"                                                      ");
+        System.out.println("""
+                             ____  ______ ________          __     _____  _____  
+                            |  _ \\|  ____|  ____\\ \\        / /\\   |  __ \\|  __ \\ 
+                            | |_) | |__  | |__   \\ \\  /\\  / /  \\  | |__) | |  | |
+                            |  _ <|  __| |  __|   \\ \\/  \\/ / /\\ \\ |  _  /| |  | |
+                            | |_) | |____| |____   \\  /\\  / ____ \\| | \\ \\| |__| |
+                            |____/|______|______|   \\/  \\/_/    \\_\\_|  \\_\\_____/ 
+                                                                                 
+                                                                                 """);
         
     }
     public static void mainMenu(){
@@ -43,6 +44,29 @@ public class Menu {
     
     public static void reportMenu(){
         System.out.print("Type of Report\n1. Customer Tier Report\n2. Redemption Report\n3. Points Report\n4. Exit\nChoose Report Option : ");
+    }
+    
+    public static void prodReportMenu(){
+        System.out.print("Product Report Option\n1. Normal Redemption Product\n2. Limited Redemption Product\n3. Voucher\n4. Back\nChoose Product Option : ");
+    }
+    
+    public static void stockMenu(){
+        System.out.print("""
+                         Choose Product to Increase Stock
+                         ================================
+                         # Normal Redemption Product
+                         1. Pillow
+                         2. Headphone
+                         3. Backpack
+                         # Limited Redemption Product
+                         4. Vacuum Cleaner
+                         5. Cooking Pan
+                         6. Knife Set
+                         # Voucher
+                         7. RM5 Discount Voucher
+                         8. RM10 Discount Voucher
+                         9. RM20 Discount Voucher
+                         Enter Option :  """);
     }
 
     public static void adminOrCustMenu(){

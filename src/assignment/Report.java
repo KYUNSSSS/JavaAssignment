@@ -4,6 +4,8 @@
  */
 package assignment;
 
+import java.util.Scanner;
+
 /**
  *
  * @author xuan
@@ -99,8 +101,21 @@ public class Report {
         }
     }
 
-    public void updateStockInventory() {
+    public void updateStockInventory(Object o) {
+        Scanner input = new Scanner(System.in);
+        Menu.stockMenu();
+        int stock = input.nextInt();
+        System.out.print("Enter number to increase: ");
+        int addStock = input.nextInt();
+        
+        for (int i = 1; i < 10; i++) {
+            if (stock <= 3) {
+               
+            } else if (stock <= 6) {
 
+            }
+        }
+        
     }
 
     public void displayTierReport() {
@@ -118,19 +133,39 @@ public class Report {
         System.out.println("Total Number of Customers : " + (tier0Num + tier1Num + tier2Num + tier3Num));
     }
 
-    public void displayRedemptionReport() {
+    public void displayRedemptionReport(Object o) {
+        
+        if (o instanceof RedemptionProduct) {
+            setReportTitle("Normal Redemption Product Report");
+        } else if (o instanceof LimitedProduct) {
+            setReportTitle("Limited Redemption Product Report");
+        } else if (o instanceof Voucher) {
+            setReportTitle("Voucher Redemption Report");
+        }
+        System.out.println(reportTitle);
 
-        System.out.println("Redemption Product Report");
-
-        System.out.println("-------------------------------");
-        System.out.println("   Product    |    Quantity    ");
-        System.out.println("-------------------------------");
-        System.out.println("   Pillow     |   " + tier0Num + "       ");
-        System.out.println("   Pillow     |   " + tier1Num + "       ");
-        System.out.println("   Pillow     |   " + tier2Num + "       ");
-        System.out.println("   Pillow     |   " + tier3Num + "       ");
-        System.out.println("-------------------------------");
-        System.out.println("Total Number of Customers : " + (tier0Num + tier1Num + tier2Num + tier3Num));
+        System.out.println("----------------------------------------------------------------------------");
+        System.out.println("  No.  |          Product         |  Quantity Remaining  |  Total Redeemed  ");
+        System.out.println("----------------------------------------------------------------------------");
+        if (o instanceof RedemptionProduct redemptionProduct) {
+            for (int i = 0; i < redemptionProduct.getProductName().length; i++) {
+                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n" , (i+1), redemptionProduct.getProductName(i), redemptionProduct.getQtyRemaining(i), 1);
+            }
+            System.out.println("----------------------------------------------------------------------------");
+            System.out.println();
+        } else if (o instanceof LimitedProduct limitedProduct) {
+            for (int i = 0; i < limitedProduct.getProductName().length; i++) {
+                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n" , (i+1), limitedProduct.getProductName(i), limitedProduct.getQtyRemaining(i), 1);
+            }
+            System.out.println("----------------------------------------------------------------------------");
+            System.out.println();
+        } else if (o instanceof Voucher voucher) {
+            for (int i = 0; i < voucher.getVcName().length; i++) {
+                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n" , (i+1), voucher.getVcName(i), voucher.getVcRemaining(i), 1);
+            }
+            System.out.println("----------------------------------------------------------------------------");
+            System.out.println();
+        }
     }
 
     public void displayPointReport(Customer[] customer) {

@@ -106,9 +106,9 @@ public class PointEarn {
         System.out.println("Total points: " + points);
     }
 
-    public static void main(String[] args) {
-        Customer customer = new Customer();
-        PointEarn pointEarn = new PointEarn(customer);
-        pointEarn.playGame();
-    }
+//    public static void main(String[] args) {
+//        Customer customer = new Customer();
+//        PointEarn pointEarn = new PointEarn(customer);
+//        pointEarn.playGame();
+//    }
 }

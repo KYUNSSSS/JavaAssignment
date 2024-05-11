@@ -101,7 +101,7 @@ public class Report {
         }
     }
 
-    public void updateStockInventory(Object o) {
+    public void updateStockInventory() {
         Scanner input = new Scanner(System.in);
         Menu.stockMenu();
         int stock = input.nextInt();

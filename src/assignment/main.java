@@ -214,7 +214,7 @@ public class main {
                                                 System.out.print("Do you want to increase stock inventory? (Y/N) : ");
                                                 String increase = input.next();
                                                 if ((increase.toUpperCase()).equals("Y")) {
-                                                    report.updateStockInventory(reProd);
+                                                    report.updateStockInventory();
                                                 }
                                                 break;
                                             case 3:

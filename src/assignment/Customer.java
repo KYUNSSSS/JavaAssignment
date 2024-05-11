@@ -247,7 +247,7 @@ public class Customer {
                 }
             }
             
-            String input = String.format("%d,%s,%d,%s,%d,%.2f%n", userRegistered,name, age, email, phoneNum, totalPurchaseAmount);
+            String input = String.format("%d,%s,%d,%s,%d,%.2f,%s%n", userRegistered,name, age, email, phoneNum, totalPurchaseAmount,pointDate.toString());
             writer.write(input);
             writer.close();
            // writer.write( String.format("%d,%d,%s,%d,%.2f\n", userRegistered, age, email, phoneNum, totalPurchaseAmount));
@@ -276,7 +276,6 @@ public class Customer {
             case 1:
                 do{
                     System.out.print("Enter Name(Ali bin Abu): ");
-                    input.nextLine();
                     name = input.nextLine();
                     if(name.isBlank()){  
                         System.out.println("Name cannot be empty.");
@@ -368,15 +367,33 @@ public class Customer {
         System.out.print("New  Balance Amount: RM"+this.totalPurchaseAmount+"\n");
         
     }
+
+    public void updateReferralCode() {
+        Scanner scanner = new Scanner(System.in);
+        // Random random = new Random();
+        // StringBuilder sb = new StringBuilder();
+        // String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        // for (int i = 0; i < 6; i++) {
+        //     int index = random.nextInt(characters.length());
+        //     sb.append(characters.charAt(index));
+        // }
+        // String refferalCode = sb.toString();
+        String refferalCode = "ABC123";
+        System.out.print("Enter the referral code: ");
+        String inputCode = scanner.next();
+        if(inputCode.equals(refferalCode)){
+            System.out.println("You earned 50 points!");
+            this.totalPurchaseAmount += 50;
+            
+        }else{
+            System.out.println("Invalid code! ");  
+        }
+    }
     
     public String displayProfile(){
         return  "Name        : " + name +
                 "\nAge         : " + age +
                 "\nEmail       : " + email +
                 "\nPhone Number: " + phoneNum;
-    }
- 
- 
-   
-    
+    }  
 }

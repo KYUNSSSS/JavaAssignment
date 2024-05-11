@@ -34,26 +34,26 @@ public class RedemptionProduct extends Product{
         return reP;
     }
     
-        public void redeemProduct(RedemptionProduct rdp){
+        public void redeemProduct(RedemptionProduct rdp,Customer[] customer){
         Scanner scanner = new Scanner(System.in);
         String[] reProdNames = rdp.getProductName();
         int[] reQtyRemain = rdp.getQtyRemaining();
         int[] reRequiredPts = rdp.getRequiredPoint();
 
         for(int i=0; i<reProdNames.length;i++){
-            System.out.println((i+1) + "." + reProdNames[i] + "\tQuantity remaining:" + reQtyRemain[i]);
+            System.out.println((i+1) + "." + reProdNames[i] + "\tQuantity remaining:" + reQtyRemain[i] + "\tRequired points:" + reRequiredPts[i]);
         }
             System.out.print("Choose product to redeem(One at a time):");
             int opt2 = scanner.nextInt();
             switch(opt2){
                 case 1:
-                    this.reRedeemProgress(reQtyRemain,reRequiredPts,opt2);
+                    this.reRedeemProgress(reQtyRemain,reRequiredPts,opt2,customer);
                     break;
                 case 2:
-                    this.reRedeemProgress(reQtyRemain,reRequiredPts,opt2);
+                    this.reRedeemProgress(reQtyRemain,reRequiredPts,opt2,customer);
                     break;
                 case 3:
-                    this.reRedeemProgress(reQtyRemain,reRequiredPts,opt2);
+                    this.reRedeemProgress(reQtyRemain,reRequiredPts,opt2,customer);
                     break;
                 default:
                     System.out.print("Cancelled redemption");
@@ -61,15 +61,15 @@ public class RedemptionProduct extends Product{
             }
         }
         
-        public static void reRedeemProgress(int[] prodQty,int[] requiredPts, int i){
-            Point pts = new Point();
-            int fPoint = pts.getPoint() - requiredPts[i-1];
+        public void reRedeemProgress(int[] prodQty,int[] requiredPts, int i,Customer[] customer){
+            int fPoint = (int)customer[main.currentUser].getTotalPurchaseAmount() - requiredPts[i-1];
             if(fPoint < 0){
                 System.out.println("Balance point insufficient.");
             }else{
-                pts.setPoint(fPoint);
+                customer[main.currentUser].setTotalPurchaseAmount(fPoint);
+                main.updateCustomerFile(customer);
                 prodQty[i-1]-=1;
-                RedemptionProduct.setQtyRemaining(prodQty);
+                this.setQtyRemaining(prodQty);
                 System.out.println("Balance Point: " + fPoint);
                 System.out.println("Product Remaining Quantity: " + prodQty[i-1]);
             }   

@@ -6,12 +6,11 @@ package assignment;
 
 /**
  *
- * @author xuan
+ * @author Hp
  */
-public class Policy {
-    public void displayPolicy(){
-        System.out.println("****BEEWARD POLICY******");
-        System.out.println("1. FAQ\n2.Terms and Condition");
+public class PointHistory {
+    public void displayHistory(Customer[] customer){
+        System.out.println("*******TRANSACTION HISTORY********");
         
     }
 }

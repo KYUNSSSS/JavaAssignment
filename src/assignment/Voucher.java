@@ -5,7 +5,6 @@
 package assignment;
 
 import java.util.Scanner;
-
 /**
  *
  * @author Asus
@@ -13,7 +12,7 @@ import java.util.Scanner;
 public class Voucher {
     private String[] vcName;
     private String[] vcDescription;
-    private static int[] vcRemaining;
+    private int[] vcRemaining;
     private int[] requiredPoint;
 
     public Voucher() {
@@ -29,7 +28,7 @@ public class Voucher {
     public String[] getVcName() {
         return vcName;
     }
-    
+
     public String getVcName(int i) {
         return vcName[i];
     }
@@ -49,19 +48,19 @@ public class Voucher {
     public int[] getVcRemaining() {
         return vcRemaining;
     }
-    
+
     public int getVcRemaining(int i) {
         return vcRemaining[i];
     }
 
-    public static void setVcRemaining(int[] vcRemaining) {
-        Voucher.vcRemaining = vcRemaining;
+    public void setVcRemaining(int[] vcRemaining) {
+        this.vcRemaining = vcRemaining;
     }
 
     public int[] getRequiredPoint() {
         return requiredPoint;
     }
-    
+
     public int getRequiredPoint(int i) {
         return requiredPoint[i];
     }
@@ -86,45 +85,46 @@ public class Voucher {
         return voucher;
     } 
     
-    public void redeemProduct(Voucher voucher){
+    public void redeemProduct(Voucher voucher,Customer[] customer){
         Scanner scanner = new Scanner(System.in);
-        String[] vcProdNames = voucher.getVcName();
+        String[] vcNames = voucher.getVcName();
         int[] vcRemain = voucher.getVcRemaining();
         int[] vcRequiredPts = voucher.getRequiredPoint();
 
-        for(int i=0; i<vcProdNames.length;i++){
-            System.out.println((i+1) + "." + vcProdNames[i] + "\tQuantity remaining:" + vcRemain[i]);
+        for(int i=0; i<vcNames.length;i++){
+            System.out.println((i+1) + "." + vcNames[i] + "\tQuantity remaining:" + vcRemain[i] + "\tRequired point:" + vcRequiredPts[i]);
         }
             System.out.print("Choose product to redeem(One at a time):");
             int opt2 = scanner.nextInt();
             switch(opt2){
                 case 1:
-                    this.vcRedeemProgress(vcRemain,vcRequiredPts,opt2);
+                    this.vcRedeemProgress(vcRemain,vcRequiredPts,opt2,customer);
                     break;
                 case 2:
-                    this.vcRedeemProgress(vcRemain,vcRequiredPts,opt2);
+                    this.vcRedeemProgress(vcRemain,vcRequiredPts,opt2,customer);
                     break;
                 case 3:
-                    this.vcRedeemProgress(vcRemain,vcRequiredPts,opt2);
+                    this.vcRedeemProgress(vcRemain,vcRequiredPts,opt2,customer);
                     break;
                 default:
                     System.out.print("Cancelled redemption");
                     break;
             }
-        }
+    }
+
+    public void vcRedeemProgress(int[] vcQty,int[] requiredPts, int i, Customer[] customer){
     
-    public static void vcRedeemProgress(int[] vcQty,int[] requiredPts, int i){
-        Point pts = new Point();
-        int fPoint = pts.getPoint() - requiredPts[i-1];
+        int fPoint = (int)customer[main.currentUser].getTotalPurchaseAmount() - requiredPts[i-1];
         if(fPoint < 0){
             System.out.println("Balance point insufficient.");
         }else{
-            pts.setPoint(fPoint);
+            customer[main.currentUser].setTotalPurchaseAmount(fPoint);
+            main.updateCustomerFile(customer);
             vcQty[i-1]-=1;
-            Voucher.setVcRemaining(vcQty);
+            this.setVcRemaining(vcQty);
             System.out.println("Balance Point: " + fPoint);
             System.out.println("Product Remaining Quantity: " + vcQty[i-1]);
         }   
     }
-    
+
 }

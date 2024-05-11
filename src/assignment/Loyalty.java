@@ -64,7 +64,7 @@ public class Loyalty {
     public void updateTier(Customer[] customer) {
         
         for (int i = 0; i < Customer.getUserRegistered(); i++) {
-            double amount = customer[i].getTotalPurchaseAmount();          
+            double amount = customer[i].getPointAccumulate();          
             
             if (amount >= 10000 ) {
                 tierLevel = 3;

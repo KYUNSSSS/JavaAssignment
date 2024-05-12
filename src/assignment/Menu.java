@@ -26,10 +26,10 @@ public class Menu {
         
     }
     public static void mainMenu(){
-        System.out.print("1.Register New Account\n2.LOGIN TO EXISTING ACCOUNT\n3.Back\nEnter Your Choice: ");
+        System.out.print("1.Register New Account\n2.LOGIN TO EXISTING ACCOUNT\n3.Back\n");
     }
     public static void userMenu(){
-        System.out.print("1.Update Details\n2.Add New Transaction Amount\n3.Check Point Expiry\n4.Redeem Product\n5.Profile\n6.Referral Code\n7.Play Game\n8.Back\nEnter choice: ");
+        System.out.print("1.Update Details\n2.Add New Transaction Amount\n3.Check Point Expiry\n4.Redeem Product\n5.Profile\n6.Referral Code\n7.Play Game\n8.Back\n");
     }
     public static void backAction(){
         System.out.println("\n===========GOING BACK==========\n");
@@ -39,15 +39,15 @@ public class Menu {
     }
     
     public static void redeemMenu(){
-        System.out.print("Redeem Option\n1. Product\n2. Limited Tier Product\n3. Voucher\n4. Exit\nChoose Redeem Option : ");
+        System.out.print("Redeem Option\n1. All Tier Product\n2. Limited Tier Product\n3. Voucher\n4. Exit\n");
     }
     
     public static void reportMenu(){
-        System.out.print("Type of Report\n1. Customer Tier Report\n2. Redemption Report\n3. Points Report\n4. Exit\nChoose Report Option : ");
+        System.out.print("Type of Report\n1. Customer Tier Report\n2. Redemption Report\n3. Points Report\n4. Exit\n");
     }
     
     public static void prodReportMenu(){
-        System.out.print("Product Report Option\n1. Normal Redemption Product\n2. Limited Redemption Product\n3. Voucher\n4. Back\nChoose Product Option : ");
+        System.out.print("Product Report Option\n1. Normal Redemption Product\n2. Limited Redemption Product\n3. Voucher\n4. Back\n");
     }
     
     public static void stockMenu(){
@@ -66,11 +66,11 @@ public class Menu {
                          7. RM5 Discount Voucher
                          8. RM10 Discount Voucher
                          9. RM20 Discount Voucher
-                         Enter Option :  """);
+                           """);
     }
 
     public static void adminOrCustMenu(){
-        System.out.print("Continue as\n1. Customer\n2. Admin User\n3. Exit\nEnter Selection:  ");
+        System.out.print("Continue as\n1. Customer\n2. Admin User\n3. Exit\n");
     }
 
 }

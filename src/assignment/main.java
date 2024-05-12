@@ -32,11 +32,14 @@ public class main {
 
         Loyalty loyalty = new Loyalty();
         // Point pts = new Point(customer[currentUser]);
-        // Redemption rdp = new Redemption();
-        RedemptionProduct reProd = RedemptionProduct.iniReProd();
+        // Product[] product = {
+        //     new AllTierProduct (),
+        // };
+        AllTierProduct aTierProd = AllTierProduct.iniReProd();
         LimitedProduct liProd = LimitedProduct.iniLiProd();
         Voucher voucher = Voucher.iniVoucher();
         Report report = new Report();
+        Product product = new Product();
 
         // for (int x=0;x<customer.length;x++){
         // System.out.println(customer[x].getPhoneNum());
@@ -47,54 +50,60 @@ public class main {
         do {
             readCustomersFile();
             Menu.adminOrCustMenu();
-            selection = input.nextInt();
+            selection = enterChoice();
+            aTierProd.readProductFile();
+            aTierProd.updateProductFile();
 
             switch (selection) {
                 case 1:
                     readCustomersFile();
+                    product.readProductFile();
+                    
+                    
 
                     do {
                         Menu.mainMenu();
-                        choice = input.nextInt();
+                        choice = enterChoice();
 
                         switch (choice) {
                             case 1:
                                 customer[Customer.getUserRegistered()] = new Customer();
                                 customer[Customer.getUserRegistered()].enterDetail();
-                                System.out.println(Customer.getUserRegistered());
+                                pressEnterToContinue();
                                 Menu.backAction();
                                 break;
                             case 2:
 
                                 do {
-                                    System.out.print("Enter Phone Number (0 to back): ");
-                                    phonenum = input.nextInt();
-                                    if (phonenum == 0) {
-
+                                    phonenum = Customer.checkPhoneNumber();
+                                    if (phonenum == 0)
                                         break;
-
-                                    }
                                     for (int i = 0; i < customer.length; i++) {
                                         if (customer[i] != null) {
                                             if (customer[i].getPhoneNum() == phonenum) {
-                                                System.out.println("User Found!");
+                                                System.out.println("User Found!\n");
                                                 result = true;
                                                 currentUser = i;
-                                                int back = 0;
+
                                                 do {
                                                     System.out
-                                                            .println("Welcome back," + customer[currentUser].getName());
+                                                            .println("Welcome back," + customer[currentUser].getName()
+                                                            +"\nPoint Balance: "
+                                                            + (int) customer[currentUser].getTotalPurchaseAmount()
+                                                            + "\n");
                                                     Menu.userMenu();
-                                                    choice = input.nextInt();
+                                                    choice = enterChoice();
                                                     switch (choice) {
                                                         case 1:
                                                             customer[currentUser].updateDetail();
+                                                            pressEnterToContinue();
                                                             Menu.backAction();
 
                                                             break;
                                                         case 2:
                                                             customer[currentUser].updateAmount();
                                                             updateCustomerFile(customer);
+                                                            pressEnterToContinue();
                                                             Menu.backAction();
 
                                                             break;
@@ -102,52 +111,42 @@ public class main {
                                                             Point pointInstance = new Point(customer);
                                                             pointInstance.checkAmount(customer);
                                                             pointInstance.checkExpiryDate(customer);
+                                                            pressEnterToContinue();
                                                             Menu.backAction();
 
                                                             break;
                                                         case 4:
                                                             loyalty.updateTier(customer);
-                                                            Redemption.redemption(reProd, liProd, voucher, customer, customer[currentUser].getTier());
-                                                            // Scanner scanner = new Scanner(System.in);
-                                                            // Menu.redeemMenu();
-                                                            // int opt = scanner.nextInt();
-                                                            //
-                                                            // switch(opt){
-                                                            // case 1:
-                                                            // rdp.redeemProduct(reProdNames,reQtyRemain,reRequiredPts);
-                                                            // break;
-                                                            // case 2:
-                                                            // rdp.redeemProduct(liProdNames,liQtyRemain,liRequiredPts);
-                                                            // break;
-                                                            // case 3:
-                                                            // rdp.redeemProduct(vcNames,vcQtyRemain,vcRequiredPts);
-                                                            // break;
-                                                            // default:
-                                                            // System.out.print("Cancelled redemption");
-                                                            // }
+                                                            Redemption.redemption(aTierProd, liProd, voucher, customer,
+                                                                    customer[currentUser].getTier());
                                                             break;
                                                         case 5:
                                                             loyalty.updateTier(customer);
                                                             System.out.println(customer[currentUser].displayProfile());
                                                             System.out.println(loyalty.displayTier());
                                                             System.out.println();
+                                                            pressEnterToContinue();
+                                                            Menu.backAction();
 
                                                             break;
                                                         case 6:
                                                             customer[currentUser].updateReferralCode();
                                                             updateCustomerFile(customer);
+                                                            pressEnterToContinue();
                                                             Menu.backAction();
                                                             break;
                                                         case 7:
-
+                                                            PointEarn pointEarn = new PointEarn(customer);
+                                                            pointEarn.playGame(customer);
+                                                            pressEnterToContinue();
                                                             Menu.backAction();
                                                             break;
                                                         default:
 
                                                             Menu.backAction();
                                                     }
-                                                    //updateCustomerFile(customer);
-                                                } while (choice != 8 && result == true && back != 1);
+                                                    // updateCustomerFile(customer);
+                                                } while (choice != 8 && result == true);
 
                                                 break;
                                             }
@@ -169,6 +168,7 @@ public class main {
                         }
 
                         updateCustomerFile(customer);
+                        aTierProd.updateProductFile();
                     } while (choice != 3);
                     break;
                 case 2:
@@ -189,11 +189,11 @@ public class main {
                             if (username.equals(chkUsername)) {
                                 if (apw.equals(chkApw)) {
                                     int reportChoice;
-                                    
+
                                     do {
                                         Menu.reportMenu();
                                         reportChoice = input.nextInt();
-                                        
+
                                         switch (reportChoice) {
                                             case 1:
                                                 // Customer Tier
@@ -204,22 +204,30 @@ public class main {
                                                 break;
                                             case 2:
                                                 // Redemption
-                                                
-//                                                Menu.prodReportMenu();
-                                                
-                                                report.displayRedemptionReport(reProd);
+
+                                                // Menu.prodReportMenu();
+
+                                                report.displayRedemptionReport(aTierProd);
                                                 report.displayRedemptionReport(liProd);
                                                 report.displayRedemptionReport(voucher);
-                                                // maybe can add some alert like the particular stock number is less than 10
+                                                // maybe can add some alert like the particular stock number is less
+                                                // than 10
                                                 System.out.print("Do you want to increase stock inventory? (Y/N) : ");
                                                 String increase = input.next();
                                                 if ((increase.toUpperCase()).equals("Y")) {
-                                                    report.updateStockInventory();
+                                                    Menu.stockMenu();
+                                                    int stock = input.nextInt();
+                                                    System.out.print("Enter number to increase: ");
+                                                    int addStock = input.nextInt();
+                                                    report.updateStockInventory(stock, addStock,aTierProd);
+                                                    report.updateStockInventory(stock, addStock,liProd);
+                                                    report.updateStockInventory(stock, addStock,voucher);
                                                 }
                                                 break;
                                             case 3:
                                                 // Points
-                                                // For each customer, take total point earned and redeemed, earn = accumPoint; redeem = earn - balance
+                                                // For each customer, take total point earned and redeemed, earn =
+                                                // accumPoint; redeem = earn - balance
                                                 report.displayPointReport(customer);
                                                 break;
                                             case 4:
@@ -233,6 +241,7 @@ public class main {
                                 }
                             }
                         }
+                        a.close();
                     } catch (IOException e) {
                         System.out.println("An error occurred while reading customer data.");
                     }
@@ -248,31 +257,6 @@ public class main {
         updateCustomerFile(customer);
     }
 
-    public static boolean chkPhoneNumber(int hpnum) {
-        File custfile = new File("customerfile.txt");
-        try {
-
-            // FileWriter writer = new FileWriter(custfile,true);
-            Scanner read = new Scanner(custfile);
-            while (read.hasNextLine()) {
-                String line = read.nextLine();
-                String[] values = line.split(",");
-                if (values.length > 0) {
-                    if (hpnum == Integer.parseInt(values[4])) {
-                        result = true;
-                        break;
-                    } else {
-                        result = false;
-                    }
-
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-        }
-        return result;
-    }
-
     public static void readCustomersFile() {
         currentUser = 0;
         for (int i = 0; i < customer.length; i++) {
@@ -286,7 +270,7 @@ public class main {
                 String[] values = line.split(",");
 
                 Customer newCustomer = new Customer();
-
+                
                 newCustomer.setName(values[1]); // Example, modify according to your class structure
                 newCustomer.setAge(Integer.parseInt(values[2]));
                 newCustomer.setEmail(values[3]);
@@ -308,25 +292,11 @@ public class main {
                 }
             }
             scanner.close();
+           
         } catch (IOException e) {
             System.out.println("An error occurred while reading customer data.");
             e.printStackTrace();
         }
-    }
-
-    public static void file() {
-        File custfile = new File("customerfile.txt");
-        try {
-
-            FileWriter writer = new FileWriter(custfile, true);
-            Scanner read = new Scanner(custfile);
-            read.useDelimiter(",");
-
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
     }
 
     public static void updateCustomerFile(Customer[] customer) {
@@ -336,7 +306,8 @@ public class main {
                 if (customer[i] != null) {
                     String customerData = i + "," + customer[i].getName() + "," + customer[i].getAge() + ","
                             + customer[i].getEmail() + "," + customer[i].getPhoneNum() + ","
-                            + customer[i].getTotalPurchaseAmount() + "," + customer[i].getPointDate().toString() + "," + customer[i].getPointAccumulate();
+                            + customer[i].getTotalPurchaseAmount() + "," + customer[i].getPointDate().toString() + ","
+                            + customer[i].getPointAccumulate();
                     writer.write(customerData);
                     writer.newLine();
                 }
@@ -351,12 +322,33 @@ public class main {
 
     public static void pressEnterToContinue() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Press Enter key to continue...");
+        System.out.print("\nPress Enter key to continue...");
         try {
             System.in.read();
             scan.nextLine();
         } catch (Exception e) {
         }
+    }
+
+    public static int enterChoice() {
+        Scanner scan = new Scanner(System.in);
+        int num = 0;
+        boolean a = true;
+        do {
+            try {
+                System.out.print("\nEnter Choice: ");
+                num = scan.nextInt();
+                a = true;
+            } catch (Exception ex) {
+                System.out.println("Please enter numbers displayed only.");
+                a = false;
+                scan.nextLine();
+            }
+
+        } while (a == false);
+
+        return num;
+
     }
 
 }

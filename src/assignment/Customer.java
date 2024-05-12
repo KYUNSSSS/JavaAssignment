@@ -47,6 +47,7 @@ public class Customer {
         }
     }
 
+
     
     public Customer(String name, int age, String email, int phoneNum, double totalPurchaseAmount) {
     
@@ -88,7 +89,7 @@ public class Customer {
             read.useDelimiter(",");
             while (read.hasNext())
                 System.out.println(read.next());
-       
+            read.close();
             } catch (IOException e) {
               System.out.println("An error occurred.");
             }
@@ -169,7 +170,7 @@ public class Customer {
     public void enterDetail(){
         boolean a;//a store value to decide whether user need to re-enter.
         do{
-        System.out.print("Enter Name(Ali bin Abu)(0 to return): ");
+        System.out.print("Enter Name (Ali bin Abu) (0 to return): ");
         name = input.nextLine();
         if(name.isBlank()){  
             System.out.println("Name cannot be empty.");
@@ -212,9 +213,9 @@ public class Customer {
 
         do{
             try{
-                System.out.print("Enter Phone Number(123456789): +60");
+                System.out.print("Enter Phone Number (123456789): +60");
                 phoneNum = input.nextInt();
-                if(main.chkPhoneNumber(this.phoneNum)==true){
+                if(chkPhoneNumber(this.phoneNum)==true){
                     System.out.println("Phone number used.Please try again.");
                     a=false;
                     
@@ -266,7 +267,7 @@ public class Customer {
             read.useDelimiter(",");
             while (read.hasNext())
                 System.out.println(read.next());
-       
+            read.close();
             } catch (IOException e) {
               System.out.println("An error occurred.");
             }
@@ -277,11 +278,11 @@ public class Customer {
     }
    
     public void updateDetail(){
-        int num;
+        
         int choice;
         boolean a;
-            System.out.print("\nWhat to update?\n1.Name ["+name+"]"+"\n2.Age ["+age+"]"+"\n3.Email {"+email+"]"+"\n4.Phone Number ["+phoneNum+"]"+"\n5.Back\nSelect One:");
-            choice= input.nextInt();
+            System.out.print("\nWhat to update?\n1.Name ["+name+"]"+"\n2.Age ["+age+"]"+"\n3.Email {"+email+"]"+"\n4.Phone Number ["+phoneNum+"]"+"\n5.Back\n");
+            choice= main.enterChoice();
             
         switch (choice) {
             case 1:
@@ -340,7 +341,7 @@ public class Customer {
                             try{
                                 System.out.print("Enter Phone Number(123456789): +60");
                                 phoneNum = input.nextInt();
-                                if(main.chkPhoneNumber(this.phoneNum)==true){
+                                if(chkPhoneNumber(this.phoneNum)==true){
                                     System.out.println("Phone number used.Please try again.");
                                     a=false;
 
@@ -404,6 +405,7 @@ public class Customer {
         }else{
             System.out.println("Invalid code! ");  
         }
+        scanner.close();
     }
     
     public String displayProfile(){
@@ -412,4 +414,55 @@ public class Customer {
                 "\nEmail       : " + email +
                 "\nPhone Number: " + phoneNum;
     }  
+    public static int checkPhoneNumber() {
+        Scanner scan= new Scanner(System.in);
+        int num=0;
+        boolean a=true;
+        do{
+           
+            try{
+                System.out.print("\nEnter Phone Number (0 to return): ");
+                num = scan.nextInt();
+                a=true;
+                }catch(Exception ex){
+                     System.out.println("Please enter numbers displayed only.");
+                     a=false;
+                     scan.nextLine();
+                     
+                     
+                     }
+               
+                
+       }while(a==false);
+
+    
+    return num;
+    }
+    public static boolean chkPhoneNumber(int hpnum) {
+        boolean result =false;
+        File custfile = new File("customerfile.txt");
+        try {
+
+            // FileWriter writer = new FileWriter(custfile,true);
+            Scanner read = new Scanner(custfile);
+            while (read.hasNextLine()) {
+                String line = read.nextLine();
+                String[] values = line.split(",");
+                if (values.length > 0) {
+                    if (hpnum == Integer.parseInt(values[4])) {
+                        result = true;
+                        break;
+                    } else {
+                        result = false;
+                    }
+
+                }
+            }
+            read.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+        }
+        return result;
+    }
+
 }

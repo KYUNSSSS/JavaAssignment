@@ -4,6 +4,12 @@
  */
 package assignment;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 /**
  *
  * @author Asus
@@ -68,5 +74,50 @@ public class Product {
         this.requiredPoint = requiredPoint;
     }
  
-    
+    public void redeemProgress(int[] prodQty, int[] requiredPts, int i, Customer[] customer) {
+        int finalPoint = (int) customer[main.currentUser].getTotalPurchaseAmount() - requiredPts[i - 1];
+        if (finalPoint < 0) {
+            System.out.println("Balance point insufficient.");
+        } else {
+            customer[main.currentUser].setTotalPurchaseAmount(finalPoint);
+            main.updateCustomerFile(customer);
+            prodQty[i - 1] -= 1;
+            this.setQtyRemaining(prodQty);
+            System.out.println("Balance Point: " + finalPoint);
+            System.out.println("Product Remaining Quantity: " + prodQty[i - 1]);
+        }
+    }
+    public void readProductFile() {
+      
+        File prodFile = new File("product.txt");
+        try {
+            Scanner scanner = new Scanner(prodFile);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] values = line.split(",");
+                int[] qtyRemaining = {Integer.parseInt(values[0]), Integer.parseInt(values[1]), Integer.parseInt(values[2])};
+                this.setQtyRemaining(qtyRemaining);
+                
+        
+            }
+            scanner.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+    public void updateProductFile() {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("product.txt"));
+                    String Data = getQtyRemaining(0) +","+getQtyRemaining(1)+","+getQtyRemaining(2);
+                    writer.write(Data);
+            
+            writer.close();
+            // System.out.println("Customer file updated successfully.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while updating customer file.");
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -4,6 +4,7 @@
  */
 package assignment;
 
+import java.io.File;
 import java.util.Scanner;
 
 /**
@@ -101,21 +102,26 @@ public class Report {
         }
     }
 
-    public void updateStockInventory() {
-        Scanner input = new Scanner(System.in);
-        Menu.stockMenu();
-        int stock = input.nextInt();
-        System.out.print("Enter number to increase: ");
-        int addStock = input.nextInt();
-        
-        for (int i = 1; i < 10; i++) {
-            if (stock <= 3) {
-               
-            } else if (stock <= 6) {
+    public void updateStockInventory(int stock, int num, Object o) {
+        File prod = new File("product.txt");
+        try {
+            Scanner a = new Scanner(prod);
+            while (a.hasNextLine()) {
+                String line = a.nextLine();
+                String[] values = line.split(",");
 
+                for (int i = 1; i < 10; i++) {
+                    if (i == stock) {
+                        if (o instanceof AllTierProduct aTierProduct) {
+                            
+                        }
+                    }
+                }
             }
+        } catch (Exception ex) {
+            System.out.println("HEE");
         }
-        
+
     }
 
     public void displayTierReport() {
@@ -134,8 +140,8 @@ public class Report {
     }
 
     public void displayRedemptionReport(Object o) {
-        
-        if (o instanceof RedemptionProduct) {
+
+        if (o instanceof AllTierProduct) {
             setReportTitle("Normal Redemption Product Report");
         } else if (o instanceof LimitedProduct) {
             setReportTitle("Limited Redemption Product Report");
@@ -147,21 +153,24 @@ public class Report {
         System.out.println("----------------------------------------------------------------------------");
         System.out.println("  No.  |          Product         |  Quantity Remaining  |  Total Redeemed  ");
         System.out.println("----------------------------------------------------------------------------");
-        if (o instanceof RedemptionProduct redemptionProduct) {
-            for (int i = 0; i < redemptionProduct.getProductName().length; i++) {
-                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n" , (i+1), redemptionProduct.getProductName(i), redemptionProduct.getQtyRemaining(i), 1);
+        if (o instanceof AllTierProduct allTierProduct) {
+            for (int i = 0; i < allTierProduct.getProductName().length; i++) {
+                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n", (i + 1), allTierProduct.getProductName(i),
+                        allTierProduct.getQtyRemaining(i), 1);
             }
             System.out.println("----------------------------------------------------------------------------");
             System.out.println();
         } else if (o instanceof LimitedProduct limitedProduct) {
             for (int i = 0; i < limitedProduct.getProductName().length; i++) {
-                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n" , (i+1), limitedProduct.getProductName(i), limitedProduct.getQtyRemaining(i), 1);
+                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n", (i + 1), limitedProduct.getProductName(i),
+                        limitedProduct.getQtyRemaining(i), 1);
             }
             System.out.println("----------------------------------------------------------------------------");
             System.out.println();
         } else if (o instanceof Voucher voucher) {
-            for (int i = 0; i < voucher.getVcName().length; i++) {
-                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n" , (i+1), voucher.getVcName(i), voucher.getVcRemaining(i), 1);
+            for (int i = 0; i < voucher.getProductName().length; i++) {
+                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n", (i + 1), voucher.getProductName(i),
+                        voucher.getQtyRemaining(i), 1);
             }
             System.out.println("----------------------------------------------------------------------------");
             System.out.println();
@@ -169,21 +178,22 @@ public class Report {
     }
 
     public void displayPointReport(Customer[] customer) {
-        
+
         int totalPtEarned = 0, totalPtRedeemed = 0;
         System.out.println("Customer Points Report");
 
         System.out.println("------------------------------------------------------------------");
         System.out.println("            Name            |  Points Earned  |  Points Redeemed  ");
         System.out.println("------------------------------------------------------------------");
-        for (int i = 0; i < Customer.getUserRegistered(); i++){
-            int ptRedeem = customer[i].getPointAccumulate() - (int)customer[i].getTotalPurchaseAmount();
-            System.out.printf("  %-26s|  %-15d|  %-17d \n" , customer[i].getName(), customer[i].getPointAccumulate(), ptRedeem);
+        for (int i = 0; i < Customer.getUserRegistered(); i++) {
+            int ptRedeem = customer[i].getPointAccumulate() - (int) customer[i].getTotalPurchaseAmount();
+            System.out.printf("  %-26s|  %-15d|  %-17d \n", customer[i].getName(), customer[i].getPointAccumulate(),
+                    ptRedeem);
             totalPtEarned += customer[i].getPointAccumulate();
             totalPtRedeemed += ptRedeem;
         }
         System.out.println("------------------------------------------------------------------");
-        System.out.printf("%26s  |  %-15d|  %-17d \n" ,"Total", totalPtEarned, totalPtRedeemed);
+        System.out.printf("%26s  |  %-15d|  %-17d \n", "Total", totalPtEarned, totalPtRedeemed);
         System.out.println("------------------------------------------------------------------\n");
     }
 

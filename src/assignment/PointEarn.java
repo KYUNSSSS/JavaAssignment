@@ -13,14 +13,14 @@ public class PointEarn {
     private int points;
     private int attemptsLeft;
     private int gamesPlayed;
-    private Customer customer;
+   
 
     public PointEarn() {
     }
 
-    public PointEarn(Customer customer) {
-        this.customer = customer;
-        double totalAmounts = customer.getTotalPurchaseAmount();
+    public PointEarn(Customer[] customer) {
+        
+        double totalAmounts = customer[main.currentUser].getTotalPurchaseAmount();
         this.points = (int) Math.round(totalAmounts);
         attemptsLeft = 3;
         gamesPlayed = 0;
@@ -50,18 +50,28 @@ public class PointEarn {
         this.gamesPlayed = gamesPlayed;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-    
-    public void playGame() {
+    public void playGame(Customer[] customer) {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
+        
+        System.out.println("***************************************************************");
+        System.out.println("*                             Games                           *");
+        System.out.println("***************************************************************");
+        System.out.println("*                                                             *");
+        System.out.println("*                                                             *");
+        System.out.println("*                 Welcome to the Games section!               *");
+        System.out.println("*                  You can play up to 5 games.                *");
+        System.out.println("*           Each game provide chance to earn 50 points.       *");
+        System.out.println("*                    Have fun and good luck!                  *");
+        System.out.println("*                                                             *");
+        System.out.println("*                                                             *");
+        System.out.println("*                (\\__/)                  (\\__/)              *");
+        System.out.println("*                (='.'=)                  (='.'=)             *");
+        System.out.println("*                (:)_(:)                  (:)_(:)             *");
+        System.out.println("*                                                             *");
+        System.out.println("***************************************************************");
 
+        
         while (gamesPlayed < 5) {
             System.out.println("Game " + (gamesPlayed + 1) + ":");
             int num1 = random.nextInt(900) + 100; // Generate a random 3-digit number
@@ -74,7 +84,8 @@ public class PointEarn {
                 if (userAnswer == correctAnswer) {
                     System.out.println("Correct! You earned 50 points.");
                     points += 50;
-                    customer.updateTotalPurchaseAmounts(50); 
+                    customer[main.currentUser].updateTotalPurchaseAmounts(50); 
+                    main.updateCustomerFile(customer);
                     attemptsLeft = 3; // Reset attempts for the next game
                     gamesPlayed++;
                     if (gamesPlayed < 5) {
@@ -107,8 +118,8 @@ public class PointEarn {
     }
 
 //    public static void main(String[] args) {
-//        Customer customer = new Customer();
-//        PointEarn pointEarn = new PointEarn(customer);
-//        pointEarn.playGame();
+    //    Customer customer = new Customer();
+    //    PointEarn pointEarn = new PointEarn(customer);
+    //    pointEarn.playGame();
 //    }
 }

@@ -39,15 +39,15 @@ public class main {
 //        LimitedProduct liProd = LimitedProduct.iniLiProd();
 //        Voucher voucher = Voucher.iniVoucher();
     Product[] product={
-        new AllTierProduct("Pillow","Harvey Norman",10,50),
-        new AllTierProduct("Headphone","Harvey Norman",12,50),
-        new AllTierProduct("Backpack","Harvey Norman",15,50),
-        new LimitedProduct("Silver","Vacuum Cleaner","VCDesc",10,150),
-        new LimitedProduct("Gold","Cooking Pan","CPDesc",12,150),
-        new LimitedProduct("Platinum","Knife Set","KSDesc",14,150),
-        new Voucher("RM 5 Discount Voucher","Deduct RM5 on Next Purchase",15,50),
-        new Voucher("RM 10 Discount Voucher","Deduct RM10 on Next Purchase",15,90),
-        new Voucher("RM 20 Discount Voucher","Deduct RM20 on Next Purchase",15,150),
+        new AllTierProduct("Pillow","Harvey Norman",10,0,50),
+        new AllTierProduct("Headphone","Harvey Norman",12,0,50),
+        new AllTierProduct("Backpack","Harvey Norman",15,0,50),
+        new LimitedProduct("Silver","Vacuum Cleaner","VCDesc",10,0,150),
+        new LimitedProduct("Gold","Cooking Pan","CPDesc",12,0,150),
+        new LimitedProduct("Platinum","Knife Set","KSDesc",14,0,150),
+        new Voucher("RM 5 Discount Voucher","Deduct RM5 on Next Purchase",15,0,50),
+        new Voucher("RM 10 Discount Voucher","Deduct RM10 on Next Purchase",15,0,90),
+        new Voucher("RM 20 Discount Voucher","Deduct RM20 on Next Purchase",15,0,150),
     };
         Report report = new Report();
 
@@ -213,7 +213,7 @@ public class main {
                                                 // Redemption
 
                                                 // Menu.prodReportMenu();
-
+                                                report.displayRedemptionReport(product);
 //                                                report.displayRedemptionReport(aTierProd);
 //                                                report.displayRedemptionReport(liProd);
 //                                                report.displayRedemptionReport(voucher);

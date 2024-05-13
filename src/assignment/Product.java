@@ -70,8 +70,8 @@ public class Product {
         } else {
             customer[main.currentUser].setTotalPurchaseAmount(finalPoint);
             main.updateCustomerFile(customer);
-            int prodQty = this.getQtyRemaining()-1;
-            this.setQtyRemaining(prodQty);
+            int prodQty = product[choice].getQtyRemaining()-1;
+            product[choice].setQtyRemaining(prodQty);
             System.out.println("Balance Point: " + finalPoint);
             System.out.println("Product Remaining Quantity: " + prodQty);
         }

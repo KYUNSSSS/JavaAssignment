@@ -64,7 +64,7 @@ public class Redemption {
         Product prod = new Product();
         Scanner scanner = new Scanner(System.in);
         for(int i=0; i<(product.length);i++){
-                    System.out.println((i+1) + "." + product[i].getProductName() + "\tQuantity remaining:" + product[i].getQtyRemaining());
+                    System.out.println((i+1) + "." + product[i].getProductName() + "\t\tQuantity remaining:" + product[i].getQtyRemaining() + "\t Required points:" + product[i].getRequiredPoint());
                 }
         
         int opt = main.enterChoice();
@@ -83,14 +83,20 @@ public class Redemption {
                 if (opt == 4){
                     if (tier == "Silver" || tier == "Gold" || tier == "Platinum"){
                         choice = 3;                      
+                    }else{
+                        System.out.println("Tier level too low.");
                     }
                 } else if (opt == 5){
                     if (tier == "Gold" || tier == "Platinum"){
                         choice = 4;                        
+                    }else{
+                        System.out.println("Tier level too low.");
                     }
                 } else if(opt == 6){
                     if (tier == "Platinum"){
                         choice = 5;                        
+                    }else{
+                        System.out.println("Tier level too low.");
                     }
                 }
                 prod.redeemProgress(product,choice,customer);

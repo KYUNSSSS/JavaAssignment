@@ -14,8 +14,8 @@ public class LimitedProduct extends Product{
     public LimitedProduct() {
     }
 
-    public LimitedProduct(String tier, String productName, String prodDescription, int qtyRemaining, int requiredPoint) {
-        super(productName, prodDescription, qtyRemaining, requiredPoint);
+    public LimitedProduct(String tier, String productName, String prodDescription, int prodQty, int qtyRedeemed, int requiredPoint) {
+        super(productName, prodDescription, prodQty, qtyRedeemed, requiredPoint);
         this.tier = tier;
     }
 

@@ -64,10 +64,12 @@ public class Redemption {
         Product prod = new Product();
         Scanner scanner = new Scanner(System.in);
         for(int i=0; i<(product.length);i++){
-                    System.out.println((i+1) + "." + product[i].getProductName() + "\t\tQuantity remaining:" + product[i].getQtyRemaining() + "\t Required points:" + product[i].getRequiredPoint());
+                    System.out.println((i+1) + "." + product[i].getProductName() + "\t\tQuantity remaining:" + product[i].getProdQty() + "\t Required points:" + product[i].getRequiredPoint());
                 }
         
         int opt = main.enterChoice();
+        System.out.print("Quantity:");
+        int qty = main.enterChoice();
         switch(opt){
             case 1,2,3:
                 if (opt == 1){
@@ -77,7 +79,7 @@ public class Redemption {
                 } else if(opt == 3){
                     choice = 2;
                 } 
-                prod.redeemProgress(product,choice,customer);
+                prod.redeemProgress(product,choice,qty,customer);
                 break;
             case 4,5,6:
                 if (opt == 4){
@@ -99,7 +101,7 @@ public class Redemption {
                         System.out.println("Tier level too low.");
                     }
                 }
-                prod.redeemProgress(product,choice,customer);
+                prod.redeemProgress(product,choice,qty,customer);
                 break;
             case 7,8,9:
                 if (opt == 7){
@@ -109,7 +111,7 @@ public class Redemption {
                 } else if(opt == 9){
                     choice = 8;
                 }
-                prod.redeemProgress(product,choice,customer);
+                prod.redeemProgress(product,choice,qty,customer);
                 break;
         }
   }

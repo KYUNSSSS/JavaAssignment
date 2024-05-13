@@ -13,8 +13,8 @@ public class Voucher extends Product{
     public Voucher() {
     }
 
-    public Voucher(String vcName, String vcDescription, int qtyRemaining, int requiredPoint) {
-        super(vcName, vcDescription, qtyRemaining, requiredPoint);
+    public Voucher(String vcName, String vcDescription, int vcQty, int vcRedeemed, int requiredPoint) {
+        super(vcName, vcDescription, vcQty, vcRedeemed, requiredPoint);
     }
     
 //    public static Voucher iniVoucher(){

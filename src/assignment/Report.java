@@ -156,7 +156,7 @@ public class Report {
         if (o instanceof Product[] product) {
             for (int i = 0; i < product.length; i++) {
                 System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n", (i + 1),product[i].getProductName(),
-                        product[i].getQtyRemaining(), 1);
+                        product[i].getProdQty(), product[i].getQtyRedeemed());
             }
             System.out.println("----------------------------------------------------------------------------");
             System.out.println();

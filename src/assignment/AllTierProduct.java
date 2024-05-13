@@ -21,8 +21,8 @@ public class AllTierProduct extends Product {
     public AllTierProduct() {
     }
 
-    public AllTierProduct(String productName, String productDescription, int qtyRemaining, int requiredPoint) {
-        super(productName, productDescription, qtyRemaining, requiredPoint);
+    public AllTierProduct(String productName, String productDescription, int prodQty, int qtyRedeemed, int requiredPoint) {
+        super(productName, productDescription, prodQty, qtyRedeemed, requiredPoint);
     }
 
 //    public static AllTierProduct iniReProd() {

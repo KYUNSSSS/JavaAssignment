@@ -29,7 +29,7 @@ public class Menu {
         System.out.print("1.Register New Account\n2.LOGIN TO EXISTING ACCOUNT\n3.Back\n");
     }
     public static void userMenu(){
-        System.out.print("1.Update Details\n2.Add New Transaction Amount\n3.Check Point Expiry\n4.Redeem Product\n5.Profile\n6.Referral Code\n7.Play Game\n8.Back\n");
+        System.out.print("1.Update Details\n2.Add New Transaction Amount\n3.Check Point Expiry\n4.Redeem Product\n5.Profile\n6.Referral Code\n7.Play Game\n8.Policy\n9.Back\n");
     }
     public static void backAction(){
         System.out.println("\n===========GOING BACK==========\n");

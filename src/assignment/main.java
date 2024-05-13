@@ -121,7 +121,6 @@ public class main {
                                                             Point pointInstance = new Point(customer);
                                                             pointInstance.checkAmount(customer);
                                                             pointInstance.checkExpiryDate(customer);
-                                                            pressEnterToContinue();
                                                             Menu.backAction();
 
                                                             break;
@@ -142,13 +141,11 @@ public class main {
                                                         case 6:
                                                             customer[currentUser].updateReferralCode();
                                                             updateCustomerFile(customer);
-                                                            pressEnterToContinue();
                                                             Menu.backAction();
                                                             break;
                                                         case 7:
                                                             PointEarn pointEarn = new PointEarn(customer);
                                                             pointEarn.playGame(customer);
-                                                            pressEnterToContinue();
                                                             Menu.backAction();
                                                             break;
                                                         default:

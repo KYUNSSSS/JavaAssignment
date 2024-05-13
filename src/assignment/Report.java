@@ -153,28 +153,29 @@ public class Report {
         System.out.println("----------------------------------------------------------------------------");
         System.out.println("  No.  |          Product         |  Quantity Remaining  |  Total Redeemed  ");
         System.out.println("----------------------------------------------------------------------------");
-        if (o instanceof AllTierProduct allTierProduct) {
-            for (int i = 0; i < allTierProduct.getProductName().length; i++) {
-                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n", (i + 1), allTierProduct.getProductName(i),
-                        allTierProduct.getQtyRemaining(i), 1);
-            }
-            System.out.println("----------------------------------------------------------------------------");
-            System.out.println();
-        } else if (o instanceof LimitedProduct limitedProduct) {
-            for (int i = 0; i < limitedProduct.getProductName().length; i++) {
-                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n", (i + 1), limitedProduct.getProductName(i),
-                        limitedProduct.getQtyRemaining(i), 1);
-            }
-            System.out.println("----------------------------------------------------------------------------");
-            System.out.println();
-        } else if (o instanceof Voucher voucher) {
-            for (int i = 0; i < voucher.getProductName().length; i++) {
-                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n", (i + 1), voucher.getProductName(i),
-                        voucher.getQtyRemaining(i), 1);
+        if (o instanceof Product[] product) {
+            for (int i = 0; i < product.length; i++) {
+                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n", (i + 1),product[i].getProductName(),
+                        product[i].getQtyRemaining(), 1);
             }
             System.out.println("----------------------------------------------------------------------------");
             System.out.println();
         }
+//        } else if (o instanceof LimitedProduct limitedProduct) {
+//            for (int i = 0; i < limitedProduct.getProductName().length; i++) {
+//                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n", (i + 1), limitedProduct.getProductName(i),
+//                        limitedProduct.getQtyRemaining(i), 1);
+//            }
+//            System.out.println("----------------------------------------------------------------------------");
+//            System.out.println();
+//        } else if (o instanceof Voucher voucher) {
+//            for (int i = 0; i < voucher.getProductName().length; i++) {
+//                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n", (i + 1), voucher.getProductName(i),
+//                        voucher.getQtyRemaining(i), 1);
+//            }
+//            System.out.println("----------------------------------------------------------------------------");
+//            System.out.println();
+//        }
     }
 
     public void displayPointReport(Customer[] customer) {

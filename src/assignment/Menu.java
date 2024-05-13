@@ -72,5 +72,18 @@ public class Menu {
     public static void adminOrCustMenu(){
         System.out.print("Continue as\n1. Customer\n2. Admin User\n3. Exit\n");
     }
+    
+    public static void displayPolicyMenu(){
+        System.out.println("\n***************************************************************");
+        System.out.println("*                      Welcome to Policy Menu                 *");
+        System.out.println("***************************************************************");
+        System.out.println("*                                                             *");
+        System.out.println("*                       1. Point Earn                         *");
+        System.out.println("*                       2. Redemption                         *");
+        System.out.println("*                       3. Membership Tier                    *");
+        System.out.println("*                       4. Back                               *");
+        System.out.println("*                                                             *");
+        System.out.println("***************************************************************");
+    }
 
 }

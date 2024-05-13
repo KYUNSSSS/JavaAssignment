@@ -148,8 +148,11 @@ public class main {
                                                             pointEarn.playGame(customer);
                                                             Menu.backAction();
                                                             break;
+                                                        case 8:
+                                                            Policy.displayFAQandTerms();
+                                                            Menu.backAction();
+                                                            break;
                                                         default:
-
                                                             Menu.backAction();
                                                     }
                                                     // updateCustomerFile(customer);

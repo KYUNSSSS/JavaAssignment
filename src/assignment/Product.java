@@ -17,16 +17,18 @@ import java.util.Scanner;
 public class Product {
     private String productName;
     private String prodDescription;
-    private int qtyRemaining;
+    private int prodQty;
+    private int qtyRedeemed;
     private int requiredPoint;
 
     public Product() {
     }
 
-    public Product(String productName, String prodDescription, int qtyRemaining, int requiredPoint) {
+    public Product(String productName, String prodDescription, int prodQty , int qtyRedeemed, int requiredPoint) {
         this.productName = productName;
         this.prodDescription = prodDescription;
-        this.qtyRemaining = qtyRemaining;
+        this.prodQty = prodQty;
+        this.qtyRedeemed = qtyRedeemed;
         this.requiredPoint = requiredPoint;
     }
 
@@ -46,12 +48,20 @@ public class Product {
         this.prodDescription = prodDescription;
     }
 
-    public int getQtyRemaining() {
-        return qtyRemaining;
+    public int getProdQty() {
+        return prodQty;
     }
 
-    public void setQtyRemaining(int qtyRemaining) {
-        this.qtyRemaining = qtyRemaining;
+    public void setProdQty(int prodQty) {
+        this.prodQty = prodQty;
+    }
+    
+    public int getQtyRedeemed() {
+        return qtyRedeemed;
+    }
+
+    public void setQtyRedeemed(int qtyRedeemed) {
+        this.qtyRedeemed = qtyRedeemed;
     }
 
     public int getRequiredPoint() {
@@ -63,15 +73,17 @@ public class Product {
     }
 
     
-    public void redeemProgress(Product[] product, int choice, Customer[] customer) {
-        int finalPoint = (int) customer[main.currentUser].getTotalPurchaseAmount() - product[choice].getRequiredPoint();
+    public void redeemProgress(Product[] product, int choice, int qty, Customer[] customer) {
+        int finalPoint = (int) customer[main.currentUser].getTotalPurchaseAmount() - (qty*product[choice].getRequiredPoint());
         if (finalPoint < 0) {
             System.out.println("Balance point insufficient.");
         } else {
             customer[main.currentUser].setTotalPurchaseAmount(finalPoint);
             main.updateCustomerFile(customer);
-            int prodQty = product[choice].getQtyRemaining()-1;
-            product[choice].setQtyRemaining(prodQty);
+            int prodQty = product[choice].getProdQty() - qty;
+            int prodRedeemed = product[choice].getQtyRedeemed()+ qty;
+            product[choice].setProdQty(prodQty);
+            product[choice].setQtyRedeemed(prodRedeemed);
             System.out.println("Balance Point: " + finalPoint);
             System.out.println("Product Remaining Quantity: " + prodQty);
         }

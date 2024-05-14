@@ -156,7 +156,7 @@ public class main {
                                                             Menu.backAction();
                                                     }
                                                     // updateCustomerFile(customer);
-                                                } while (choice != 8 && result == true);
+                                                } while (choice != 9 && result == true);
 
                                                 break;
                                             }

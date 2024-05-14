@@ -220,10 +220,14 @@ public class Customer {
                     a=false;
                     
                 }else{
-                    if(Integer.toString(phoneNum).length()<9 || Integer.toString(phoneNum).length()>10){
+                    if(Integer.toString(phoneNum).length()<9 ){
                         System.out.println("Invalid format.Enter 9 to 10 value only.");
 
-                        a=false;}
+                        a=false;
+                }else if(Integer.toString(phoneNum).length()>10){
+                    System.out.println("Invalid format.Enter 9 to 10 value only.");
+                }
+                   
                     else{
                          a=true;}
                     }
@@ -238,11 +242,16 @@ public class Customer {
                 System.out.print("Enter Purchase Amount:RM ");
                 totalPurchaseAmount = input.nextDouble();
                 if(totalPurchaseAmount>=10000){
-                    System.out.println("Limit Exceed. Pleasse enter value between 0 to 10000 only.");
-                }
+                    System.out.println("Limit Exceed. Please enter value between 0 to 10000 only.");
+                    a=false;
+                   
+                }else
+                a=true;
             }catch(Exception ex){
                 System.out.println("Invalid Format.Enter numbers only.");
+                input.nextLine();
                 a=false;
+                
             }
         }while(!a);
         this.pointAccumulate = (int)totalPurchaseAmount;
@@ -274,6 +283,7 @@ public class Customer {
                 
         System.out.println("Registered Successfully.");
         
+        
     
     }
    
@@ -286,8 +296,10 @@ public class Customer {
             
         switch (choice) {
             case 1:
+                input.nextLine();
                 do{
                     System.out.print("Enter Name(Ali bin Abu): ");
+                    
                     name = input.nextLine();
                     if(name.isBlank()){  
                         System.out.println("Name cannot be empty.");
@@ -324,12 +336,12 @@ public class Customer {
             case 3:
                     do {
                     System.out.print("Enter Email (example@gmail.com): ");
-                    input.nextLine();
                     email = input.nextLine(); 
 
                     a = email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
                         if (!a)
                             System.out.println("Invalid value. Please follow the format.");
+                   // input.nextLine();         
                     } while (!a);   
 
                 

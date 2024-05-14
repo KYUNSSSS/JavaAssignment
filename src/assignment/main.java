@@ -345,7 +345,12 @@ public class main {
             try {
                 System.out.print("\nEnter Choice: ");
                 num = scan.nextInt();
-                a = true;
+                if (num <0){
+                    System.out.println("Please enter numbers displayed only.");
+                    a = false;
+                }else{
+                    a = true;                   
+                }
             } catch (Exception ex) {
                 System.out.println("Please enter numbers displayed only.");
                 a = false;

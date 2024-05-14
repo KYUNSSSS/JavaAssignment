@@ -4,6 +4,8 @@ package assignment;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
+
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,18 +17,18 @@ import java.util.Scanner;
  * @author Hp
  */
 public class Customer {
-
+    
     Scanner input = new Scanner(System.in);
     private String name = "";
     private int age = 0;
     private String email = "";
-    private int phoneNum = 0;
+    private int phoneNum = 0 ;
     private LocalDate pointDate;
     private double totalPurchaseAmount = 0;
     private String tier;
     private static int userRegistered;
     private int pointAccumulate;
-
+    
     public Customer() {
         File custfile = new File("customerfile.txt");
         try {
@@ -36,7 +38,7 @@ public class Customer {
                 String line = read.nextLine();
                 String[] values = line.split(",");
                 if (values.length > 0) {
-                    userRegistered = Integer.parseInt(values[0]) + 1;
+                    userRegistered = Integer.parseInt(values[0])+1;
                 }
             }
 
@@ -45,8 +47,10 @@ public class Customer {
         }
     }
 
-    public Customer(String name, int age, String email, int phoneNum, double totalPurchaseAmount) {
 
+    
+    public Customer(String name, int age, String email, int phoneNum, double totalPurchaseAmount) {
+    
         this.name = name;
         this.age = age;
         this.email = email;
@@ -55,9 +59,8 @@ public class Customer {
         pointDate = LocalDate.now();
         userRegistered++;
     }
-
-    public Customer(String name, int age, String email, int phoneNum, double totalPurchaseAmount, LocalDate date, int pointAccumulate) {
-
+    public Customer(String name, int age, String email, int phoneNum, double totalPurchaseAmount,LocalDate date, int pointAccumulate) {
+    
         this.name = name;
         this.age = age;
         this.email = email;
@@ -67,32 +70,31 @@ public class Customer {
         this.pointDate = date;
         userRegistered++;
         File custfile = new File("customerfile.txt");
-        try {
-
-            FileWriter writer = new FileWriter(custfile, true);
+            try {
+               
+            FileWriter writer = new FileWriter(custfile,true);
             Scanner read = new Scanner(custfile);
             while (read.hasNextLine()) {
                 String line = read.nextLine();
                 String[] values = line.split(",");
                 if (values.length > 0) {
-                    userRegistered = Integer.parseInt(values[0]) + 1;
+                    userRegistered = Integer.parseInt(values[0])+1;
                 }
             }
-
-            String input = String.format("%d,%s,%d,%s,%d,%.2f%n", userRegistered, name, age, email, phoneNum, totalPurchaseAmount);
+            
+            String input = String.format("%d,%s,%d,%s,%d,%.2f%n", userRegistered,name, age, email, phoneNum, totalPurchaseAmount);
             writer.write(input);
             writer.close();
-            // writer.write( String.format("%d,%d,%s,%d,%.2f\n", userRegistered, age, email, phoneNum, totalPurchaseAmount));
+           // writer.write( String.format("%d,%d,%s,%d,%.2f\n", userRegistered, age, email, phoneNum, totalPurchaseAmount));
             read.useDelimiter(",");
-            while (read.hasNext()) {
+            while (read.hasNext())
                 System.out.println(read.next());
-            }
             read.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-        }
+            } catch (IOException e) {
+              System.out.println("An error occurred.");
+            }
     }
-
+   
     public String getName() {
         return name;
     }
@@ -152,238 +154,260 @@ public class Customer {
     public static int getUserRegistered() {
         return userRegistered;
     }
-
+    
     public static void setUserRegistered(int userRegistered) {
         Customer.userRegistered = userRegistered;
     }
-
-    public int getPointAccumulate() {
+    
+    public int getPointAccumulate(){
         return pointAccumulate;
     }
 
-    public void setPointAccumulate(int pointAccumulate) {
+    public void setPointAccumulate(int pointAccumulate){
         this.pointAccumulate = pointAccumulate;
     }
-
-    public void enterDetail() {
+    
+    public void enterDetail(){
         boolean a;//a store value to decide whether user need to re-enter.
-        do {
-            System.out.print("Enter Name (Ali bin Abu) (0 to return): ");
-            name = input.nextLine();
-            if (name.isBlank()) {
-                System.out.println("Name cannot be empty.");
-                a = !(name.isBlank());
-            } else if (name.equals("0")) {
-                return;
-            } else {
-                a = true;
-            }
-        } while (!a);
-
-        do {
-            try {
-                System.out.print("Enter Age: ");
-                age = input.nextInt();
-                a = Integer.toString(age).matches("[1-9]||[1-9][0-9]");
-                if (a == false) {
-                    System.out.println("Invalid value.Please Enter number between 1 to 99.");
-                }
-            } catch (Exception ex) {
-                System.out.println("Please enter numbers only.");
-                a = false;
-                input.nextLine();
-            }
-
-        } while (a == false);
-
-        input.nextLine();
-        do {
+        do{
+        System.out.print("Enter Name (Ali bin Abu) (0 to return): ");
+        name = input.nextLine();
+        if(name.isBlank()){  
+            System.out.println("Name cannot be empty.");
+            a=!(name.isBlank());
+        }else if(name.equals("0")){
+            return;
+        }
+        else{
+            a=true;
+        }
+        }while(!a);
+        
+        
+            do{
+                try{
+                    System.out.print("Enter Age: ");
+                    age = input.nextInt();
+                    a=Integer.toString(age).matches("[1-9]||[1-9][0-9]");
+                    if(a==false)
+                        System.out.println("Invalid value.Please Enter number between 1 to 99.");
+                    }catch(Exception ex){
+                         System.out.println("Please enter numbers only.");
+                         a=false;
+                         input.nextLine();
+                         }
+                   
+                    
+           }while(a==false);
+        
+         input.nextLine();
+         do {
             System.out.print("Enter Email (example@gmail.com): ");
-            email = input.nextLine();
+            email = input.nextLine(); 
 
             a = email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
-            if (!a) {
-                System.out.println("Invalid value. Please follow the format.");
-            }
-        } while (!a);
+                if (!a)
+                    System.out.println("Invalid value. Please follow the format.");
+            } while (!a);
 
-        do {
-            try {
+
+        do{
+            try{
                 System.out.print("Enter Phone Number (123456789): +60");
                 phoneNum = input.nextInt();
-                if (chkPhoneNumber(this.phoneNum) == true) {
+                if(chkPhoneNumber(this.phoneNum)==true){
                     System.out.println("Phone number used.Please try again.");
-                    a = false;
-
-                } else {
-                    if (Integer.toString(phoneNum).length() < 9) {
+                    a=false;
+                    
+                }else{
+                    if(Integer.toString(phoneNum).length()<9 ){
                         System.out.println("Invalid format.Enter 9 to 10 value only.");
 
-                        a = false;
-                    } else if (Integer.toString(phoneNum).length() > 10) {
-                        System.out.println("Invalid format.Enter 9 to 10 value only.");
-                    } else {
-                        a = true;
-                    }
+                        a=false;
+                }else if(Integer.toString(phoneNum).length()>10){
+                    System.out.println("Invalid format.Enter 9 to 10 value only.");
                 }
-            } catch (Exception ex) {
-                System.out.println("Invalid Format. Enter numbers only.");
-                a = false;
-                input.nextLine();
-            }
-        } while (a == false);
-        do {
-            try {
+                   
+                    else{
+                         a=true;}
+                    }
+            }catch(Exception ex){
+            System.out.println("Invalid Format. Enter numbers only.");
+            a=false;
+            input.nextLine();
+        }
+        }while(a==false);
+        do{
+            try{
                 System.out.print("Enter Purchase Amount:RM ");
                 totalPurchaseAmount = input.nextDouble();
-                if (totalPurchaseAmount >= 10000) {
+                if(totalPurchaseAmount>=10000){
                     System.out.println("Limit Exceed. Please enter value between 0 to 10000 only.");
-                    a = false;
-
-                } else {
-                    a = true;
-                }
-            } catch (Exception ex) {
+                    a=false;
+                   
+                }else
+                a=true;
+            }catch(Exception ex){
                 System.out.println("Invalid Format.Enter numbers only.");
                 input.nextLine();
-                a = false;
-
+                a=false;
+                
             }
-        } while (!a);
-        this.pointAccumulate = (int) totalPurchaseAmount;
+        }while(!a);
+        this.pointAccumulate = (int)totalPurchaseAmount;
         pointDate = LocalDate.now();
         File custfile = new File("customerfile.txt");
-        try {
-
-            FileWriter writer = new FileWriter(custfile, true);
+            try {
+               
+            FileWriter writer = new FileWriter(custfile,true);
             Scanner read = new Scanner(custfile);
             while (read.hasNextLine()) {
                 String line = read.nextLine();
                 String[] values = line.split(",");
                 if (values.length > 0) {
-                    userRegistered = Integer.parseInt(values[0]) + 1;
+                    userRegistered = Integer.parseInt(values[0])+1;
                 }
             }
-
-            String input = String.format("%d,%s,%d,%s,%d,%.2f,%s,%d%n", userRegistered, name, age, email, phoneNum, totalPurchaseAmount, pointDate.toString(), pointAccumulate);
+            
+            String input = String.format("%d,%s,%d,%s,%d,%.2f,%s,%d%n", userRegistered,name, age, email, phoneNum, totalPurchaseAmount, pointDate.toString(),pointAccumulate);
             writer.write(input);
             writer.close();
-            // writer.write( String.format("%d,%d,%s,%d,%.2f\n", userRegistered, age, email, phoneNum, totalPurchaseAmount));
+           // writer.write( String.format("%d,%d,%s,%d,%.2f\n", userRegistered, age, email, phoneNum, totalPurchaseAmount));
             read.useDelimiter(",");
-            while (read.hasNext()) {
+            while (read.hasNext())
                 System.out.println(read.next());
-            }
             read.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-        }
-
+            } catch (IOException e) {
+              System.out.println("An error occurred.");
+            }
+                
         System.out.println("Registered Successfully.");
-
+        
+        
+    
     }
-
-    public void updateDetail() {
-
+   
+    public void updateDetail(){
+        
         int choice;
         boolean a;
-        System.out.print("\nWhat to update?\n1.Name [" + name + "]" + "\n2.Age [" + age + "]" + "\n3.Email {" + email + "]" + "\n4.Phone Number [" + phoneNum + "]" + "\n5.Back\n");
-        choice = main.enterChoice();
-
+            System.out.print("\nWhat to update?\n1.Name ["+name+"]"+"\n2.Age ["+age+"]"+"\n3.Email {"+email+"]"+"\n4.Phone Number ["+phoneNum+"]"+"\n5.Back\n");
+            choice= main.enterChoice();
+            
         switch (choice) {
             case 1:
                 input.nextLine();
-                do {
+                do{
                     System.out.print("Enter Name(Ali bin Abu): ");
-
+                    
                     name = input.nextLine();
-                    if (name.isBlank()) {
+                    if(name.isBlank()){  
                         System.out.println("Name cannot be empty.");
-                        a = !(name.isBlank());
-                    } else if (name.equals("0")) {
+                        a=!(name.isBlank());
+                    }else if(name.equals("0")){
                         return;
-                    } else {
-                        a = true;
                     }
-                } while (!a);
-
-                System.out.printf("%s %s", "New Name: ", name + "\n");
+                    else{
+                        a=true;
+                    }
+                }while(!a);
+             
+                System.out.printf("%s %s" ,"New Name: ",name+"\n");
                 break;
             case 2:
-                do {
-                    try {
-                        System.out.print("Enter Age: ");
-                        age = input.nextInt();
-                        a = Integer.toString(age).matches("[1-9]||[1-9][0-9]");
-                        if (a == false) {
-                            System.out.println("Invalid value.Please Enter number between 1 to 99.");
-                        }
-                    } catch (Exception ex) {
-                        System.out.println("Please enter numbers only.");
-                        a = false;
-                        input.nextLine();
-                    }
+                   do{
+                        try{
+                            System.out.print("Enter Age: ");
+                            age = input.nextInt();
+                            a=Integer.toString(age).matches("[1-9]||[1-9][0-9]");
+                            if(a==false)
+                                System.out.println("Invalid value.Please Enter number between 1 to 99.");
+                            }catch(Exception ex){
+                                 System.out.println("Please enter numbers only.");
+                                 a=false;
+                                 input.nextLine();
+                                 }
 
-                } while (a == false);
 
-                System.out.printf("%s %s", "New Age: ", age + "\n");
+                   }while(a==false);
+                
+                System.out.printf("%s %s" ,"New Age: ",age+"\n");
                 break;
             case 3:
-                do {
+                    do {
                     System.out.print("Enter Email (example@gmail.com): ");
-                    email = input.nextLine();
+                    email = input.nextLine(); 
 
                     a = email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
-                    if (!a) {
-                        System.out.println("Invalid value. Please follow the format.");
-                    }
-                    // input.nextLine();         
-                } while (!a);
+                        if (!a)
+                            System.out.println("Invalid value. Please follow the format.");
+                   // input.nextLine();         
+                    } while (!a);   
 
-                System.out.printf("%s %s", "New Email: ", email + "\n");
+                
+                
+                System.out.printf("%s %s" ,"New Email: ",email+"\n");
                 break;
             case 4:
-                do {
-                    try {
-                        System.out.print("Enter Phone Number(123456789): +60");
-                        phoneNum = input.nextInt();
-                        if (chkPhoneNumber(this.phoneNum) == true) {
-                            System.out.println("Phone number used.Please try again.");
-                            a = false;
+                    do{
+                            try{
+                                System.out.print("Enter Phone Number(123456789): +60");
+                                phoneNum = input.nextInt();
+                                if(chkPhoneNumber(this.phoneNum)==true){
+                                    System.out.println("Phone number used.Please try again.");
+                                    a=false;
 
-                        } else {
-                            if (Integer.toString(phoneNum).length() < 9 || Integer.toString(phoneNum).length() > 10) {
-                                System.out.println("Invalid format.Enter 9 to 10 value only.");
+                                }else{
+                                    if(Integer.toString(phoneNum).length()<9 || Integer.toString(phoneNum).length()>10){
+                                        System.out.println("Invalid format.Enter 9 to 10 value only.");
 
-                                a = false;
-                            } else {
-                                a = true;
-                            }
+                                        a=false;}
+                                    else{
+                                         a=true;}
+                                    }
+                            }catch(Exception ex){
+                            System.out.println("Invalid Format. Enter numbers only.");
+                            a=false;
+                            input.nextLine();
                         }
-                    } catch (Exception ex) {
-                        System.out.println("Invalid Format. Enter numbers only.");
-                        a = false;
-                        input.nextLine();
-                    }
-                } while (a == false);
-
-                System.out.printf("%s %s", "New Phone Number: ", phoneNum + "\n");
+                        }while(a==false);
+         
+                
+                System.out.printf("%s %s" ,"New Phone Number: ",phoneNum+"\n");
                 break;
             default:
                 break;
         }
+                  
 
-    }
-
-    public void updateAmount() {
-        double num;
-        System.out.print("Balance Amount: RM" + this.totalPurchaseAmount + "\n");
-        System.out.print("Enter Amount to add: RM");
-        num = input.nextDouble();
-        this.totalPurchaseAmount += num;
+       }
+    public void updateAmount(){
+        double num=0;
+        boolean a;
+        System.out.print("Balance Amount: RM"+this.totalPurchaseAmount+"\n");
+        do{
+            try{
+                System.out.print("Enter New Transaction Amount:RM ");
+                num = input.nextDouble();
+                if(num>=10000){
+                    System.out.println("Limit Exceed. Please enter value between 0 to 10000 only.");
+                    a=false;
+                   
+                }else
+                 a=true;
+            }catch(Exception ex){
+                System.out.println("Invalid Format.Enter numbers only.");
+                input.nextLine();
+                a=false;
+                
+            }
+        }while(!a);
+        
+        this.totalPurchaseAmount+=num;
         pointDate = LocalDate.now();
-        this.pointAccumulate += (int) num;
-        System.out.print("New Balance Amount: RM" + this.totalPurchaseAmount + "\n");
-
+        this.pointAccumulate+=(int)num;
+        System.out.print("New Balance Amount: RM"+this.totalPurchaseAmount+"\n");
+        
     }
 
     public void updateTotalPurchaseAmounts(double amount) {
@@ -408,38 +432,39 @@ public class Customer {
             }
         }
     }
-
-    public String displayProfile() {
-        return "Name        : " + name
-                + "\nAge         : " + age
-                + "\nEmail       : " + email
-                + "\nPhone Number: " + phoneNum;
-    }
-
+    
+    public String displayProfile(){
+        return  "Name        : " + name +
+                "\nAge         : " + age +
+                "\nEmail       : " + email +
+                "\nPhone Number: " + phoneNum;
+    }  
     public static int checkPhoneNumber() {
-        Scanner scan = new Scanner(System.in);
-        int num = 0;
-        boolean a = true;
-        do {
-
-            try {
+        Scanner scan= new Scanner(System.in);
+        int num=0;
+        boolean a=true;
+        do{
+           
+            try{
                 System.out.print("\nEnter Phone Number (0 to return): ");
                 num = scan.nextInt();
-                a = true;
-            } catch (Exception ex) {
-                System.out.println("Please enter numbers displayed only.");
-                a = false;
-                scan.nextLine();
+                a=true;
+                }catch(Exception ex){
+                     System.out.println("Please enter number only.");
+                     a=false;
+                     scan.nextLine();
+                     
+                     
+                     }
+               
+                
+       }while(a==false);
 
-            }
-
-        } while (a == false);
-
-        return num;
+    
+    return num;
     }
-
     public static boolean chkPhoneNumber(int hpnum) {
-        boolean result = false;
+        boolean result =false;
         File custfile = new File("customerfile.txt");
         try {
 

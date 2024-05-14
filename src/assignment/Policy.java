@@ -304,7 +304,7 @@ public class Policy {
         if (input.equalsIgnoreCase("Y")) {
             displayMainMenuFaQ();
         } else {
-            displayFAQandTerms();
+            System.out.println("Stop Reading Policy");
         }
     }
 
@@ -320,7 +320,7 @@ public class Policy {
         if (input.equalsIgnoreCase("Y")) {
             displayMainMenuTnC();
         } else {
-            displayFAQandTerms();
+            System.out.println("Stop Reading Policy");
         }
     }
 

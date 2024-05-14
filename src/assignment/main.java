@@ -225,7 +225,8 @@ public class main {
                                                 System.out.print("Do you want to increase stock inventory? (Y/N) : ");
                                                 String increase = input.next();
                                                 if ((increase.toUpperCase()).equals("Y")) {
-                                                    Menu.stockMenu();
+//                                                    Menu.stockMenu();
+                                                    System.out.print("Enter Product No.: ");
                                                     int stock = input.nextInt();
                                                     System.out.print("Enter number to increase: ");
                                                     int addStock = input.nextInt();

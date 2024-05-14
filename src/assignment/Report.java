@@ -106,16 +106,16 @@ public class Report {
     }
 
     public void updateStockInventory(int stock, int num, Object o) {
-        for (int i = 0; i < 9; i++) {
-            if (i+1 == stock) {
-                if (o instanceof AllTierProduct aTierProduct) {
-                    int[] newQty = {aTierProduct.getQtyRemaining(0),aTierProduct.getQtyRemaining(1),aTierProduct.getQtyRemaining(2)};
-                    newQty[i] = aTierProduct.getQtyRemaining(i) + num;
-                    aTierProduct.setQtyRemaining(newQty);
-                    aTierProduct.updateProductFile();
-                }
-            }
-        }
+//        for (int i = 0; i < 9; i++) {
+//            if (i+1 == stock) {
+//                if (o instanceof AllTierProduct aTierProduct) {
+//                    int[] newQty = {aTierProduct.getQtyRemaining(0),aTierProduct.getQtyRemaining(1),aTierProduct.getQtyRemaining(2)};
+//                    newQty[i] = aTierProduct.getQtyRemaining(i) + num;
+//                    aTierProduct.setQtyRemaining(newQty);
+//                    aTierProduct.updateProductFile();
+//                }
+//            }
+//        }
     }
 
     public void displayTierReport() {
@@ -133,28 +133,48 @@ public class Report {
         System.out.println("Total Number of Customers : " + (tier0Num + tier1Num + tier2Num + tier3Num));
     }
 
-    public void displayRedemptionReport(Object o) {
-
-        if (o instanceof AllTierProduct) {
-            setReportTitle("Normal Redemption Product Report");
-        } else if (o instanceof LimitedProduct) {
-            setReportTitle("Limited Redemption Product Report");
-        } else if (o instanceof Voucher) {
-            setReportTitle("Voucher Redemption Report");
-        }
-        System.out.println(reportTitle);
+    public void displayRedemptionReport(Product[] product) {
+        
+        boolean firstATier = true, firstLimited = true, firstVc = true;
+        
+        System.out.println("Product Redemption Report");
 
         System.out.println("----------------------------------------------------------------------------");
         System.out.println("  No.  |          Product         |  Quantity Remaining  |  Total Redeemed  ");
         System.out.println("----------------------------------------------------------------------------");
-        if (o instanceof Product[] product) {
-            for (int i = 0; i < product.length; i++) {
-                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n", (i + 1),product[i].getProductName(),
-                        product[i].getProdQty(), product[i].getQtyRedeemed());
+        for (int i = 0; i < product.length; i++) {
+            if (product[i] instanceof AllTierProduct) {
+                if (firstATier) {
+                    System.out.println("All Tier Product");
+                    System.out.println("============================================================================");
+                    firstATier = false;
+                }               
+            } else if (product[i] instanceof LimitedProduct) {
+                if (firstLimited) {
+                    System.out.println("\nLimited Product");
+                    System.out.println("============================================================================");
+                    firstLimited = false;
+                }  
+            }else if (product[i] instanceof Voucher) {
+                if (firstVc) {
+                    System.out.println("\nVoucher");
+                    System.out.println("============================================================================");
+                    firstVc = false;
+                } 
             }
-            System.out.println("----------------------------------------------------------------------------");
-            System.out.println();
+            System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n", (i + 1), product[i].getProductName(),
+                    product[i].getProdQty(), product[i].getQtyRedeemed());
         }
+        System.out.println("----------------------------------------------------------------------------");
+        System.out.println();
+//        if (product[2] instanceof AllTierProduct) {
+//            for (int i = 0; i < product.length; i++) {
+//                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n", (i + 1), product[i].getProductName(),
+//                        product[i].getProdQty(), product[i].getQtyRedeemed());
+//            }
+//            System.out.println("----------------------------------------------------------------------------");
+//            System.out.println();
+//        }
 //        } else if (o instanceof LimitedProduct limitedProduct) {
 //            for (int i = 0; i < limitedProduct.getProductName().length; i++) {
 //                System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n", (i + 1), limitedProduct.getProductName(i),

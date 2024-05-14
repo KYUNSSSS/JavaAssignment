@@ -63,8 +63,11 @@ public class Redemption {
         int choice = 0;
         Product prod = new Product();
         Scanner scanner = new Scanner(System.in);
+        System.out.println("                               Product Menu");
+        System.out.println("___________________________________________________________________________");
+        System.out.println("  No.            Product           Quantity Remaining     Required Points  ");
         for(int i=0; i<(product.length);i++){
-                    System.out.println((i+1) + "." + product[i].getProductName() + "\t\tQuantity remaining:" + product[i].getProdQty() + "\t Required points:" + product[i].getRequiredPoint());
+            System.out.printf("  %-3d     %-23s          %-20d %-18d\n", (i + 1),product[i].getProductName(),product[i].getProdQty(), product[i].getRequiredPoint());
                 }
         
         int opt = main.enterChoice();

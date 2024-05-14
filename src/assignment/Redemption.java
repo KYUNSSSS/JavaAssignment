@@ -90,7 +90,6 @@ public class Redemption {
 
         
         int opt = main.enterChoice();
-        System.out.print("Quantity");
         int qty = this.enterQuantity();
         switch(opt){
             case 1,2,3:
@@ -138,7 +137,7 @@ public class Redemption {
         }
   }
   
-  public int enterQuantity() {
+  public int enterQuantity(Product[] product, int opt) {
         Scanner scan = new Scanner(System.in);
         int num = 0;
         boolean a = true;
@@ -146,9 +145,14 @@ public class Redemption {
             try {
                 System.out.print("\nEnter Quantity: ");
                 num = scan.nextInt();
-                a = true;
+                if (num > product[opt-1].getProdQty() && num>0){
+                    System.out.println("Quantity entered out of range.");
+                    a = false;
+                }else{
+                    a = true;                   
+                }
             } catch (Exception ex) {
-                System.out.println("Please enter number only.");
+                System.out.println("Please number number only.");
                 a = false;
                 scan.nextLine();
             }
@@ -158,6 +162,7 @@ public class Redemption {
         return num;
 
     }
+    
 //    public static void redemption(AllTierProduct atP, LimitedProduct liP, Voucher voucher, Customer[] customer, String tier){
 //        Menu.redeemMenu();
 //        int opt = main.enterChoice();

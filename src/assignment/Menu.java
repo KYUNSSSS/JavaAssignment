@@ -62,7 +62,16 @@ public class Menu {
     }
     
     public static void reportMenu(){
-        System.out.print("\nType of Report\n1. Customer Tier Report\n2. Redemption Report\n3. Points Report\n4. Exit\n");
+        System.out.println("\n***************************************************************");
+        System.out.println("*                       Type of Report                        *");
+        System.out.println("***************************************************************");
+        System.out.println("*                                                             *");
+        System.out.println("*                    1. Customer Tier Report                  *");
+        System.out.println("*                    2. Redemption Report                     *");
+        System.out.println("*                    3. Points Report                         *");
+        System.out.println("*                    4. Exit                                  *");
+        System.out.println("*                                                             *");
+        System.out.println("***************************************************************");
     }
     
     public static void prodReportMenu(){
@@ -107,6 +116,18 @@ public class Menu {
         System.out.println("***************************************************************");
         System.out.println("*                                                             *");
         System.out.println("*                       1. Point Earn                         *");
+        System.out.println("*                       2. Redemption                         *");
+        System.out.println("*                       3. Membership Tier                    *");
+        System.out.println("*                       4. Back                               *");
+        System.out.println("*                                                             *");
+        System.out.println("***************************************************************");
+    }
+    public static void customerUpdateMenu(){
+        System.out.println("\n***************************************************************");
+        System.out.println("*                       What to Update?                       *");
+        System.out.println("***************************************************************");
+        System.out.println("*                                                             *");
+        System.out.println("*                       1.                          *");
         System.out.println("*                       2. Redemption                         *");
         System.out.println("*                       3. Membership Tier                    *");
         System.out.println("*                       4. Back                               *");

@@ -291,7 +291,18 @@ public class Customer {
         
         int choice;
         boolean a;
-            System.out.print("\nWhat to update?\n1.Name ["+name+"]"+"\n2.Age ["+age+"]"+"\n3.Email {"+email+"]"+"\n4.Phone Number ["+phoneNum+"]"+"\n5.Back\n");
+        System.out.println("\n***************************************************************");
+        System.out.println("*                      What to Update?                        *");
+        System.out.println("***************************************************************");
+        System.out.println("                                                            ");
+        System.out.println("                      1. Name ["+name+"]");
+        System.out.println("                      2. Age ["+age+"]");                         
+        System.out.println("                      3. Email ["+email+"]");                    
+        System.out.println("                      4. Phone Number ["+phoneNum+"]"); 
+        System.out.println("                      5. Back");
+        System.out.println("                                                             ");
+        System.out.println("***************************************************************");
+      
             choice= main.enterChoice();
             
         switch (choice) {

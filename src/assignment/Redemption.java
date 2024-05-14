@@ -90,7 +90,7 @@ public class Redemption {
 
         
         int opt = main.enterChoice();
-        int qty = this.enterQuantity(product, opt);
+        int qty=0;
         switch(opt){
             case 1,2,3:
                 if (opt == 1){
@@ -100,24 +100,28 @@ public class Redemption {
                 } else if(opt == 3){
                     choice = 2;
                 } 
+                qty = this.enterQuantity(product, opt);
                 productClass.redeemProgress(product,choice,qty,customer);
                 break;
             case 4,5,6:
                 if (opt == 4){
                     if (tier == "Silver" || tier == "Gold" || tier == "Platinum"){
-                        choice = 3;                      
+                        choice = 3; 
+                        qty = this.enterQuantity(product, opt);
                     }else{
                         System.out.println("Tier level too low.");
                     }
                 } else if (opt == 5){
                     if (tier == "Gold" || tier == "Platinum"){
-                        choice = 4;                        
+                        choice = 4;    
+                        qty = this.enterQuantity(product, opt);
                     }else{
                         System.out.println("Tier level too low.");
                     }
                 } else if(opt == 6){
                     if (tier == "Platinum"){
-                        choice = 5;                        
+                        choice = 5;         
+                        qty = this.enterQuantity(product, opt);
                     }else{
                         System.out.println("Tier level too low.");
                     }

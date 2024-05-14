@@ -15,6 +15,7 @@ import java.util.Scanner;
  * @author Asus
  */
 public class Product {
+
     private String productName;
     private String prodDescription;
     private int prodQty;
@@ -24,7 +25,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String productName, String prodDescription, int prodQty , int qtyRedeemed, int requiredPoint) {
+    public Product(String productName, String prodDescription, int prodQty, int qtyRedeemed, int requiredPoint) {
         this.productName = productName;
         this.prodDescription = prodDescription;
         this.prodQty = prodQty;
@@ -55,7 +56,7 @@ public class Product {
     public void setProdQty(int prodQty) {
         this.prodQty = prodQty;
     }
-    
+
     public int getQtyRedeemed() {
         return qtyRedeemed;
     }
@@ -72,53 +73,72 @@ public class Product {
         this.requiredPoint = requiredPoint;
     }
 
-    
     public void redeemProgress(Product[] product, int choice, int qty, Customer[] customer) {
-        int finalPoint = (int) customer[main.currentUser].getTotalPurchaseAmount() - (qty*product[choice].getRequiredPoint());
+        int finalPoint = (int) customer[main.currentUser].getTotalPurchaseAmount() - (qty * product[choice].getRequiredPoint());
         if (finalPoint < 0) {
             System.out.println("Balance point insufficient.");
         } else {
             customer[main.currentUser].setTotalPurchaseAmount(finalPoint);
             main.updateCustomerFile(customer);
             int prodQty = product[choice].getProdQty() - qty;
-            int prodRedeemed = product[choice].getQtyRedeemed()+ qty;
+            int prodRedeemed = product[choice].getQtyRedeemed() + qty;
             product[choice].setProdQty(prodQty);
             product[choice].setQtyRedeemed(prodRedeemed);
             System.out.println("Balance Point: " + finalPoint);
             System.out.println("Product Remaining Quantity: " + prodQty);
         }
     }
-//    public void readProductFile() {
-//      
-//        File prodFile = new File("product.txt");
-//        try {
-//            Scanner scanner = new Scanner(prodFile);
-//            while (scanner.hasNextLine()) {
-//                String line = scanner.nextLine();
-//                String[] values = line.split(",");
+
+    public void readProductFile(Product[] product) {
+        int num = 0;
+        for (int i = 0; i < product.length; i++) {
+            product[i] = null;
+        }
+        File prodFile = new File("product.txt");
+        try {
+            Scanner scanner = new Scanner(prodFile);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] values = line.split(",");
 //                int[] qtyRemaining = {Integer.parseInt(values[0]), Integer.parseInt(values[1]), Integer.parseInt(values[2])};
 //                this.setQtyRemaining(qtyRemaining);
-//                
-//        
-//            }
-//            scanner.close();
-//        } catch (IOException e) {
-//            System.out.println("An error occurred.");
-//            e.printStackTrace();
-//        }
-//    }
-//    public void updateProductFile() {
-//        try {
-//            BufferedWriter writer = new BufferedWriter(new FileWriter("product.txt"));
+
+                Product newProd = new Product();
+
+                newProd.setProdQty(Integer.parseInt(values[0]));
+                newProd.setQtyRedeemed(Integer.parseInt(values[1]));
+
+                product[num++] = newProd;
+                
+                if (num >= product.length) {
+
+                    break;
+                }
+            }
+            scanner.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public void updateProductFile(Product[] product) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("product.txt"));
 //                    String Data = this.getQtyRemaining(0) +","+getQtyRemaining(1)+","+getQtyRemaining(2);
-//                    writer.write(Data);
-//            
-//            writer.close();
-//            // System.out.println("Customer file updated successfully.");
-//        } catch (IOException e) {
-//            System.out.println("An error occurred while updating customer file.");
-//            e.printStackTrace();
-//        }
-//    }
+            for (int i = 0; i < product.length; i++) {
+                if (product[i] != null) {
+                    String prodData = product[i].getProdQty() + "," + product[i].getQtyRedeemed();
+                    writer.write(prodData);
+                    writer.newLine();
+                }
+            }
+            writer.close();
+            // System.out.println("Customer file updated successfully.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while updating customer file.");
+            e.printStackTrace();
+        }
+    }
 
 }

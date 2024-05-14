@@ -105,17 +105,14 @@ public class Report {
         }
     }
 
-    public void updateStockInventory(int stock, int num, Object o) {
-//        for (int i = 0; i < 9; i++) {
-//            if (i+1 == stock) {
-//                if (o instanceof AllTierProduct aTierProduct) {
-//                    int[] newQty = {aTierProduct.getQtyRemaining(0),aTierProduct.getQtyRemaining(1),aTierProduct.getQtyRemaining(2)};
-//                    newQty[i] = aTierProduct.getQtyRemaining(i) + num;
-//                    aTierProduct.setQtyRemaining(newQty);
-//                    aTierProduct.updateProductFile();
-//                }
-//            }
-//        }
+    public void updateStockInventory(int stock, int num, Product[] product) {
+        for (int i = 0; i < product.length; i++) {
+            if (i+1 == stock) {
+                int newQty = product[i].getProdQty() + num;
+                product[i].setProdQty(newQty);
+                product[i].updateProductFile(product);
+            }
+        }
     }
 
     public void displayTierReport() {

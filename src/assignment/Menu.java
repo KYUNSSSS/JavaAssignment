@@ -50,24 +50,24 @@ public class Menu {
         System.out.print("Product Report Option\n1. Normal Redemption Product\n2. Limited Redemption Product\n3. Voucher\n4. Back\n");
     }
     
-    public static void stockMenu(){
-        System.out.print("""
-                         Choose Product to Increase Stock
-                         ================================
-                         # Normal Redemption Product
-                         1. Pillow
-                         2. Headphone
-                         3. Backpack
-                         # Limited Redemption Product
-                         4. Vacuum Cleaner
-                         5. Cooking Pan
-                         6. Knife Set
-                         # Voucher
-                         7. RM5 Discount Voucher
-                         8. RM10 Discount Voucher
-                         9. RM20 Discount Voucher
-                           """);
-    }
+//    public static void stockMenu(){
+//        System.out.print("""
+//                         Choose Product to Increase Stock
+//                         ================================
+//                         # Normal Redemption Product
+//                         1. Pillow
+//                         2. Headphone
+//                         3. Backpack
+//                         # Limited Redemption Product
+//                         4. Vacuum Cleaner
+//                         5. Cooking Pan
+//                         6. Knife Set
+//                         # Voucher
+//                         7. RM5 Discount Voucher
+//                         8. RM10 Discount Voucher
+//                         9. RM20 Discount Voucher
+//                           """);
+//    }
 
     public static void adminOrCustMenu(){
         System.out.print("Continue as\n1. Customer\n2. Admin User\n3. Exit\n");

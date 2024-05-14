@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 /**
  *
  * @author Hp
@@ -32,17 +31,16 @@ public class main {
 
         Loyalty loyalty = new Loyalty();
         Redemption redemption = new Redemption();
-    Product[] product = {
-        new AllTierProduct("Pillow","Harvey Norman",10,0,50),
-        new AllTierProduct("Headphone","Harvey Norman",12,0,50),
-        new AllTierProduct("Backpack","Harvey Norman",15,0,50),
-        new LimitedProduct("Silver","Vacuum Cleaner","VCDesc",10,0,150),
-        new LimitedProduct("Gold","Cooking Pan","CPDesc",12,0,150),
-        new LimitedProduct("Platinum","Knife Set","KSDesc",14,0,150),
-        new Voucher("RM 5 Discount Voucher","Deduct RM5 on Next Purchase",15,0,50),
-        new Voucher("RM 10 Discount Voucher","Deduct RM10 on Next Purchase",15,0,90),
-        new Voucher("RM 20 Discount Voucher","Deduct RM20 on Next Purchase",15,0,150),
-    };
+        Product[] product = {
+            new AllTierProduct("Pillow", "Harvey Norman", 10, 0, 50),
+            new AllTierProduct("Headphone", "Harvey Norman", 12, 0, 50),
+            new AllTierProduct("Backpack", "Harvey Norman", 15, 0, 50),
+            new LimitedProduct("Silver", "Vacuum Cleaner", "VCDesc", 10, 0, 150),
+            new LimitedProduct("Gold", "Cooking Pan", "CPDesc", 12, 0, 150),
+            new LimitedProduct("Platinum", "Knife Set", "KSDesc", 14, 0, 150),
+            new Voucher("RM 5 Discount Voucher", "Deduct RM5 on Next Purchase", 15, 0, 50),
+            new Voucher("RM 10 Discount Voucher", "Deduct RM10 on Next Purchase", 15, 0, 90),
+            new Voucher("RM 20 Discount Voucher", "Deduct RM20 on Next Purchase", 15, 0, 150),};
         Report report = new Report();
         Product prod = new Product();
 
@@ -75,8 +73,9 @@ public class main {
 
                                 do {
                                     phonenum = Customer.checkPhoneNumber();
-                                    if (phonenum == 0)
+                                    if (phonenum == 0) {
                                         break;
+                                    }
                                     for (int i = 0; i < customer.length; i++) {
                                         if (customer[i] != null) {
                                             if (customer[i].getPhoneNum() == phonenum) {
@@ -87,8 +86,8 @@ public class main {
                                                 do {
                                                     System.out
                                                             .println("Welcome back," + customer[currentUser].getName()
-                                                            +"\t\t\t\tPoint Balance: "
-                                                            + (int) customer[currentUser].getTotalPurchaseAmount()
+                                                                    + "\t\t\t\tPoint Balance: "
+                                                                    + (int) customer[currentUser].getTotalPurchaseAmount()
                                                             );
                                                     Menu.userMenu();
                                                     choice = enterChoice();
@@ -100,7 +99,8 @@ public class main {
 
                                                             break;
                                                         case 2:
-                                                            customer[currentUser].updateAmount();
+                                                            loyalty.updateTier(customer);
+                                                            customer[currentUser].updateAmount(customer[currentUser].getTier());
                                                             updateCustomerFile(customer);
                                                             pressEnterToContinue();
                                                             Menu.backAction();
@@ -272,7 +272,7 @@ public class main {
                 String[] values = line.split(",");
 
                 Customer newCustomer = new Customer();
-                
+
                 newCustomer.setName(values[1]); // Example, modify according to your class structure
                 newCustomer.setAge(Integer.parseInt(values[2]));
                 newCustomer.setEmail(values[3]);
@@ -294,7 +294,7 @@ public class main {
                 }
             }
             scanner.close();
-           
+
         } catch (IOException e) {
             System.out.println("An error occurred while reading customer data.");
             e.printStackTrace();
@@ -320,7 +320,7 @@ public class main {
             System.out.println("An error occurred while updating customer file.");
             e.printStackTrace();
         }
-    }   
+    }
 
     public static void pressEnterToContinue() {
         Scanner scan = new Scanner(System.in);
@@ -339,11 +339,11 @@ public class main {
             try {
                 System.out.print("\nEnter Choice: ");
                 num = scan.nextInt();
-                if (num <0){
+                if (num < 0) {
                     System.out.println("Please enter numbers displayed only.");
                     a = false;
-                }else{
-                    a = true;                   
+                } else {
+                    a = true;
                 }
             } catch (Exception ex) {
                 System.out.println("Please enter numbers displayed only.");

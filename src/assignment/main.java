@@ -25,31 +25,29 @@ public class main {
     static int currentUser = 0;
     static boolean result;
     // static double point;
-    // System allow n number users to register(in this case 10)
+    // System allow n number users to register(in this case 100)
     static Customer[] customer = new Customer[100];
 
     public static void main(String[] args) {
 
         Loyalty loyalty = new Loyalty();
         // Point pts = new Point(customer[currentUser]);
-        // Product[] product = {
-        //     new AllTierProduct (),
-        // };
 //        AllTierProduct aTierProd = AllTierProduct.iniReProd();
 //        LimitedProduct liProd = LimitedProduct.iniLiProd();
 //        Voucher voucher = Voucher.iniVoucher();
-    Product[] product={
-        new AllTierProduct("Pillow","Harvey Norman",10,0,50),
-        new AllTierProduct("Headphone","Harvey Norman",12,0,50),
-        new AllTierProduct("Backpack","Harvey Norman",15,0,50),
-        new LimitedProduct("Silver","Vacuum Cleaner","VCDesc",10,0,150),
-        new LimitedProduct("Gold","Cooking Pan","CPDesc",12,0,150),
-        new LimitedProduct("Platinum","Knife Set","KSDesc",14,0,150),
-        new Voucher("RM 5 Discount Voucher","Deduct RM5 on Next Purchase",15,0,50),
-        new Voucher("RM 10 Discount Voucher","Deduct RM10 on Next Purchase",15,0,90),
-        new Voucher("RM 20 Discount Voucher","Deduct RM20 on Next Purchase",15,0,150),
-    };
+        Product[] product={
+            new AllTierProduct("Pillow","Harvey Norman",10,0,50),
+            new AllTierProduct("Headphone","Harvey Norman",12,0,50),
+            new AllTierProduct("Backpack","Harvey Norman",15,0,50),
+            new LimitedProduct("Silver","Vacuum Cleaner","VCDesc",10,0,150),
+            new LimitedProduct("Gold","Cooking Pan","CPDesc",12,0,150),
+            new LimitedProduct("Platinum","Knife Set","KSDesc",14,0,150),
+            new Voucher("RM 5 Discount Voucher","Deduct RM5 on Next Purchase",15,0,50),
+            new Voucher("RM 10 Discount Voucher","Deduct RM10 on Next Purchase",15,0,90),
+            new Voucher("RM 20 Discount Voucher","Deduct RM20 on Next Purchase",15,0,150),
+        };
         Report report = new Report();
+        Product products = new Product();
 
         // for (int x=0;x<customer.length;x++){
         // System.out.println(customer[x].getPhoneNum());
@@ -61,8 +59,8 @@ public class main {
             readCustomersFile();
             Menu.adminOrCustMenu();
             selection = enterChoice();
-//            aTierProd.readProductFile();
-//            aTierProd.updateProductFile();
+            products.readProductFile(product);
+            products.updateProductFile(product);;
 
             switch (selection) {
                 case 1:
@@ -202,6 +200,7 @@ public class main {
 
                                     do {
                                         Menu.reportMenu();
+                                        System.out.print("Select Report to view: ");
                                         reportChoice = input.nextInt();
 
                                         switch (reportChoice) {
@@ -230,9 +229,7 @@ public class main {
                                                     int stock = input.nextInt();
                                                     System.out.print("Enter number to increase: ");
                                                     int addStock = input.nextInt();
-//                                                    report.updateStockInventory(stock, addStock,aTierProd);
-//                                                    report.updateStockInventory(stock, addStock,liProd);
-//                                                    report.updateStockInventory(stock, addStock,voucher);
+                                                    report.updateStockInventory(stock, addStock, product);
                                                 }
                                                 break;
                                             case 3:
@@ -329,7 +326,7 @@ public class main {
             System.out.println("An error occurred while updating customer file.");
             e.printStackTrace();
         }
-    }
+    }   
 
     public static void pressEnterToContinue() {
         Scanner scan = new Scanner(System.in);

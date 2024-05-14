@@ -133,8 +133,9 @@ public class Report {
     public void displayRedemptionReport(Product[] product) {
         
         boolean firstATier = true, firstLimited = true, firstVc = true;
+        int aTTL = 0, lTTL = 0, vcTTL = 0;
         
-        System.out.println("Product Redemption Report");
+        System.out.println("                        \nProduct Redemption Report");
 
         System.out.println("----------------------------------------------------------------------------");
         System.out.println("  No.  |          Product         |  Quantity Remaining  |  Total Redeemed  ");
@@ -145,23 +146,32 @@ public class Report {
                     System.out.println("All Tier Product");
                     System.out.println("============================================================================");
                     firstATier = false;
-                }               
+                }    
+                aTTL += product[i].getQtyRedeemed();
             } else if (product[i] instanceof LimitedProduct) {
                 if (firstLimited) {
+                    System.out.println("----------------------------------------------------------------------------");
+                    System.out.printf("%55s  |  %-15d\n", "Total All Tier Product Redeemed", aTTL);
                     System.out.println("\nLimited Product");
                     System.out.println("============================================================================");
                     firstLimited = false;
                 }  
+                lTTL += product[i].getQtyRedeemed();
             }else if (product[i] instanceof Voucher) {
                 if (firstVc) {
+                    System.out.println("----------------------------------------------------------------------------");
+                    System.out.printf("%55s  |  %-15d\n", "Total Limited Product Redeemed", lTTL);
                     System.out.println("\nVoucher");
                     System.out.println("============================================================================");
                     firstVc = false;
                 } 
+                vcTTL += product[i].getQtyRedeemed();
             }
             System.out.printf("  %-3d  |   %-23s|  %-18d  |  %-18d\n", (i + 1), product[i].getProductName(),
                     product[i].getProdQty(), product[i].getQtyRedeemed());
         }
+        System.out.println("----------------------------------------------------------------------------");
+        System.out.printf("%55s  |  %-15d\n", "Total Voucher Redeemed", vcTTL);
         System.out.println("----------------------------------------------------------------------------");
         System.out.println();
 //        if (product[2] instanceof AllTierProduct) {

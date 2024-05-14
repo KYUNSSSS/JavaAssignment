@@ -43,7 +43,7 @@ public class Menu {
     }
     
     public static void reportMenu(){
-        System.out.print("Type of Report\n1. Customer Tier Report\n2. Redemption Report\n3. Points Report\n4. Exit\n");
+        System.out.print("\nType of Report\n1. Customer Tier Report\n2. Redemption Report\n3. Points Report\n4. Exit\n");
     }
     
     public static void prodReportMenu(){

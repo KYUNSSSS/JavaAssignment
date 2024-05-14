@@ -91,9 +91,7 @@ public class Product {
 
     public void readProductFile(Product[] product) {
         int num = 0;
-        for (int i = 0; i < product.length; i++) {
-            product[i] = null;
-        }
+
         File prodFile = new File("product.txt");
         try {
             Scanner scanner = new Scanner(prodFile);
@@ -108,8 +106,11 @@ public class Product {
                 newProd.setProdQty(Integer.parseInt(values[0]));
                 newProd.setQtyRedeemed(Integer.parseInt(values[1]));
 
-                product[num++] = newProd;
+                product[num].setProdQty(newProd.getProdQty());
+                product[num].setQtyRedeemed(newProd.getQtyRedeemed());
                 
+                num++;
+
                 if (num >= product.length) {
 
                     break;

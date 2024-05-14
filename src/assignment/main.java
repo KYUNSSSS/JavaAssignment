@@ -33,7 +33,7 @@ public class main {
         Loyalty loyalty = new Loyalty();
         Redemption redemption = new Redemption();
         // Point pts = new Point(customer[currentUser]);
-    Product[] product={
+    Product[] product = {
         new AllTierProduct("Pillow","Harvey Norman",10,0,50),
         new AllTierProduct("Headphone","Harvey Norman",12,0,50),
         new AllTierProduct("Backpack","Harvey Norman",15,0,50),
@@ -45,7 +45,7 @@ public class main {
         new Voucher("RM 20 Discount Voucher","Deduct RM20 on Next Purchase",15,0,150),
     };
         Report report = new Report();
-        Product products = new Product();
+        Product prod = new Product();
 
         // for (int x=0;x<customer.length;x++){
         // System.out.println(customer[x].getPhoneNum());
@@ -57,8 +57,8 @@ public class main {
             readCustomersFile();
             Menu.adminOrCustMenu();
             selection = enterChoice();
-            products.readProductFile(product);
-            products.updateProductFile(product);;
+            prod.readProductFile(product);
+            prod.updateProductFile(product);;
 
             switch (selection) {
                 case 1:
@@ -124,6 +124,7 @@ public class main {
                                                             loyalty.updateTier(customer);
                                                             redemption.redeemProduct(product, customer,
                                                                     customer[currentUser].getTier());
+                                                            prod.updateProductFile(product);
                                                             break;
                                                         case 5:
                                                             loyalty.updateTier(customer);

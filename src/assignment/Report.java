@@ -5,6 +5,8 @@
 package assignment;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -12,6 +14,7 @@ import java.util.Scanner;
  * @author xuan
  */
 public class Report {
+
     private int voucherRedeemed;
     private int productRedeemed;
     private int tier0Num;
@@ -103,25 +106,16 @@ public class Report {
     }
 
     public void updateStockInventory(int stock, int num, Object o) {
-        File prod = new File("product.txt");
-        try {
-            Scanner a = new Scanner(prod);
-            while (a.hasNextLine()) {
-                String line = a.nextLine();
-                String[] values = line.split(",");
-
-                for (int i = 1; i < 10; i++) {
-                    if (i == stock) {
-                        if (o instanceof AllTierProduct aTierProduct) {
-                            
-                        }
-                    }
+        for (int i = 0; i < 9; i++) {
+            if (i+1 == stock) {
+                if (o instanceof AllTierProduct aTierProduct) {
+                    int[] newQty = {aTierProduct.getQtyRemaining(0),aTierProduct.getQtyRemaining(1),aTierProduct.getQtyRemaining(2)};
+                    newQty[i] = aTierProduct.getQtyRemaining(i) + num;
+                    aTierProduct.setQtyRemaining(newQty);
+                    aTierProduct.updateProductFile();
                 }
             }
-        } catch (Exception ex) {
-            System.out.println("HEE");
         }
-
     }
 
     public void displayTierReport() {

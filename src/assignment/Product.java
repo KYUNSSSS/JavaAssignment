@@ -86,7 +86,7 @@ public class Product {
             product[choice].setQtyRedeemed(prodRedeemed);
             System.out.println("Redemption successful.");
             System.out.println("Balance Point: " + finalPoint);
-            System.out.println("Product Remaining Quantity: " + prodQty);
+            System.out.println("Product Remaining Quantity: " + prodQty + "\n);
         }
     }
 //    public void readProductFile() {

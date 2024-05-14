@@ -184,7 +184,7 @@ public class Policy {
     
      public static void displayRedemptionMenu() {
         System.out.println("\n********** Frequently Asked Questions (FAQ): **********");
-        System.out.println("Guidelines for Redeemption...");
+        System.out.println("Guidelines for Redemption...");
         System.out.println("1. What types of rewards are included?");
         System.out.println("   - There are three types of reward, including normal product, limited product and voucher.");
         System.out.println("2. How many rewards can be redeemed in total?");
@@ -228,7 +228,7 @@ public class Policy {
 
     public static void displayRedemptionMenuTnC() {
         System.out.println("\n********** Term and Condition (TNC): **********");
-        System.out.println("2. Redeemption");
+        System.out.println("2. Redemption");
         System.out.println("    2.1 Eligible Rewards: Customers can redeem points for various rewards, including normal products,");
         System.out.println("        limited edition items, and vouchers, subject to availability and eligibility.");
         System.out.println("    2.2 Redemption Restrictions: No tier customers can redeem all rewards except for limited edition items.");

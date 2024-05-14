@@ -29,7 +29,7 @@ public class Menu {
         System.out.print("1.Register New Account\n2.LOGIN TO EXISTING ACCOUNT\n3.Back\n");
     }
     public static void userMenu(){
-        System.out.print("1.Update Details\n2.Add New Transaction Amount\n3.Check Point Expiry\n4.Redeem Product\n5.Profile\n6.Referral Code\n7.Play Game\n8.Back\n");
+        System.out.print("1.Update Details\n2.Add New Transaction Amount\n3.Check Point Expiry\n4.Redeem Product\n5.Profile\n6.Referral Code\n7.Play Game\n8.Policy\n9.Back\n");
     }
     public static void backAction(){
         System.out.println("\n===========GOING BACK==========\n");
@@ -71,6 +71,19 @@ public class Menu {
 
     public static void adminOrCustMenu(){
         System.out.print("Continue as\n1. Customer\n2. Admin User\n3. Exit\n");
+    }
+    
+    public static void displayPolicyMenu(){
+        System.out.println("\n***************************************************************");
+        System.out.println("*                      Welcome to Policy Menu                 *");
+        System.out.println("***************************************************************");
+        System.out.println("*                                                             *");
+        System.out.println("*                       1. Point Earn                         *");
+        System.out.println("*                       2. Redemption                         *");
+        System.out.println("*                       3. Membership Tier                    *");
+        System.out.println("*                       4. Back                               *");
+        System.out.println("*                                                             *");
+        System.out.println("***************************************************************");
     }
 
 }

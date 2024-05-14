@@ -35,11 +35,21 @@ public class main {
         // Product[] product = {
         //     new AllTierProduct (),
         // };
-        AllTierProduct aTierProd = AllTierProduct.iniReProd();
-        LimitedProduct liProd = LimitedProduct.iniLiProd();
-        Voucher voucher = Voucher.iniVoucher();
+//        AllTierProduct aTierProd = AllTierProduct.iniReProd();
+//        LimitedProduct liProd = LimitedProduct.iniLiProd();
+//        Voucher voucher = Voucher.iniVoucher();
+    Product[] product={
+        new AllTierProduct("Pillow","Harvey Norman",10,0,50),
+        new AllTierProduct("Headphone","Harvey Norman",12,0,50),
+        new AllTierProduct("Backpack","Harvey Norman",15,0,50),
+        new LimitedProduct("Silver","Vacuum Cleaner","VCDesc",10,0,150),
+        new LimitedProduct("Gold","Cooking Pan","CPDesc",12,0,150),
+        new LimitedProduct("Platinum","Knife Set","KSDesc",14,0,150),
+        new Voucher("RM 5 Discount Voucher","Deduct RM5 on Next Purchase",15,0,50),
+        new Voucher("RM 10 Discount Voucher","Deduct RM10 on Next Purchase",15,0,90),
+        new Voucher("RM 20 Discount Voucher","Deduct RM20 on Next Purchase",15,0,150),
+    };
         Report report = new Report();
-        Product product = new Product();
 
         // for (int x=0;x<customer.length;x++){
         // System.out.println(customer[x].getPhoneNum());
@@ -51,13 +61,13 @@ public class main {
             readCustomersFile();
             Menu.adminOrCustMenu();
             selection = enterChoice();
-            aTierProd.readProductFile();
-            aTierProd.updateProductFile();
+//            aTierProd.readProductFile();
+//            aTierProd.updateProductFile();
 
             switch (selection) {
                 case 1:
                     readCustomersFile();
-                    product.readProductFile();
+//                    product.readProductFile();
                     
                     
 
@@ -111,13 +121,12 @@ public class main {
                                                             Point pointInstance = new Point(customer);
                                                             pointInstance.checkAmount(customer);
                                                             pointInstance.checkExpiryDate(customer);
-                                                            pressEnterToContinue();
                                                             Menu.backAction();
 
                                                             break;
                                                         case 4:
                                                             loyalty.updateTier(customer);
-                                                            Redemption.redemption(aTierProd, liProd, voucher, customer,
+                                                            Redemption.redeemProduct(product, customer,
                                                                     customer[currentUser].getTier());
                                                             break;
                                                         case 5:
@@ -132,17 +141,18 @@ public class main {
                                                         case 6:
                                                             customer[currentUser].updateReferralCode();
                                                             updateCustomerFile(customer);
-                                                            pressEnterToContinue();
                                                             Menu.backAction();
                                                             break;
                                                         case 7:
                                                             PointEarn pointEarn = new PointEarn(customer);
                                                             pointEarn.playGame(customer);
-                                                            pressEnterToContinue();
+                                                            Menu.backAction();
+                                                            break;
+                                                        case 8:
+                                                            Policy.displayFAQandTerms();
                                                             Menu.backAction();
                                                             break;
                                                         default:
-
                                                             Menu.backAction();
                                                     }
                                                     // updateCustomerFile(customer);
@@ -168,7 +178,7 @@ public class main {
                         }
 
                         updateCustomerFile(customer);
-                        aTierProd.updateProductFile();
+//                        aTierProd.updateProductFile();
                     } while (choice != 3);
                     break;
                 case 2:
@@ -206,10 +216,10 @@ public class main {
                                                 // Redemption
 
                                                 // Menu.prodReportMenu();
-
-                                                report.displayRedemptionReport(aTierProd);
-                                                report.displayRedemptionReport(liProd);
-                                                report.displayRedemptionReport(voucher);
+                                                report.displayRedemptionReport(product);
+//                                                report.displayRedemptionReport(aTierProd);
+//                                                report.displayRedemptionReport(liProd);
+//                                                report.displayRedemptionReport(voucher);
                                                 // maybe can add some alert like the particular stock number is less
                                                 // than 10
                                                 System.out.print("Do you want to increase stock inventory? (Y/N) : ");
@@ -219,9 +229,9 @@ public class main {
                                                     int stock = input.nextInt();
                                                     System.out.print("Enter number to increase: ");
                                                     int addStock = input.nextInt();
-                                                    report.updateStockInventory(stock, addStock,aTierProd);
-                                                    report.updateStockInventory(stock, addStock,liProd);
-                                                    report.updateStockInventory(stock, addStock,voucher);
+//                                                    report.updateStockInventory(stock, addStock,aTierProd);
+//                                                    report.updateStockInventory(stock, addStock,liProd);
+//                                                    report.updateStockInventory(stock, addStock,voucher);
                                                 }
                                                 break;
                                             case 3:

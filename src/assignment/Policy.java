@@ -4,10 +4,8 @@
  */
 package assignment;
 
-/**
- *
- * @author xuan
- */
+import java.util.Scanner;
+
 public class Policy {
 
     public static void displayFAQandTerms() {

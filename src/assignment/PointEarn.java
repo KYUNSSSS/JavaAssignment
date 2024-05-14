@@ -8,18 +8,15 @@ package assignment;
 import java.util.Random;
 import java.util.Scanner;
 
-
 public class PointEarn {
     private int points;
     private int attemptsLeft;
     private int gamesPlayed;
-   
 
     public PointEarn() {
     }
 
     public PointEarn(Customer[] customer) {
-        
         double totalAmounts = customer[main.currentUser].getTotalPurchaseAmount();
         this.points = (int) Math.round(totalAmounts);
         attemptsLeft = 3;
@@ -53,7 +50,7 @@ public class PointEarn {
     public void playGame(Customer[] customer) {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-        
+
         System.out.println("***************************************************************");
         System.out.println("*                             Games                           *");
         System.out.println("***************************************************************");
@@ -61,19 +58,18 @@ public class PointEarn {
         System.out.println("*                                                             *");
         System.out.println("*                 Welcome to the Games section!               *");
         System.out.println("*                  You can play up to 5 games.                *");
-        System.out.println("*           Each game provide chance to earn 50 points.       *");
+        System.out.println("*           Each game provides a chance to earn 50 points.    *");
         System.out.println("*                    Have fun and good luck!                  *");
         System.out.println("*                                                             *");
         System.out.println("*                                                             *");
-        System.out.println("*                (\\__/)                  (\\__/)              *");
+        System.out.println("*                (\\__/)                   (\\__/)              *");
         System.out.println("*                (='.'=)                  (='.'=)             *");
         System.out.println("*                (:)_(:)                  (:)_(:)             *");
         System.out.println("*                                                             *");
         System.out.println("***************************************************************");
 
-        
         while (gamesPlayed < 5) {
-            System.out.println("Game " + (gamesPlayed + 1) + ":");
+            System.out.println("\nGame " + (gamesPlayed + 1) + ":");
             int num1 = random.nextInt(900) + 100; // Generate a random 3-digit number
             int num2 = random.nextInt(900) + 100; // Generate another random 3-digit number
             int correctAnswer = num1 + num2;
@@ -84,19 +80,27 @@ public class PointEarn {
                 if (userAnswer == correctAnswer) {
                     System.out.println("Correct! You earned 50 points.");
                     points += 50;
-                    customer[main.currentUser].updateTotalPurchaseAmounts(50); 
+                    customer[main.currentUser].updateTotalPurchaseAmounts(50);
                     main.updateCustomerFile(customer);
                     attemptsLeft = 3; // Reset attempts for the next game
                     gamesPlayed++;
                     if (gamesPlayed < 5) {
-                        System.out.println("Do you want to play again? (yes/no)");
-                        String choice = scanner.next();
-                        if (!choice.equalsIgnoreCase("yes") && !choice.equalsIgnoreCase("y")) {
-                            System.out.println("Exiting...");
-                            break;
+                        boolean validChoice = false;
+                        while (!validChoice) {
+                            System.out.println("Do you want to play again? [Y/N]");
+                            String choice = scanner.next();
+                            if (choice.equalsIgnoreCase("Y") || choice.equalsIgnoreCase("y")) {
+                                validChoice = true;
+                            } else if (choice.equalsIgnoreCase("N") || choice.equalsIgnoreCase("n")) {
+                                System.out.println("Exiting...");
+                                return; // Exit the method
+                            } else {
+                                System.out.println("Invalid input! Please enter Y/N\n.");
+                            }
                         }
                     } else {
-                        System.out.println("The games have the limit of 5 times. Exiting...");
+                        System.out.println("The games have reached their limit. Exiting...");
+                        return; // Exit the method
                     }
                 } else {
                     attemptsLeft--;
@@ -110,16 +114,17 @@ public class PointEarn {
                 }
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Invalid format. Please use numbers.");
-                attemptsLeft = 2; // Reset attempts to 2 if input format is invalid
-                scanner.next(); // Clear the invalid input from the scanner
+                attemptsLeft--;
+                if (attemptsLeft == 0) {
+                    System.out.println("You've run out of attempts. Moving to the next game.");
+                    attemptsLeft = 3; // Reset attempts for the next game
+                    gamesPlayed++;
+                } else {
+                    System.out.println("You have " + attemptsLeft + " attempts left.");
+                }
+                scanner.next(); 
             }
         }
         System.out.println("Total points: " + points);
     }
-
-//    public static void main(String[] args) {
-    //    Customer customer = new Customer();
-    //    PointEarn pointEarn = new PointEarn(customer);
-    //    pointEarn.playGame();
-//    }
 }

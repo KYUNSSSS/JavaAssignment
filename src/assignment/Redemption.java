@@ -90,7 +90,7 @@ public class Redemption {
 
         
         int opt = main.enterChoice();
-        int qty = this.enterQuantity();
+        int qty = this.enterQuantity(product, opt);
         switch(opt){
             case 1,2,3:
                 if (opt == 1){

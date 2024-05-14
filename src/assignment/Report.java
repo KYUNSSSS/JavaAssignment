@@ -117,7 +117,7 @@ public class Report {
 
     public void displayTierReport() {
 
-        System.out.println("Customer Tier Report");
+        System.out.println("\n      Customer Tier Report");
 
         System.out.println("--------------------------------------");
         System.out.println("   Tier    |   Number of Customers    ");
@@ -135,7 +135,7 @@ public class Report {
         boolean firstATier = true, firstLimited = true, firstVc = true;
         int aTTL = 0, lTTL = 0, vcTTL = 0;
         
-        System.out.println("                        \nProduct Redemption Report");
+        System.out.println("\n                        Product Redemption Report");
 
         System.out.println("----------------------------------------------------------------------------");
         System.out.println("  No.  |          Product         |  Quantity Remaining  |  Total Redeemed  ");
@@ -202,7 +202,7 @@ public class Report {
     public void displayPointReport(Customer[] customer) {
 
         int totalPtEarned = 0, totalPtRedeemed = 0;
-        System.out.println("Customer Points Report");
+        System.out.println("\n                   Customer Points Report");
 
         System.out.println("------------------------------------------------------------------");
         System.out.println("            Name            |  Points Earned  |  Points Redeemed  ");

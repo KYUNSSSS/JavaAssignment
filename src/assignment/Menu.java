@@ -20,22 +20,41 @@ public class Menu {
                             | |_) | |__  | |__   \\ \\  /\\  / /  \\  | |__) | |  | |
                             |  _ <|  __| |  __|   \\ \\/  \\/ / /\\ \\ |  _  /| |  | |
                             | |_) | |____| |____   \\  /\\  / ____ \\| | \\ \\| |__| |
-                            |____/|______|______|   \\/  \\/_/    \\_\\_|  \\_\\_____/ 
-                                                                                 
+                            |____/|______|______|   \\/  \\/_/    \\_\\_|  \\_\\_____/                                                                                
                                                                                  """);
         
     }
     public static void mainMenu(){
-        System.out.print("1.Register New Account\n2.LOGIN TO EXISTING ACCOUNT\n3.Back\n");
+        System.out.println("\n***************************************************************");
+        System.out.println("*                   Welcome to Customer Menu                  *");
+        System.out.println("***************************************************************");
+        System.out.println("*                                                             *");
+        System.out.println("*                   1. Register New Account                   *");
+        System.out.println("*                   2. Login To Existing Account              *");
+        System.out.println("*                   3. Exit                                   *");
+        System.out.println("*                                                             *");
+        System.out.println("***************************************************************");
     }
     public static void userMenu(){
-        System.out.print("1.Update Details\n2.Add New Transaction Amount\n3.Check Point Expiry\n4.Redeem Product\n5.Profile\n6.Referral Code\n7.Play Game\n8.Policy\n9.Back\n");
+        System.out.println("***************************************************************");
+        System.out.println("*                     Customer Main Menu                      *");
+        System.out.println("***************************************************************");
+        System.out.println("*                                                             *");
+        System.out.println("*                     1. Update Details                       *");
+        System.out.println("*                     2. Add New Transaction Amount           *");
+        System.out.println("*                     3. Check Point Expiry                   *");
+        System.out.println("*                     4. Redeem Product                       *");
+        System.out.println("*                     5. Profile                              *");
+        System.out.println("*                     6. Referral Code                        *");
+        System.out.println("*                     7. Play Game                            *");
+        System.out.println("*                     8. Policy                               *");
+        System.out.println("*                     9. Back                                 *");
+        System.out.println("*                                                             *");
+        System.out.println("***************************************************************");
+  
     }
     public static void backAction(){
         System.out.println("\n===========GOING BACK==========\n");
-    }
-    public static void addHardcodeCust(){
-         customer[0] = new Customer("TAN AH KOW",21,"ahkow@gmail.com",122,150.00,LocalDate.of(2024,1,5),150);
     }
     
     public static void redeemMenu(){
@@ -70,7 +89,16 @@ public class Menu {
 //    }
 
     public static void adminOrCustMenu(){
-        System.out.print("Continue as\n1. Customer\n2. Admin User\n3. Exit\n");
+        System.out.println("***************************************************************");
+        System.out.println("*                       Continue As                           *");
+        System.out.println("***************************************************************");
+        System.out.println("*                                                             *");
+        System.out.println("*                       1. Customer                           *");
+        System.out.println("*                       2. Admin User                         *");
+        System.out.println("*                       3. Exit                               *");
+        System.out.println("*                                                             *");
+        System.out.println("***************************************************************");
+       
     }
     
     public static void displayPolicyMenu(){

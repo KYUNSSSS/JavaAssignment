@@ -94,9 +94,9 @@ public class main {
                                                 do {
                                                     System.out
                                                             .println("Welcome back," + customer[currentUser].getName()
-                                                            +"\nPoint Balance: "
+                                                            +"\t\t\t\tPoint Balance: "
                                                             + (int) customer[currentUser].getTotalPurchaseAmount()
-                                                            + "\n");
+                                                            );
                                                     Menu.userMenu();
                                                     choice = enterChoice();
                                                     switch (choice) {

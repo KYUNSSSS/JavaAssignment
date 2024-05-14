@@ -59,20 +59,38 @@ public class Redemption {
         this.quantity = quantity;
     }
    
-  public static void redeemProduct(Product[] product, Customer[] customer, String tier){
+  public void redeemProduct(Product[] product, Customer[] customer, String tier){
         int choice = 0;
-        Product prod = new Product();
+        Product productClass = new Product();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("                               Product Menu");
-        System.out.println("___________________________________________________________________________");
-        System.out.println("  No.            Product           Quantity Remaining     Required Points  ");
-        for(int i=0; i<(product.length);i++){
-            System.out.printf("  %-3d     %-23s          %-20d %-18d\n", (i + 1),product[i].getProductName(),product[i].getProdQty(), product[i].getRequiredPoint());
+        System.out.println("                                       Product Menu");
+        System.out.println("______________________________________________________________________________________________");
+        System.out.println("\nAll Tier Product");
+        
+        System.out.println("______________________________________________________________________________________________");
+        System.out.println("  No.            Product           Quantity Remaining     Required Points     Tier Required");
+        System.out.println("______________________________________________________________________________________________");
+        for(int i=0; i<(3);i++){
+            System.out.printf("  %-3d     %-23s          %-20d %-18d %-2s\n", (i + 1),product[i].getProductName(),product[i].getProdQty(), product[i].getRequiredPoint(),"-");        
+        }
+        System.out.println("\nTier Limited Product");
+        System.out.println("______________________________________________________________________________________________");
+        System.out.println("  No.            Product           Quantity Remaining     Required Points     Tier Required");
+        System.out.println("______________________________________________________________________________________________");
+        for(int i=3; i<(6);i++){
+            System.out.printf("  %-3d     %-23s          %-20d %-16d %s\n", (i + 1),product[i].getProductName(),product[i].getProdQty(), product[i].getRequiredPoint(),((LimitedProduct)product[i]).getTier());
                 }
+        System.out.println("\nVoucher");
+        System.out.println("______________________________________________________________________________________________");
+        System.out.println("  No.            Product           Quantity Remaining     Required Points     Tier Required");
+        System.out.println("______________________________________________________________________________________________");
+        for(int i=6; i<(9);i++){
+            System.out.printf("  %-3d     %-23s          %-20d %-18d %-3s\n", (i + 1),product[i].getProductName(),product[i].getProdQty(), product[i].getRequiredPoint(),"-");
+                }
+
         
         int opt = main.enterChoice();
-        System.out.print("Quantity:");
-        int qty = main.enterChoice();
+        int qty = this.enterQuantity(product, opt);
         switch(opt){
             case 1,2,3:
                 if (opt == 1){
@@ -82,7 +100,7 @@ public class Redemption {
                 } else if(opt == 3){
                     choice = 2;
                 } 
-                prod.redeemProgress(product,choice,qty,customer);
+                productClass.redeemProgress(product,choice,qty,customer);
                 break;
             case 4,5,6:
                 if (opt == 4){
@@ -104,7 +122,7 @@ public class Redemption {
                         System.out.println("Tier level too low.");
                     }
                 }
-                prod.redeemProgress(product,choice,qty,customer);
+                productClass.redeemProgress(product,choice,qty,customer);
                 break;
             case 7,8,9:
                 if (opt == 7){
@@ -114,10 +132,37 @@ public class Redemption {
                 } else if(opt == 9){
                     choice = 8;
                 }
-                prod.redeemProgress(product,choice,qty,customer);
+                productClass.redeemProgress(product,choice,qty,customer);
                 break;
         }
   }
+  
+  public int enterQuantity(Product[] product, int opt) {
+        Scanner scan = new Scanner(System.in);
+        int num = 0;
+        boolean a = true;
+        do {
+            try {
+                System.out.print("\nEnter Quantity: ");
+                num = scan.nextInt();
+                if (num > product[opt-1].getProdQty() && num>0){
+                    System.out.println("Quantity entered out of range.");
+                    a = false;
+                }else{
+                    a = true;                   
+                }
+            } catch (Exception ex) {
+                System.out.println("Please number number only.");
+                a = false;
+                scan.nextLine();
+            }
+
+        } while (a == false);
+
+        return num;
+
+    }
+    
 //    public static void redemption(AllTierProduct atP, LimitedProduct liP, Voucher voucher, Customer[] customer, String tier){
 //        Menu.redeemMenu();
 //        int opt = main.enterChoice();

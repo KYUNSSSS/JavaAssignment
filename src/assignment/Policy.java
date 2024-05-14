@@ -131,14 +131,14 @@ public class Policy {
     }
 
     public static void displayPointEarnByPurchase() {
-        System.out.println("\n********** Frequently Asked Questions (FAQ): **********");
+        System.out.println("\n**************************************** Frequently Asked Questions (FAQ): ***************************************");
         System.out.println("Guidelines for earning points by purchase: ");
         System.out.println("1. How do I earn points by purchasing?");
         System.out.println("   - You can earn points by making purchases at our store.");
         System.out.println("   - The more you spend, the more points you'll accumulate.");
         System.out.println("2. How are points calculated for purchases?");
         System.out.println("   - Points are typically calculated based on the total amount spent on purchases.");
-        System.out.println("   - You can earn one point for every Ringgit spent.");
+        System.out.println("   -  You can earn one point for every Ringgit spent.");
         System.out.println("3. Are points earned immediately after a purchase?");
         System.out.println("   - Yes, points are typically credited to your account immediately after a qualifying purchase is made.");
         System.out.println("   - However, there may be rare instances where points are credited after a short processing period.");
@@ -150,7 +150,7 @@ public class Policy {
     }
 
     public static void displayPointEarnByReferral() {
-        System.out.println("\n********** Frequently Asked Questions (FAQ): **********");
+        System.out.println("\n**************************************** Frequently Asked Questions (FAQ): ***************************************");
         System.out.println("Guidelines for earning points by referral code...");
         System.out.println("1. How do I obtain a referral code?");
         System.out.println("   - The referral code can only be received by sharing with friends or family.");
@@ -164,11 +164,11 @@ public class Policy {
     }
 
     public static void displayPointEarnByPlayingGames(){
-        System.out.println("\n********** Frequently Asked Questions (FAQ): **********");
+        System.out.println("\n**************************************** Frequently Asked Questions (FAQ): ***************************************");
         System.out.println("Guidelines for earning points by playing games...");
         System.out.println("1. How are points awarded for playing games");
         System.out.println("   - Points are typically awarded based on your performance in the games.");
-        System.out.println("The higher your performance, the more points you're likely to earn.");
+        System.out.println("   - The higher your performance, the more points you're likely to earn.");
         System.out.println("2. How many points can I earn by playing games?");
         System.out.println("   - The number of points you can earn varies depending on your performance in the games.");
         System.out.println("   - Generally, you'll earn 50 points for each successful completion of a game level or challenge.");
@@ -183,7 +183,7 @@ public class Policy {
     }
     
      public static void displayRedemptionMenu() {
-        System.out.println("\n********** Frequently Asked Questions (FAQ): **********");
+        System.out.println("\n*********************************** Frequently Asked Questions (FAQ): **********************************");
         System.out.println("Guidelines for Redeemption...");
         System.out.println("1. What types of rewards are included?");
         System.out.println("   - There are three types of reward, including normal product, limited product and voucher.");
@@ -197,19 +197,19 @@ public class Policy {
     }
      
     public static void displayMembershipTierMenu() {
-        System.out.println("\n********** Frequently Asked Questions (FAQ): **********");
+        System.out.println("\n****************************** Frequently Asked Questions (FAQ): *****************************");
         System.out.println("\nMembership Tier Guidelines:");
         System.out.println("1. How is my spending calculated for membership tiers");
-        System.out.println("    - How is my spending calculated for membership tiers?");
+        System.out.println("   - How is my spending calculated for membership tiers?");
         System.out.println("2. Can I move up or down between membership tiers?");
         System.out.println("   - Yes, your membership tier can change based on your spending.");
-        System.out.println("   - If your spending increases, you may move up to a higher tier, and vice versa");
+        System.out.println("   - If your spending increases, you may move up to a higher tier, and vice versa.");
         System.out.println("3. Are there any additional benefits for higher-tier members?");
         System.out.println("   - Yes, higher-tier members often receive redemption rewards without any restrictions.");
     }
     
     public static void displayPointEarnMenuTnC(){
-        System.out.println("\n********** Term and Condition (TNC): **********");
+        System.out.println("\n************************************ Term and Condition (TNC): ***********************************");
         System.out.println("1. Point Earn");
         System.out.println("    1.1 Point Accumulation: Points are accumulated based on eligible purchases,");
         System.out.println("        referral code usage, and game participation, subject to the terms outlined below.");
@@ -227,7 +227,7 @@ public class Policy {
     }
 
     public static void displayRedemptionMenuTnC() {
-        System.out.println("\n********** Term and Condition (TNC): **********");
+        System.out.println("\n******************************************** Term and Condition (TNC): *******************************************");
         System.out.println("2. Redeemption");
         System.out.println("    2.1 Eligible Rewards: Customers can redeem points for various rewards, including normal products,");
         System.out.println("        limited edition items, and vouchers, subject to availability and eligibility.");
@@ -249,7 +249,7 @@ public class Policy {
     
 
     public static void displayMembershipTierMenuTnC() {
-        System.out.println("\n********** Term and Condition (TNC): **********");
+       System.out.println("\n******************************************* Term and Condition (TNC): ******************************************");
         System.out.println("3. Membership Tier");
         System.out.println("    3.1 Membership tiers are based on total spending:");
         System.out.println("        3.1.1 No Tier: Below RM100 spent");

@@ -31,13 +31,8 @@ public class main {
     public static void main(String[] args) {
 
         Loyalty loyalty = new Loyalty();
+        Redemption redemption = new Redemption();
         // Point pts = new Point(customer[currentUser]);
-        // Product[] product = {
-        //     new AllTierProduct (),
-        // };
-//        AllTierProduct aTierProd = AllTierProduct.iniReProd();
-//        LimitedProduct liProd = LimitedProduct.iniLiProd();
-//        Voucher voucher = Voucher.iniVoucher();
     Product[] product={
         new AllTierProduct("Pillow","Harvey Norman",10,0,50),
         new AllTierProduct("Headphone","Harvey Norman",12,0,50),

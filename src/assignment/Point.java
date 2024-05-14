@@ -81,7 +81,8 @@ public class Point {
                 System.out.println("Please make a payment first.\n");
             } else if (expiryDate != null && currentDate.isAfter(expiryDate)) {
                 System.out.println("Current Purchase Date: " + currentDate.format(formatter));
-                System.out.println("Points have expired on " + expiryDate.format(formatter) + "\nTotal Points: 0");
+                System.out.println("Total Points: 0");
+                System.out.println("Points have expired on: " + expiryDate.format(formatter));
                 point = 0;
                 customer[main.currentUser].setTotalPurchaseAmount(0);
                 ftPurchaseDate = expiryDate;

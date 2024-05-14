@@ -95,7 +95,7 @@ public class PointEarn {
                                 System.out.println("Exiting...");
                                 return; // Exit the method
                             } else {
-                                System.out.println("Invalid input! Please enter Y/N\n.");
+                                System.out.println("Invalid input! Please enter [Y/N].\n");
                             }
                         }
                     } else {

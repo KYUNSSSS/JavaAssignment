@@ -132,7 +132,7 @@ public class Policy {
 
     public static void displayPointEarnByPurchase() {
         System.out.println("\n**************************************** Frequently Asked Questions (FAQ): ***************************************");
-        System.out.println("Guidelines for earning points by purchase... ");
+        System.out.println("Guidelines for earning points by purchase: ");
         System.out.println("1. How do I earn points by purchasing?");
         System.out.println("   - You can earn points by making purchases at our store.");
         System.out.println("   - The more you spend, the more points you'll accumulate.");
@@ -184,7 +184,7 @@ public class Policy {
     
      public static void displayRedemptionMenu() {
         System.out.println("\n*********************************** Frequently Asked Questions (FAQ): **********************************");
-        System.out.println("Guidelines for Redemption...");
+        System.out.println("Guidelines for Redeemption...");
         System.out.println("1. What types of rewards are included?");
         System.out.println("   - There are three types of reward, including normal product, limited product and voucher.");
         System.out.println("2. How many rewards can be redeemed in total?");
@@ -228,7 +228,7 @@ public class Policy {
 
     public static void displayRedemptionMenuTnC() {
         System.out.println("\n******************************************** Term and Condition (TNC): *******************************************");
-        System.out.println("2. Redemption");
+        System.out.println("2. Redeemption");
         System.out.println("    2.1 Eligible Rewards: Customers can redeem points for various rewards, including normal products,");
         System.out.println("        limited edition items, and vouchers, subject to availability and eligibility.");
         System.out.println("    2.2 Redemption Restrictions: No tier customers can redeem all rewards except for limited edition items.");
@@ -254,8 +254,8 @@ public class Policy {
         System.out.println("    3.1 Membership tiers are based on total spending:");
         System.out.println("        3.1.1 No Tier: Below RM100 spent");
         System.out.println("        3.1.2 Silver Tier: RM100 to RM1000 spent");
-        System.out.println("        3.1.3 Gold Tier: RM1001 to RM10000 spent");
-        System.out.println("        3.1.4 Platinum Tier: Above RM10001 spent");
+        System.out.println("        3.1.3 Gold Tier: RM1000 to RM10000 spent");
+        System.out.println("        3.1.4 Platinum Tier: Above RM10000 spent");
         System.out.println("    3.2 Tier Benefits: Each membership tier offers a");
         System.out.println("        range of benefits and privileges tailored to the spending level of the member. ");
         System.out.println("    3.3 Tier Upgrades: Customers can move up to higher tiers by reaching the spending threshold required ");
@@ -291,36 +291,39 @@ public class Policy {
         } while (!validInput);
         return num;
     }
-    
+
     public static void continueReadingPolicy() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("\nDo you want to continue reading other policies? (Y/N): ");
-        char choice = scanner.next().charAt(0);
-
-        if (choice == 'Y' || choice == 'y') {
+        System.out.print("Do you want to continue reading other policies (Y/N)? ");
+        String input = scanner.nextLine();
+        while (!input.equalsIgnoreCase("Y") && !input.equalsIgnoreCase("N")) {
+            System.out.println("Invalid input. Please enter 'Y' or 'N'.");
+            System.out.print("Do you want to continue reading other policies (Y/N)? ");
+            input = scanner.nextLine();
+        }
+        if (input.equalsIgnoreCase("Y")) {
             displayMainMenuFaQ();
-        } else if (choice == 'N' || choice == 'n') {
-            System.out.println("Stop reaading policy.");
         } else {
-            System.out.println("Invalid choice. Please enter Y or N.");
-            continueReadingPolicy(); 
+            displayFAQandTerms();
         }
     }
-    
+
     public static void continueReadingPolicyTnC() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("\nDo you want to continue reading other policies? (Y/N): ");
-        char choice = scanner.next().charAt(0);
-
-        if (choice == 'Y' || choice == 'y') {
-            displayMainMenuTnC();
-        } else if (choice == 'N' || choice == 'n') {
-            System.out.println("Stop reaading policy.");
-        } else {
-            System.out.println("Invalid choice. Please enter Y or N.");
-            continueReadingPolicy(); 
+        System.out.print("Do you want to continue reading other policies (Y/N)? ");
+        String input = scanner.nextLine();
+        while (!input.equalsIgnoreCase("Y") && !input.equalsIgnoreCase("N")) {
+            System.out.println("Invalid input. Please enter 'Y' or 'N'.");
+            System.out.print("Do you want to continue reading other policies (Y/N)? ");
+            input = scanner.nextLine();
         }
-    } 
+        if (input.equalsIgnoreCase("Y")) {
+            displayMainMenuTnC();
+        } else {
+            displayFAQandTerms();
+        }
+    }
+
 
     
 }

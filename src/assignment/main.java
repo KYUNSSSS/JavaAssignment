@@ -32,7 +32,6 @@ public class main {
 
         Loyalty loyalty = new Loyalty();
         Redemption redemption = new Redemption();
-        // Point pts = new Point(customer[currentUser]);
     Product[] product = {
         new AllTierProduct("Pillow","Harvey Norman",10,0,50),
         new AllTierProduct("Headphone","Harvey Norman",12,0,50),
@@ -47,9 +46,6 @@ public class main {
         Report report = new Report();
         Product prod = new Product();
 
-        // for (int x=0;x<customer.length;x++){
-        // System.out.println(customer[x].getPhoneNum());
-        // }
         Scanner input = new Scanner(System.in);
         Menu.splashScreen();
 
@@ -63,9 +59,6 @@ public class main {
             switch (selection) {
                 case 1:
                     readCustomersFile();
-//                    product.readProductFile();
-                    
-                    
 
                     do {
                         Menu.mainMenu();
@@ -117,6 +110,7 @@ public class main {
                                                             Point pointInstance = new Point(customer);
                                                             pointInstance.checkAmount(customer);
                                                             pointInstance.checkExpiryDate(customer);
+                                                            pressEnterToContinue();
                                                             Menu.backAction();
 
                                                             break;
@@ -138,6 +132,7 @@ public class main {
                                                         case 6:
                                                             customer[currentUser].updateReferralCode();
                                                             updateCustomerFile(customer);
+                                                            pressEnterToContinue();
                                                             Menu.backAction();
                                                             break;
                                                         case 7:
@@ -331,7 +326,6 @@ public class main {
         Scanner scan = new Scanner(System.in);
         System.out.print("\nPress Enter key to continue...");
         try {
-            System.in.read();
             scan.nextLine();
         } catch (Exception e) {
         }

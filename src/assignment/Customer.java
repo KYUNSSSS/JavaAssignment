@@ -445,10 +445,19 @@ public class Customer {
     }
     
     public String displayProfile(){
-        return  "Name        : " + name +
-                "\nAge         : " + age +
-                "\nEmail       : " + email +
-                "\nPhone Number: " + phoneNum;
+        return  """
+                
+                ***************************************************************
+                *                         PROFILE                             *
+                ***************************************************************
+                                                                            
+                   1. Name :"""+name+"\n"+
+                "   2. Age :"+age+"\n"+                         
+                "   3. Email :"+email+"\n"+                    
+                "   4. Phone Number :"+phoneNum+"\n";
+              
+                
+          
     }  
     public static int checkPhoneNumber() {
         Scanner scan= new Scanner(System.in);

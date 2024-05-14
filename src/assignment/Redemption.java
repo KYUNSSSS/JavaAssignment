@@ -148,7 +148,7 @@ public class Redemption {
                 num = scan.nextInt();
                 a = true;
             } catch (Exception ex) {
-                System.out.println("Please enter numbers displayed only.");
+                System.out.println("Please enter number only.");
                 a = false;
                 scan.nextLine();
             }

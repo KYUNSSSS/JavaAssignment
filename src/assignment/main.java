@@ -121,7 +121,7 @@ public class main {
                                                             break;
                                                         case 4:
                                                             loyalty.updateTier(customer);
-                                                            Redemption.redeemProduct(product, customer,
+                                                            redemption.redeemProduct(product, customer,
                                                                     customer[currentUser].getTier());
                                                             break;
                                                         case 5:

@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public abstract class Policy {
 
-    public abstract void displayMainMenu();
-    public abstract void continueReadingPolicy();
-    public static int enterChoice() {
+    protected abstract void displayMainMenu();
+    protected abstract void continueReadingPolicy();
+    protected static int enterChoice() {
         Scanner scan = new Scanner(System.in);
         int num = 0;
         boolean validInput = false;

@@ -57,8 +57,8 @@ public class Loyalty {
         this.customer = customer;
     }
     
-    public String displayTier() {
-        return "Your Current Tier is Tier " + tierLevel + ", " + tierName;
+    public String displayTier(Customer customer) {
+        return "Your Current Tier is Tier " + customer.getTier();
     }
     
     public void updateTier(Customer[] customer) {
@@ -82,12 +82,5 @@ public class Loyalty {
             
             customer[i].setTier(tierName);
         }
-        
-        
-//        for (int i = 0; i <= Customer.getUserRegistered(); i++){
-//            customer[i].setTier(tierName);
-//        }
-//        
-//        return tierLevel;
     }
 }

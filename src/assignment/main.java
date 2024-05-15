@@ -116,7 +116,8 @@ public class main {
                                                         case 5:
                                                             loyalty.updateTier(customer);
                                                             System.out.println(customer[currentUser].toString());
-                                                            System.out.println(loyalty.displayTier());
+                                                            System.out.println(
+                                                                    loyalty.displayTier(customer[currentUser]));
                                                             System.out.println();
                                                             pressEnterToContinue();
                                                             Menu.backAction();
@@ -145,7 +146,7 @@ public class main {
                                                         default:
                                                             Menu.backAction();
                                                     }
-                            
+
                                                 } while (choice != 10 && result == true);
 
                                                 break;
@@ -168,7 +169,7 @@ public class main {
                     } while (choice != 3);
                     break;
                 case 2:
-                    System.out.print("Enter Username: ");
+                    System.out.print("\nEnter Username: ");
                     String username = input.next();
                     System.out.print("Enter Password: ");
                     String apw = input.next();
@@ -178,12 +179,15 @@ public class main {
                         while (a.hasNextLine()) {
                             String line = a.nextLine();
                             String[] values = line.split(",");
+
                             String chkUsername = values[1];
                             String chkApw = values[2];
-                            
+
                             if (username.equals(chkUsername)) {
                                 if (apw.equals(chkApw)) {
+                                    System.out.println("\nAdmin Login Successfully!");
                                     int reportChoice;
+
                                     do {
                                         Menu.reportMenu();
                                         System.out.print("Select Report to view: ");
@@ -191,43 +195,46 @@ public class main {
 
                                         switch (reportChoice) {
                                             case 1:
-                                                // Customer Tier
-                                                report.setReportTitle("Customer Tier Report");
                                                 loyalty.updateTier(customer);
                                                 report.calculateTierCust(customer);
                                                 report.displayTierReport();
+                                                pressEnterToContinue();
                                                 break;
                                             case 2:
                                                 report.displayRedemptionReport(product);
-                                                System.out.print("Do you want to increase stock inventory? (Y/N) : ");
+                                                System.out.print("Do you want to increase stock inventory? (Y to continue) : ");
                                                 String increase = input.next();
                                                 if ((increase.toUpperCase()).equals("Y")) {
-                                                    System.out.print("Enter Product No.: ");
-                                                    int stock = input.nextInt();
-                                                    System.out.print("Enter number to increase: ");
-                                                    int addStock = input.nextInt();
-                                                    report.updateStockInventory(stock, addStock, product);
+                                                    report.updateStockInventory(product);
+                                                } else {
+                                                    Menu.backAction();
                                                 }
+                                                pressEnterToContinue();
                                                 break;
                                             case 3:
                                                 report.displayPointReport(customer);
+                                                pressEnterToContinue();
                                                 break;
                                             case 4:
                                                 Menu.backAction();
                                                 break;
                                             default:
+                                                Menu.backAction();
                                                 break;
                                         }
                                     } while (reportChoice == 1 || reportChoice == 2 || reportChoice == 3);
+                                } else {
+                                    System.out.println("\nInvalid username or password. Please try again.\n");
                                 }
+                            } else {
+                                System.out.println("\nInvalid username or password. Please try again.\n");
                             }
                         }
                         a.close();
                     } catch (IOException e) {
-                        System.err.println("An error occurred while reading customer data.");
+                        System.out.println("An error occurred while reading Admin data.");
                     }
                     break;
-
                 case 3:
                     System.out.println("Thank you for using our system!");
                     break;
@@ -250,12 +257,12 @@ public class main {
                 String line = scanner.nextLine();
                 String[] values = line.split(",");
                 Customer newCustomer = new Customer();
-                newCustomer.setName(values[1]); 
+                newCustomer.setName(values[1]);
                 newCustomer.setAge(Integer.parseInt(values[2]));
                 newCustomer.setEmail(values[3]);
                 newCustomer.setPhoneNum(Integer.parseInt(values[4]));
                 newCustomer.setTotalPurchaseAmount(Double.parseDouble(values[5]));
-                String dateString = values[6]; 
+                String dateString = values[6];
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate pointDate = LocalDate.parse(dateString, formatter);
                 newCustomer.setPointDate(pointDate);

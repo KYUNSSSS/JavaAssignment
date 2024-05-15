@@ -50,7 +50,7 @@ public class Menu {
         System.out.println("*                     5. Profile                              *");
         System.out.println("*                     6. Referral Code                        *");
         System.out.println("*                     7. Play Game                            *");
-        System.out.println("*                     8. Frequenctly Asked Questions          *");
+        System.out.println("*                     8. Frequently Asked Questions           *");
         System.out.println("*                     9. Terms and Conditions                 *");
         System.out.println("*                     10. Back                                *");
         System.out.println("*                                                             *");

@@ -73,21 +73,6 @@ public class Product {
         this.requiredPoint = requiredPoint;
     }
 
-    public void redeemProgress(Product[] product, int choice, int qty, Customer[] customer) {
-        int finalPoint = (int) customer[main.currentUser].getTotalPurchaseAmount() - (qty * product[choice].getRequiredPoint());
-        if (finalPoint < 0) {
-            System.out.println("Balance point insufficient.");
-        } else {
-            customer[main.currentUser].setTotalPurchaseAmount(finalPoint);
-            main.updateCustomerFile(customer);
-            int prodQty = product[choice].getProdQty() - qty;
-            int prodRedeemed = product[choice].getQtyRedeemed() + qty;
-            product[choice].setProdQty(prodQty);
-            product[choice].setQtyRedeemed(prodRedeemed);
-            System.out.println("Balance Point: " + finalPoint + "\n");
-        }
-    }
-
     public void readProductFile(Product[] product) {
         int num = 0;
 
@@ -97,8 +82,6 @@ public class Product {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] values = line.split(",");
-//                int[] qtyRemaining = {Integer.parseInt(values[0]), Integer.parseInt(values[1]), Integer.parseInt(values[2])};
-//                this.setQtyRemaining(qtyRemaining);
 
                 Product newProd = new Product();
 
@@ -125,7 +108,6 @@ public class Product {
     public void updateProductFile(Product[] product) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("product.txt"));
-//                    String Data = this.getQtyRemaining(0) +","+getQtyRemaining(1)+","+getQtyRemaining(2);
             for (int i = 0; i < product.length; i++) {
                 if (product[i] != null) {
                     String prodData = product[i].getProdQty() + "," + product[i].getQtyRedeemed();

@@ -52,7 +52,7 @@ public class main {
             Menu.adminOrCustMenu();
             selection = enterChoice();
             prod.readProductFile(product);
-            prod.updateProductFile(product);;
+            prod.updateProductFile(product);
 
             switch (selection) {
                 case 1:
@@ -122,7 +122,7 @@ public class main {
                                                             break;
                                                         case 5:
                                                             loyalty.updateTier(customer);
-                                                            System.out.println(customer[currentUser].displayProfile());
+                                                            System.out.println(customer[currentUser].toString());
                                                             System.out.println(loyalty.displayTier());
                                                             System.out.println();
                                                             pressEnterToContinue();
@@ -170,7 +170,6 @@ public class main {
                         }
 
                         updateCustomerFile(customer);
-//                        aTierProd.updateProductFile();
                     } while (choice != 3);
                     break;
                 case 2:
@@ -210,9 +209,6 @@ public class main {
 
                                                 // Menu.prodReportMenu();
                                                 report.displayRedemptionReport(product);
-//                                                report.displayRedemptionReport(aTierProd);
-//                                                report.displayRedemptionReport(liProd);
-//                                                report.displayRedemptionReport(voucher);
                                                 // maybe can add some alert like the particular stock number is less
                                                 // than 10
                                                 System.out.print("Do you want to increase stock inventory? (Y/N) : ");

@@ -61,7 +61,6 @@ public class Redemption {
    
   public void redeemProduct(Product[] product, Customer[] customer, String tier){
         int choice = 0;
-        Product productClass = new Product();
         Scanner scanner = new Scanner(System.in);
         System.out.println("                                       Product Menu");
         System.out.println("______________________________________________________________________________________________");
@@ -101,32 +100,32 @@ public class Redemption {
                     choice = 2;
                 } 
                 qty = this.enterQuantity(product, opt);
-                productClass.redeemProgress(product,choice,qty,customer);
+                this.redeemProgress(product,choice,qty,customer);
                 break;
             case 4,5,6:
                 if (opt == 4){
-                    if (tier == "Silver" || tier == "Gold" || tier == "Platinum"){
+                    if (tier.equals("Silver") || tier.equals("Gold") || tier.equals("Platinum")){
                         choice = 3; 
                         qty = this.enterQuantity(product, opt);
                     }else{
                         System.out.println("Tier level too low.");
                     }
                 } else if (opt == 5){
-                    if (tier == "Gold" || tier == "Platinum"){
+                    if (tier.equals("Gold") || tier.equals("Platinum")){
                         choice = 4;    
                         qty = this.enterQuantity(product, opt);
                     }else{
                         System.out.println("Tier level too low.");
                     }
                 } else if(opt == 6){
-                    if (tier == "Platinum"){
+                    if (tier.equals("Platinum")){
                         choice = 5;         
                         qty = this.enterQuantity(product, opt);
                     }else{
                         System.out.println("Tier level too low.");
                     }
                 }
-                productClass.redeemProgress(product,choice,qty,customer);
+                this.redeemProgress(product,choice,qty,customer);
                 break;
             case 7,8,9:
                 if (opt == 7){
@@ -136,10 +135,25 @@ public class Redemption {
                 } else if(opt == 9){
                     choice = 8;
                 }
-                productClass.redeemProgress(product,choice,qty,customer);
+                this.redeemProgress(product,choice,qty,customer);
                 break;
         }
   }
+
+  public void redeemProgress(Product[] product, int choice, int qty, Customer[] customer) {
+        int finalPoint = (int) customer[main.currentUser].getTotalPurchaseAmount() - (qty * product[choice].getRequiredPoint());
+        if (finalPoint < 0) {
+            System.out.println("Balance point insufficient.");
+        } else {
+            customer[main.currentUser].setTotalPurchaseAmount(finalPoint);
+            main.updateCustomerFile(customer);
+            int prodQty = product[choice].getProdQty() - qty;
+            int prodRedeemed = product[choice].getQtyRedeemed() + qty;
+            product[choice].setProdQty(prodQty);
+            product[choice].setQtyRedeemed(prodRedeemed);
+            System.out.println("Balance Point: " + finalPoint + "\n");
+        }
+    }
   
   public int enterQuantity(Product[] product, int opt) {
         Scanner scan = new Scanner(System.in);
@@ -166,29 +180,6 @@ public class Redemption {
         return num;
 
     }
-    
-//    public static void redemption(AllTierProduct atP, LimitedProduct liP, Voucher voucher, Customer[] customer, String tier){
-//        Menu.redeemMenu();
-//        int opt = main.enterChoice();
-//
-//        switch(opt){
-//            case 1:
-//                atP.redeemProduct(atP,customer);
-//                break;
-//            case 2:
-//                if(tier == "No Tier"){
-//                    System.out.println("Tier Level too low to redeem Tier Limited Item.");
-//                } else {
-//                    liP.redeemProduct(liP,tier,customer);
-//                }
-//                break;                
-//            case 3:
-//                voucher.redeemProduct(voucher,customer);
-//                break;
-//            default:
-//                System.out.print("Cancelled redemption");
-//        }
-//    }
     
 }
 

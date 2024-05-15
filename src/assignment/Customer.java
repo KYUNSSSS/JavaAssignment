@@ -427,7 +427,9 @@ public class Customer {
         this.totalPurchaseAmount += amount;
     }
 
-    public String displayProfile() {
+   
+    @Override
+    public String toString() {
         return """
                 
                 ***************************************************************

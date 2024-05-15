@@ -130,7 +130,7 @@ public class main {
 
                                                             break;
                                                         case 6:
-                                                            customer[currentUser].updateReferralCode();
+                                                            PointEarn.updateReferralCode(customer);
                                                             updateCustomerFile(customer);
                                                             pressEnterToContinue();
                                                             Menu.backAction();

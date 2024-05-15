@@ -15,7 +15,6 @@ import java.util.Scanner;
  * @author Hp
  */
 public class Customer {
-
     Scanner input = new Scanner(System.in);
     private String name = "";
     private int age = 0;
@@ -426,25 +425,6 @@ public class Customer {
 
     public void updateTotalPurchaseAmounts(double amount) {
         this.totalPurchaseAmount += amount;
-    }
-
-    public void updateReferralCode() {
-        Scanner scanner = new Scanner(System.in);
-        String referralCode = "ABC123";
-        boolean validCodeEntered = false;
-
-        while (!validCodeEntered) {
-            System.out.print("\nEnter the referral code: ");
-            String inputCode = scanner.next();
-
-            if (inputCode.equals(referralCode)) {
-                System.out.println("\nYou earned 50 points!");
-                this.totalPurchaseAmount += 50;
-                validCodeEntered = true;
-            } else {
-                System.out.println("Invalid code! Please try again.");
-            }
-        }
     }
 
     public String displayProfile() {

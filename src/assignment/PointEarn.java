@@ -127,4 +127,24 @@ public class PointEarn {
         }
         System.out.println("Total points: " + points);
     }
+
+    public static void updateReferralCode(Customer[] customer) {
+        Scanner scanner = new Scanner(System.in);
+        String referralCode = "ABC123";
+        boolean validCodeEntered = false;
+
+        while (!validCodeEntered) {
+            System.out.print("\nEnter the referral code: ");
+            String inputCode = scanner.next();
+
+            if (inputCode.equals(referralCode)) {
+                System.out.println("\nYou earned 50 points!");
+                double amt = customer[main.currentUser].getTotalPurchaseAmount() + 50;
+                customer[main.currentUser].setTotalPurchaseAmount(amt) ;
+                validCodeEntered = true;
+            } else {
+                System.out.println("Invalid code! Please try again.");
+            }
+        }
+    }
 }

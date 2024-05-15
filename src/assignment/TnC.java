@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class TnC extends Policy {
 
+    @Override
     public void displayMainMenu() {
          Menu.displayPolicyMenu();
 
@@ -30,6 +31,22 @@ public class TnC extends Policy {
             default:
                 System.out.println("Invalid choice. Please select again.");
                 displayMainMenu();
+        }
+    }
+    @Override
+    public void continueReadingPolicy() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Do you want to continue reading other policies (Y/N)? ");
+        String input = scanner.nextLine();
+        while (!input.equalsIgnoreCase("Y") && !input.equalsIgnoreCase("N")) {
+            System.out.println("Invalid input. Please enter 'Y' or 'N'.");
+            System.out.print("Do you want to continue reading other policies (Y/N)? ");
+            input = scanner.nextLine();
+        }
+        if (input.equalsIgnoreCase("Y")) {
+            displayMainMenu();
+        } else {
+            System.out.println("Stop Reading Policy");
         }
     }
 
@@ -100,19 +117,5 @@ public class TnC extends Policy {
         System.out.println("        customers agree to abide by these terms and conditions and any additional rules.");
     }
 
-    public void continueReadingPolicy() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Do you want to continue reading other policies (Y/N)? ");
-        String input = scanner.nextLine();
-        while (!input.equalsIgnoreCase("Y") && !input.equalsIgnoreCase("N")) {
-            System.out.println("Invalid input. Please enter 'Y' or 'N'.");
-            System.out.print("Do you want to continue reading other policies (Y/N)? ");
-            input = scanner.nextLine();
-        }
-        if (input.equalsIgnoreCase("Y")) {
-            displayMainMenu();
-        } else {
-            System.out.println("Stop Reading Policy");
-        }
-    }
+    
 }

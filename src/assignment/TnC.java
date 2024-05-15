@@ -14,15 +14,15 @@ public class TnC extends Policy {
         switch (choice) {
             case 1:
                 displayPointEarnMenuTnC();
-                continueReadingPolicyTnC();
+                continueReadingPolicy();
                 break;
             case 2:
                 displayRedemptionMenuTnC();
-                continueReadingPolicyTnC();
+                continueReadingPolicy();
                 break;
             case 3:
                 displayMembershipTierMenuTnC();
-                continueReadingPolicyTnC();
+                continueReadingPolicy();
                 break;
             case 4:
                 // displayFAQandTerms();
@@ -100,7 +100,7 @@ public class TnC extends Policy {
         System.out.println("        customers agree to abide by these terms and conditions and any additional rules.");
     }
 
-    public void continueReadingPolicyTnC() {
+    public void continueReadingPolicy() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Do you want to continue reading other policies (Y/N)? ");
         String input = scanner.nextLine();

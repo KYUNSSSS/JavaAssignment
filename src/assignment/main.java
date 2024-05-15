@@ -43,7 +43,7 @@ public class main {
             new Voucher("RM 20 Discount Voucher", "Deduct RM20 on Next Purchase", 15, 0, 150),};
         Report report = new Report();
         Product prod = new Product();
-
+       
         Scanner input = new Scanner(System.in);
         Menu.splashScreen();
 
@@ -141,14 +141,19 @@ public class main {
                                                             Menu.backAction();
                                                             break;
                                                         case 8:
-                                                            Policy.displayFAQandTerms();
+                                                            Faq faq=new Faq();
+                                                            faq.displayMainMenu();
                                                             Menu.backAction();
                                                             break;
+                                                        case 9:
+                                                            TnC tnc = new TnC();
+                                                            tnc.displayMainMenu();
+                                                            Menu.backAction();
                                                         default:
                                                             Menu.backAction();
                                                     }
                                                     // updateCustomerFile(customer);
-                                                } while (choice != 9 && result == true);
+                                                } while (choice != 10 && result == true);
 
                                                 break;
                                             }

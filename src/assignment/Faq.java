@@ -40,7 +40,6 @@ public class Faq extends Policy{
                 break;
             case 4:
                 displayMainMenu();
-                Menu.backAction();
                 break;
             default:
                 System.out.println("Invalid choice. Please select again.");
@@ -69,7 +68,7 @@ public class Faq extends Policy{
                 continueReadingPolicy();
                 break;
             case 4:
-                displayFAQandTerms();
+                
                 break;
             default:
                 System.out.println("Invalid choice. Please select again.");

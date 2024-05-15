@@ -87,7 +87,7 @@ public class PointEarn {
                     if (gamesPlayed < 5) {
                         boolean validChoice = false;
                         while (!validChoice) {
-                            System.out.println("Do you want to play again? [Y/N]");
+                            System.out.println("Do you want to play again? [Y/N].");
                             String choice = scanner.next();
                             if (choice.equalsIgnoreCase("Y") || choice.equalsIgnoreCase("y")) {
                                 validChoice = true;
@@ -109,7 +109,7 @@ public class PointEarn {
                         attemptsLeft = 3; // Reset attempts for the next game
                         gamesPlayed++;
                     } else {
-                        System.out.println("Incorrect! Try again. You have " + attemptsLeft + " attempts left.");
+                        System.out.println("Incorrect! Try again.\nYou have " + attemptsLeft + " attempts left.");
                     }
                 }
             } catch (java.util.InputMismatchException e) {

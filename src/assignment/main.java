@@ -35,7 +35,7 @@ public class main {
                 new LimitedProduct("Platinum", "Knife Set", "KSDesc", 14, 0, 150),
                 new Voucher("RM 5 Discount Voucher", "Deduct RM5 on Next Purchase", 15, 0, 50),
                 new Voucher("RM 10 Discount Voucher", "Deduct RM10 on Next Purchase", 15, 0, 90),
-                new Voucher("RM 20 Discount Voucher", "Deduct RM20 on Next Purchase", 15, 0, 150), };
+                new Voucher("RM 20 Discount Voucher", "Deduct RM20 on Next Purchase", 15, 0, 150) };
         Report report = new Report();
         Product prod = new Product();
         Menu.splashScreen();
@@ -48,17 +48,26 @@ public class main {
 
             switch (selection) {
                 case 1:
-                    readCustomersFile();
+                    
 
                     do {
+                        readCustomersFile();
                         Menu.mainMenu();
                         choice = enterChoice();
 
                         switch (choice) {
                             case 1:
+                                readCustomersFile();
+                                int userRegisteredBefore = Customer.getUserRegistered();
                                 customer[Customer.getUserRegistered()] = new Customer();
                                 customer[Customer.getUserRegistered()].enterDetail();
                                 pressEnterToContinue();
+                                
+                                if (Customer.getUserRegistered() > userRegisteredBefore) {
+                                    updateCustomerFile(customer);
+                                }
+                            
+                               
                                 Menu.backAction();
                                 break;
                             case 2:
@@ -86,6 +95,7 @@ public class main {
                                                     switch (choice) {
                                                         case 1:
                                                             customer[currentUser].updateDetail();
+                                                            updateCustomerFile(customer);
                                                             pressEnterToContinue();
                                                             Menu.backAction();
 
@@ -112,6 +122,7 @@ public class main {
                                                             redemption.redeemProduct(product, customer,
                                                                     customer[currentUser].getTier());
                                                             prod.updateProductFile(product);
+                                                            pressEnterToContinue();
                                                             break;
                                                         case 5:
                                                             loyalty.updateTier(customer);
@@ -143,6 +154,7 @@ public class main {
                                                             TnC tnc = new TnC();
                                                             tnc.displayMainMenu();
                                                             Menu.backAction();
+                                                            break;
                                                         default:
                                                             Menu.backAction();
                                                     }
@@ -165,7 +177,6 @@ public class main {
                             default:
                                 break;
                         }
-                        updateCustomerFile(customer);
                     } while (choice != 3);
                     break;
                 case 2:
@@ -242,7 +253,7 @@ public class main {
                     break;
             }
         } while (selection != 3);
-        updateCustomerFile(customer);
+        
     }
 
     public static void readCustomersFile() {

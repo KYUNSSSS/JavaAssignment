@@ -1,8 +1,9 @@
 0,Amanda Lee,23,amanda@gmail.com,343432343,5210.0,2024-05-10,5455
-1,Brandon,10,brandon@gmail.com,134567890,4850.0,2024-05-13,11955
-2,Chloe Tan,28,chloe@gmail.com,145678902,100.0,2024-05-09,5455
-3,Daniel Wong,18,daniel@gmail.com,122222222,10.0,2023-05-09,54545
+1,Brandon,20,brandon@gmail.com,134567890,5115.0,2024-05-15,12300
+2,Chloe Tan,28,chloe@gmail.com,145678902,550.0,2024-05-09,6115
+3,Daniel Wong,18,daniel@gmail.com,122222222,230.0,2024-05-15,54775
 4,Aisha,24,aisha@gmail.com,133333333,200.0,2023-05-09,54545
 5,Ali,33,ali@gmail.com,1232122321,34.0,2024-05-09,100
 6,Muthu,40,muthu@gmail.com,124563245,500.0,2024-05-11,1000
 7,John Smith,20,john@gmail.com,231238564,80.0,2024-05-12,80
+8,ali,12,ali@gmail.com,123456789,100.0,2024-05-15,100

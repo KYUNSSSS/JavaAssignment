@@ -135,6 +135,7 @@ public class Redemption {
                 } else if(opt == 9){
                     choice = 8;
                 }
+                qty = this.enterQuantity(product, opt);
                 this.redeemProgress(product,choice,qty,customer);
                 break;
         }

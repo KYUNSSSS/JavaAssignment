@@ -27,6 +27,7 @@ public class Customer {
     private int pointAccumulate;
 
     public Customer() {
+        this.pointDate = LocalDate.now();
         File custfile = new File("customerfile.txt");
         try {
 
@@ -51,11 +52,11 @@ public class Customer {
         this.email = email;
         this.phoneNum = phoneNum;
         this.totalPurchaseAmount = totalPurchaseAmount;
-        pointDate = LocalDate.now();
+        this.pointDate = LocalDate.now();
         userRegistered++;
     }
 
-    public Customer(String name, int age, String email, int phoneNum, double totalPurchaseAmount, LocalDate date, int pointAccumulate) {
+    public Customer(String name, int age, String email, int phoneNum, double totalPurchaseAmount, int pointAccumulate) {
 
         this.name = name;
         this.age = age;
@@ -63,7 +64,7 @@ public class Customer {
         this.phoneNum = phoneNum;
         this.totalPurchaseAmount = totalPurchaseAmount;
         this.pointAccumulate = pointAccumulate;
-        this.pointDate = date;
+        this.pointDate = LocalDate.now();
         userRegistered++;
         File custfile = new File("customerfile.txt");
         try {
@@ -171,6 +172,7 @@ public class Customer {
                 System.err.println("Name cannot be empty.");
                 a = !(name.isBlank());
             } else if (name.equals("0")) {
+                userRegistered-=2;
                 return;
             } else {
                 a = true;
@@ -261,15 +263,16 @@ public class Customer {
                     userRegistered = Integer.parseInt(values[0]) + 1;
                 }
             }
-
-            String input = String.format("%d,%s,%d,%s,%d,%.2f,%s,%d%n", userRegistered, name, age, email, phoneNum, totalPurchaseAmount, pointDate.toString(), pointAccumulate);
-            writer.write(input);
-            writer.close();
-            read.useDelimiter(",");
-            while (read.hasNext()) {
-                System.out.println(read.next());
+            if (!name.isEmpty() && age > 0 && !email.isEmpty() && phoneNum > 0) {
+                String input = String.format("%d,%s,%d,%s,%d,%.2f,%s,%d%n", userRegistered, name, age, email, phoneNum, totalPurchaseAmount, pointDate.toString(), pointAccumulate);
+                writer.write(input);
+                writer.close();
+                read.useDelimiter(",");
+                while (read.hasNext()) {
+                    System.out.println(read.next());
+                }
+                read.close();
             }
-            read.close();
         } catch (IOException e) {
             System.out.println("An error occurred.");
         }
@@ -413,7 +416,7 @@ public class Customer {
             num+=num*15/100;}
                 
         this.totalPurchaseAmount += num;
-        pointDate = LocalDate.now();
+        // pointDate = LocalDate.now();
         this.pointAccumulate += (int) num;
         System.out.print("New Balance Amount: RM" + this.totalPurchaseAmount + "\n");
 

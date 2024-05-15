@@ -35,11 +35,11 @@ public class TnC extends Policy {
     @Override
     public void continueReadingPolicy() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Do you want to continue reading other policies (Y/N)? ");
+        System.out.print("\nDo you want to continue reading other policies (Y/N)? ");
         String input = scanner.nextLine();
         while (!input.equalsIgnoreCase("Y") && !input.equalsIgnoreCase("N")) {
             System.out.println("Invalid input. Please enter 'Y' or 'N'.");
-            System.out.print("Do you want to continue reading other policies (Y/N)? ");
+            System.out.print("\nDo you want to continue reading other policies (Y/N)? ");
             input = scanner.nextLine();
         }
         if (input.equalsIgnoreCase("Y")) {

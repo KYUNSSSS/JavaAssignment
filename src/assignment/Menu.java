@@ -13,15 +13,18 @@ import java.time.LocalDate;
  * @author Hp
  */
 public class Menu {
+    public static final String YELLOW = "\u001B[33m";
+    public static final String RESET = "\u001B[0m";
+
     public static void splashScreen(){
-        System.out.println("""
+        System.out.println(YELLOW+"""
                              ____  ______ ________          __     _____  _____  
                             |  _ \\|  ____|  ____\\ \\        / /\\   |  __ \\|  __ \\ 
                             | |_) | |__  | |__   \\ \\  /\\  / /  \\  | |__) | |  | |
                             |  _ <|  __| |  __|   \\ \\/  \\/ / /\\ \\ |  _  /| |  | |
                             | |_) | |____| |____   \\  /\\  / ____ \\| | \\ \\| |__| |
                             |____/|______|______|   \\/  \\/_/    \\_\\_|  \\_\\_____/                                                                                
-                                                                                 """);
+                                                                                 """+RESET);
         
     }
     public static void mainMenu(){
@@ -78,25 +81,7 @@ public class Menu {
     public static void prodReportMenu(){
         System.out.print("Product Report Option\n1. Normal Redemption Product\n2. Limited Redemption Product\n3. Voucher\n4. Back\n");
     }
-    
-//    public static void stockMenu(){
-//        System.out.print("""
-//                         Choose Product to Increase Stock
-//                         ================================
-//                         # Normal Redemption Product
-//                         1. Pillow
-//                         2. Headphone
-//                         3. Backpack
-//                         # Limited Redemption Product
-//                         4. Vacuum Cleaner
-//                         5. Cooking Pan
-//                         6. Knife Set
-//                         # Voucher
-//                         7. RM5 Discount Voucher
-//                         8. RM10 Discount Voucher
-//                         9. RM20 Discount Voucher
-//                           """);
-//    }
+
 
     public static void adminOrCustMenu(){
         System.out.println("***************************************************************");

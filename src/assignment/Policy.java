@@ -8,35 +8,6 @@ import java.util.Scanner;
 
 public abstract class Policy {
 
-    // public void displayFAQandTerms() {
-    //     System.out.println("\n***************************************************************");
-    //     System.out.println("*                       BEEWARD POLICY                        *");
-    //     System.out.println("***************************************************************");
-    //     System.out.println("*                                                             *");
-    //     System.out.println("*                       1. FAQ                                *");
-    //     System.out.println("*                       2. Terms and Conditions               *");
-    //     System.out.println("*                       3. Back                               *");
-    //     System.out.println("*                                                             *");
-    //     System.out.println("***************************************************************");
-
-    //     Scanner scanner = new Scanner(System.in);
-    //     int choice = enterChoice();
-
-    //     switch (choice) {
-    //         case 1:
-    //             this.displayMainMenu();
-    //             break;
-    //         case 2:
-    //             this.displayMainMenu();
-    //             break;
-    //         case 3:
-    //             break;
-    //         default:
-    //             System.out.println("Invalid choice. Please select again.");
-    //             displayFAQandTerms();
-    //     }
-    // }
-
     public abstract void displayMainMenu();
 
     public static int enterChoice() {

@@ -40,7 +40,7 @@ public class Customer {
             }
 
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            System.err.println("An error occurred.");
         }
     }
 
@@ -67,7 +67,6 @@ public class Customer {
         userRegistered++;
         File custfile = new File("customerfile.txt");
         try {
-
             FileWriter writer = new FileWriter(custfile, true);
             Scanner read = new Scanner(custfile);
             while (read.hasNextLine()) {
@@ -81,7 +80,6 @@ public class Customer {
             String input = String.format("%d,%s,%d,%s,%d,%.2f%n", userRegistered, name, age, email, phoneNum, totalPurchaseAmount);
             writer.write(input);
             writer.close();
-            // writer.write( String.format("%d,%d,%s,%d,%.2f\n", userRegistered, age, email, phoneNum, totalPurchaseAmount));
             read.useDelimiter(",");
             while (read.hasNext()) {
                 System.out.println(read.next());
@@ -170,7 +168,7 @@ public class Customer {
             System.out.print("Enter Name (Ali bin Abu) (0 to return): ");
             name = input.nextLine();
             if (name.isBlank()) {
-                System.out.println("Name cannot be empty.");
+                System.err.println("Name cannot be empty.");
                 a = !(name.isBlank());
             } else if (name.equals("0")) {
                 return;
@@ -185,10 +183,10 @@ public class Customer {
                 age = input.nextInt();
                 a = Integer.toString(age).matches("[1-9]||[1-9][0-9]");
                 if (a == false) {
-                    System.out.println("Invalid value.Please Enter number between 1 to 99.");
+                    System.err.println("Invalid value.Please Enter number between 1 to 99.");
                 }
             } catch (Exception ex) {
-                System.out.println("Please enter numbers only.");
+                System.err.println("Please enter numbers only.");
                 a = false;
                 input.nextLine();
             }
@@ -202,7 +200,7 @@ public class Customer {
 
             a = email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
             if (!a) {
-                System.out.println("Invalid value. Please follow the format.");
+                System.err.println("Invalid value. Please follow the format.");
             }
         } while (!a);
 
@@ -211,22 +209,22 @@ public class Customer {
                 System.out.print("Enter Phone Number (123456789): +60");
                 phoneNum = input.nextInt();
                 if (chkPhoneNumber(this.phoneNum) == true) {
-                    System.out.println("Phone number used.Please try again.");
+                    System.err.println("Phone number used.Please try again.");
                     a = false;
 
                 } else {
                     if (Integer.toString(phoneNum).length() < 9) {
-                        System.out.println("Invalid format.Enter 9 to 10 value only.");
+                        System.err.println("Invalid format.Enter 9 to 10 value only.");
 
                         a = false;
                     } else if (Integer.toString(phoneNum).length() > 10) {
-                        System.out.println("Invalid format.Enter 9 to 10 value only.");
+                        System.err.println("Invalid format.Enter 9 to 10 value only.");
                     } else {
                         a = true;
                     }
                 }
             } catch (Exception ex) {
-                System.out.println("Invalid Format. Enter numbers only.");
+                System.err.println("Invalid Format. Enter numbers only.");
                 a = false;
                 input.nextLine();
             }
@@ -236,14 +234,14 @@ public class Customer {
                 System.out.print("Enter Purchase Amount:RM ");
                 totalPurchaseAmount = input.nextDouble();
                 if (totalPurchaseAmount >= 10000) {
-                    System.out.println("Limit Exceed. Please enter value between 0 to 10000 only.");
+                    System.err.println("Limit Exceed. Please enter value between 0 to 10000 only.");
                     a = false;
 
                 } else {
                     a = true;
                 }
             } catch (Exception ex) {
-                System.out.println("Invalid Format.Enter numbers only.");
+                System.err.println("Invalid Format.Enter numbers only.");
                 input.nextLine();
                 a = false;
 
@@ -267,7 +265,6 @@ public class Customer {
             String input = String.format("%d,%s,%d,%s,%d,%.2f,%s,%d%n", userRegistered, name, age, email, phoneNum, totalPurchaseAmount, pointDate.toString(), pointAccumulate);
             writer.write(input);
             writer.close();
-            // writer.write( String.format("%d,%d,%s,%d,%.2f\n", userRegistered, age, email, phoneNum, totalPurchaseAmount));
             read.useDelimiter(",");
             while (read.hasNext()) {
                 System.out.println(read.next());
@@ -307,7 +304,7 @@ public class Customer {
 
                     name = input.nextLine();
                     if (name.isBlank()) {
-                        System.out.println("Name cannot be empty.");
+                        System.err.println("Name cannot be empty.");
                         a = !(name.isBlank());
                     } else if (name.equals("0")) {
                         return;
@@ -325,10 +322,10 @@ public class Customer {
                         age = input.nextInt();
                         a = Integer.toString(age).matches("[1-9]||[1-9][0-9]");
                         if (a == false) {
-                            System.out.println("Invalid value.Please Enter number between 1 to 99.");
+                            System.err.println("Invalid value.Please Enter number between 1 to 99.");
                         }
                     } catch (Exception ex) {
-                        System.out.println("Please enter numbers only.");
+                        System.err.println("Please enter numbers only.");
                         a = false;
                         input.nextLine();
                     }
@@ -344,9 +341,9 @@ public class Customer {
 
                     a = email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
                     if (!a) {
-                        System.out.println("Invalid value. Please follow the format.");
+                        System.err.println("Invalid value. Please follow the format.");
                     }
-                    // input.nextLine();         
+                        
                 } while (!a);
 
                 System.out.printf("%s %s", "New Email: ", email + "\n");
@@ -357,12 +354,12 @@ public class Customer {
                         System.out.print("Enter Phone Number(123456789): +60");
                         phoneNum = input.nextInt();
                         if (chkPhoneNumber(this.phoneNum) == true) {
-                            System.out.println("Phone number used.Please try again.");
+                            System.err.println("Phone number used.Please try again.");
                             a = false;
 
                         } else {
                             if (Integer.toString(phoneNum).length() < 9 || Integer.toString(phoneNum).length() > 10) {
-                                System.out.println("Invalid format.Enter 9 to 10 value only.");
+                                System.err.println("Invalid format.Enter 9 to 10 value only.");
 
                                 a = false;
                             } else {
@@ -370,12 +367,11 @@ public class Customer {
                             }
                         }
                     } catch (Exception ex) {
-                        System.out.println("Invalid Format. Enter numbers only.");
+                        System.err.println("Invalid Format. Enter numbers only.");
                         a = false;
                         input.nextLine();
                     }
                 } while (a == false);
-
                 System.out.printf("%s %s", "New Phone Number: ", phoneNum + "\n");
                 break;
             default:
@@ -393,14 +389,14 @@ public class Customer {
                 System.out.print("Enter New Transaction Amount:RM ");
                 num = input.nextDouble();
                 if (num >= 10000) {
-                    System.out.println("Limit Exceed. Please enter value between 0 to 10000 only.");
+                    System.err.println("Limit Exceed. Please enter value between 0 to 10000 only.");
                     a = false;
 
                 } else {
                     a = true;
                 }
             } catch (Exception ex) {
-                System.out.println("Invalid Format.Enter numbers only.");
+                System.err.println("Invalid Format.Enter numbers only.");
                 input.nextLine();
                 a = false;
 
@@ -454,7 +450,7 @@ public class Customer {
                 num = scan.nextInt();
                 a = true;
             } catch (Exception ex) {
-                System.out.println("Please enter number only.");
+                System.err.println("Please enter number only.");
                 a = false;
                 scan.nextLine();
 

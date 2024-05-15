@@ -8,10 +8,6 @@ import java.io.FileWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 /**
  *
  * @author Hp
@@ -23,30 +19,26 @@ public class main {
     static int selection;
     static int currentUser = 0;
     static boolean result;
-    // static double point;
     // System allow n number users to register(in this case 100)
     static Customer[] customer = new Customer[100];
 
     public static void main(String[] args) {
-
+        Scanner input = new Scanner(System.in);
         Loyalty loyalty = new Loyalty();
         Redemption redemption = new Redemption();
         Product[] product = {
-            new AllTierProduct("Pillow", "Harvey Norman", 10, 0, 50),
-            new AllTierProduct("Headphone", "Harvey Norman", 12, 0, 50),
-            new AllTierProduct("Backpack", "Harvey Norman", 15, 0, 50),
-            new LimitedProduct("Silver", "Vacuum Cleaner", "VCDesc", 10, 0, 150),
-            new LimitedProduct("Gold", "Cooking Pan", "CPDesc", 12, 0, 150),
-            new LimitedProduct("Platinum", "Knife Set", "KSDesc", 14, 0, 150),
-            new Voucher("RM 5 Discount Voucher", "Deduct RM5 on Next Purchase", 15, 0, 50),
-            new Voucher("RM 10 Discount Voucher", "Deduct RM10 on Next Purchase", 15, 0, 90),
-            new Voucher("RM 20 Discount Voucher", "Deduct RM20 on Next Purchase", 15, 0, 150),};
+                new AllTierProduct("Pillow", "Harvey Norman", 10, 0, 50),
+                new AllTierProduct("Headphone", "Harvey Norman", 12, 0, 50),
+                new AllTierProduct("Backpack", "Harvey Norman", 15, 0, 50),
+                new LimitedProduct("Silver", "Vacuum Cleaner", "VCDesc", 10, 0, 150),
+                new LimitedProduct("Gold", "Cooking Pan", "CPDesc", 12, 0, 150),
+                new LimitedProduct("Platinum", "Knife Set", "KSDesc", 14, 0, 150),
+                new Voucher("RM 5 Discount Voucher", "Deduct RM5 on Next Purchase", 15, 0, 50),
+                new Voucher("RM 10 Discount Voucher", "Deduct RM10 on Next Purchase", 15, 0, 90),
+                new Voucher("RM 20 Discount Voucher", "Deduct RM20 on Next Purchase", 15, 0, 150), };
         Report report = new Report();
         Product prod = new Product();
-       
-        Scanner input = new Scanner(System.in);
         Menu.splashScreen();
-
         do {
             readCustomersFile();
             Menu.adminOrCustMenu();
@@ -87,8 +79,8 @@ public class main {
                                                     System.out
                                                             .println("Welcome back," + customer[currentUser].getName()
                                                                     + "\t\t\t\tPoint Balance: "
-                                                                    + (int) customer[currentUser].getTotalPurchaseAmount()
-                                                            );
+                                                                    + (int) customer[currentUser]
+                                                                            .getTotalPurchaseAmount());
                                                     Menu.userMenu();
                                                     choice = enterChoice();
                                                     switch (choice) {
@@ -100,7 +92,8 @@ public class main {
                                                             break;
                                                         case 2:
                                                             loyalty.updateTier(customer);
-                                                            customer[currentUser].updateAmount(customer[currentUser].getTier());
+                                                            customer[currentUser]
+                                                                    .updateAmount(customer[currentUser].getTier());
                                                             updateCustomerFile(customer);
                                                             pressEnterToContinue();
                                                             Menu.backAction();
@@ -141,7 +134,7 @@ public class main {
                                                             Menu.backAction();
                                                             break;
                                                         case 8:
-                                                            Faq faq=new Faq();
+                                                            Faq faq = new Faq();
                                                             faq.displayMainMenu();
                                                             Menu.backAction();
                                                             break;
@@ -152,7 +145,7 @@ public class main {
                                                         default:
                                                             Menu.backAction();
                                                     }
-                                                    // updateCustomerFile(customer);
+                            
                                                 } while (choice != 10 && result == true);
 
                                                 break;
@@ -160,20 +153,17 @@ public class main {
                                         }
                                     }
                                     if (result == false) {
-                                        System.out.println("User not found,Please Try Again.");
+                                        System.err.println("User not found,Please Try Again.");
                                     }
 
                                 } while (result == false);
                                 choice = 0;
-
                                 break;
                             case 3:
-
                                 break;
                             default:
                                 break;
                         }
-
                         updateCustomerFile(customer);
                     } while (choice != 3);
                     break;
@@ -188,14 +178,12 @@ public class main {
                         while (a.hasNextLine()) {
                             String line = a.nextLine();
                             String[] values = line.split(",");
-
                             String chkUsername = values[1];
                             String chkApw = values[2];
-
+                            
                             if (username.equals(chkUsername)) {
                                 if (apw.equals(chkApw)) {
                                     int reportChoice;
-
                                     do {
                                         Menu.reportMenu();
                                         System.out.print("Select Report to view: ");
@@ -210,16 +198,10 @@ public class main {
                                                 report.displayTierReport();
                                                 break;
                                             case 2:
-                                                // Redemption
-
-                                                // Menu.prodReportMenu();
                                                 report.displayRedemptionReport(product);
-                                                // maybe can add some alert like the particular stock number is less
-                                                // than 10
                                                 System.out.print("Do you want to increase stock inventory? (Y/N) : ");
                                                 String increase = input.next();
                                                 if ((increase.toUpperCase()).equals("Y")) {
-//                                                    Menu.stockMenu();
                                                     System.out.print("Enter Product No.: ");
                                                     int stock = input.nextInt();
                                                     System.out.print("Enter number to increase: ");
@@ -228,14 +210,10 @@ public class main {
                                                 }
                                                 break;
                                             case 3:
-                                                // Points
-                                                // For each customer, take total point earned and redeemed, earn =
-                                                // accumPoint; redeem = earn - balance
                                                 report.displayPointReport(customer);
                                                 break;
                                             case 4:
-                                                // Back
-                                                System.out.print("Back");
+                                                Menu.backAction();
                                                 break;
                                             default:
                                                 break;
@@ -246,7 +224,7 @@ public class main {
                         }
                         a.close();
                     } catch (IOException e) {
-                        System.out.println("An error occurred while reading customer data.");
+                        System.err.println("An error occurred while reading customer data.");
                     }
                     break;
 
@@ -271,33 +249,29 @@ public class main {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] values = line.split(",");
-
                 Customer newCustomer = new Customer();
-
-                newCustomer.setName(values[1]); // Example, modify according to your class structure
+                newCustomer.setName(values[1]); 
                 newCustomer.setAge(Integer.parseInt(values[2]));
                 newCustomer.setEmail(values[3]);
                 newCustomer.setPhoneNum(Integer.parseInt(values[4]));
                 newCustomer.setTotalPurchaseAmount(Double.parseDouble(values[5]));
-                String dateString = values[6]; // Assuming values[6] contains the date string
+                String dateString = values[6]; 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate pointDate = LocalDate.parse(dateString, formatter);
                 newCustomer.setPointDate(pointDate);
                 newCustomer.setPointAccumulate(Integer.parseInt(values[7]));
-
                 // Add the new customer to the customer array
                 customer[currentUser++] = newCustomer;
 
                 // Break if the customer array is filled
                 if (currentUser >= customer.length) {
-
                     break;
                 }
             }
             scanner.close();
 
         } catch (IOException e) {
-            System.out.println("An error occurred while reading customer data.");
+            System.err.println("An error occurred while reading customer data.");
             e.printStackTrace();
         }
     }
@@ -316,9 +290,8 @@ public class main {
                 }
             }
             writer.close();
-            // System.out.println("Customer file updated successfully.");
         } catch (IOException e) {
-            System.out.println("An error occurred while updating customer file.");
+            System.err.println("An error occurred while updating customer file.");
             e.printStackTrace();
         }
     }
@@ -341,21 +314,17 @@ public class main {
                 System.out.print("\nEnter Choice: ");
                 num = scan.nextInt();
                 if (num < 0) {
-                    System.out.println("Please enter numbers displayed only.");
+                    System.err.println("Please enter numbers displayed only.");
                     a = false;
                 } else {
                     a = true;
                 }
             } catch (Exception ex) {
-                System.out.println("Please enter numbers displayed only.");
+                System.err.println("Please enter numbers displayed only.");
                 a = false;
                 scan.nextLine();
             }
-
         } while (a == false);
-
         return num;
-
     }
-
 }

@@ -12,6 +12,52 @@ import java.util.Scanner;
  */
 public class Faq extends Policy{
     
+    @Override
+    public void displayMainMenu() {
+        Menu.displayPolicyMenu();
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nEnter choice: ");
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                displayPointEarnMenu();
+                continueReadingPolicy();
+                break;
+            case 2:
+                displayRedemptionMenu();
+                continueReadingPolicy();
+                break;
+            case 3:
+                displayMembershipTierMenu();
+                continueReadingPolicy();
+                break;
+            case 4:
+                
+                break;
+            default:
+                System.out.println("Invalid choice. Please select again.");
+                this.displayMainMenu();
+        }
+    }
+    @Override
+    public void continueReadingPolicy() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Do you want to continue reading other policies (Y/N)? ");
+        String input = scanner.nextLine();
+        while (!input.equalsIgnoreCase("Y") && !input.equalsIgnoreCase("N")) {
+            System.out.println("Invalid input. Please enter 'Y' or 'N'.");
+            System.out.print("Do you want to continue reading other policies (Y/N)? ");
+            input = scanner.nextLine();
+        }
+        if (input.equalsIgnoreCase("Y")) {
+            displayMainMenu();
+        } else {
+            System.out.println("Stop Reading Policy");
+        }
+    }
+    
     public void displayPointEarnMenu() {
         System.out.println("\n***************************************************************");
         System.out.println("*                   Point Earn Guidelines                     *");
@@ -47,34 +93,7 @@ public class Faq extends Policy{
         }
     }
 
-    public void displayMainMenu() {
-        Menu.displayPolicyMenu();
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("\nEnter choice: ");
-        int choice = scanner.nextInt();
-
-        switch (choice) {
-            case 1:
-                displayPointEarnMenu();
-                continueReadingPolicy();
-                break;
-            case 2:
-                displayRedemptionMenu();
-                continueReadingPolicy();
-                break;
-            case 3:
-                displayMembershipTierMenu();
-                continueReadingPolicy();
-                break;
-            case 4:
-                
-                break;
-            default:
-                System.out.println("Invalid choice. Please select again.");
-                this.displayMainMenu();
-        }
-    }
+    
 
     public void displayPointEarnByPurchase() {
         System.out.println("\n**************************************** Frequently Asked Questions (FAQ): ***************************************");
@@ -154,20 +173,6 @@ public class Faq extends Policy{
         System.out.println("   - Yes, higher-tier members often receive redemption rewards without any restrictions.");
     }   
 
-    public void continueReadingPolicy() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Do you want to continue reading other policies (Y/N)? ");
-        String input = scanner.nextLine();
-        while (!input.equalsIgnoreCase("Y") && !input.equalsIgnoreCase("N")) {
-            System.out.println("Invalid input. Please enter 'Y' or 'N'.");
-            System.out.print("Do you want to continue reading other policies (Y/N)? ");
-            input = scanner.nextLine();
-        }
-        if (input.equalsIgnoreCase("Y")) {
-            displayMainMenu();
-        } else {
-            System.out.println("Stop Reading Policy");
-        }
-    }
+    
     
 }

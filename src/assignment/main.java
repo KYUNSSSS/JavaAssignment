@@ -78,7 +78,7 @@ public class main {
                                                 do {
                                                     System.out
                                                             .println("Welcome back," + customer[currentUser].getName()
-                                                                    + "\t\t\t\tPoint Balance: "
+                                                                    + "\t\t\tPoint Balance: "
                                                                     + (int) customer[currentUser]
                                                                             .getTotalPurchaseAmount());
                                                     Menu.userMenu();

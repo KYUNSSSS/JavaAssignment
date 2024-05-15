@@ -465,8 +465,6 @@ public class Customer {
         boolean result = false;
         File custfile = new File("customerfile.txt");
         try {
-
-            // FileWriter writer = new FileWriter(custfile,true);
             Scanner read = new Scanner(custfile);
             while (read.hasNextLine()) {
                 String line = read.nextLine();

@@ -3,11 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package assignment;
-//hi
-import static assignment.main.customer;
-import java.time.LocalDate;
-//hehe
-//hihi
 /**
  *
  * @author Hp

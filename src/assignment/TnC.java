@@ -26,7 +26,6 @@ public class TnC extends Policy {
                 continueReadingPolicy();
                 break;
             case 4:
-                // displayFAQandTerms();
                 break;
             default:
                 System.out.println("Invalid choice. Please select again.");

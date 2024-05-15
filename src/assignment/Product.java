@@ -116,7 +116,6 @@ public class Product {
                 }
             }
             writer.close();
-            // System.out.println("Customer file updated successfully.");
         } catch (IOException e) {
             System.out.println("An error occurred while updating customer file.");
             e.printStackTrace();

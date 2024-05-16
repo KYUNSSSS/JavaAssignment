@@ -73,7 +73,7 @@ public class main {
                             case 2:
 
                                 do {
-                                    phonenum = Customer.checkPhoneNumber();
+                                    phonenum = Customer.chkPhoneNumber();
                                     if (phonenum == 0) {
                                         break;
                                     }

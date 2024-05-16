@@ -442,7 +442,7 @@ public class Customer {
 
     }
 
-    public static int checkPhoneNumber() {
+    public static int chkPhoneNumber() {
         Scanner scan = new Scanner(System.in);
         int num = 0;
         boolean a = true;

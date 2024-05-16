@@ -1,5 +1,5 @@
 0,Amanda Lee,23,amanda@gmail.com,343432343,5210.0,2024-05-10,5455
-1,Brandon,20,brandon@gmail.com,134567890,5115.0,2024-05-15,12300
+1,Brandon,20,brandon@gmail.com,134567890,5865.0,2024-05-10,18395
 2,Chloe Tan,28,chloe@gmail.com,145678902,550.0,2024-05-09,6115
 3,Daniel Wong,18,daniel@gmail.com,122222222,230.0,2024-05-15,54775
 4,Aisha,24,aisha@gmail.com,133333333,200.0,2023-05-09,54545

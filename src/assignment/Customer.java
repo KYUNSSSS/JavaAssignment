@@ -441,7 +441,7 @@ public class Customer {
                 + "   4. Phone Number :" + phoneNum + "\n";
 
     }
-
+//change to overloading method
     public static int checkPhoneNumber() {
         Scanner scan = new Scanner(System.in);
         int num = 0;
